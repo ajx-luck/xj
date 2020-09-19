@@ -1,0 +1,41 @@
+*************************************
+------------- Call Depth ------------
+ Depth  Interrupt    Function
+-------------------------------------
+    0        N         ProgramStart
+    1        Y           _interrupt_l
+    1        Y           _interrupt
+    0        N         _main
+C   1        N           _IO_Init
+C   1        N           _chrgCtr
+C   2        N             _keyCtr
+C   3        N               _keyRead
+C   3        N               _PWM_Init
+C   3        N               _PWM_Stop
+C   3        N               _PWM_Init
+C   1        N           _ledCtr
+C   1        N           _workCtr
+-------------------------------------
+Stack Depth: 3
+
+*************************************
+-------------- Data Map -------------
+d -- Uninitialized data
+D -- Initialized data
+b -- Uninitialized bit data
+B -- Initialized bit data
+C -- C Register
+
+-------------- RAM Data -------------
+0x00  - - - - - - - - - - - - - - - - 
+0x10  - - - - - - - - - - - - - - - - 
+0x20  b - - - - - - - - - - - - - - - 
+0x30  - - - - - - - - - - - - - - - - 
+
+----------- Register Data -----------
+0x00  - d - b - b b - d d d - - - d b 
+0x10  - - - - - - - - - - - - - - - - 
+
+-------------- IO Data --------------
+0x00  - - - - - d d - - - - d - d d d 
+

@@ -1,0 +1,614 @@
+  JMP   0x04C           ;'0x000000'
+;C:\mcuproject\xj\fan0919\fan.c (line 255)
+;PWMCON = 0x00;	//
+  CLR   0x08            ;'0x000001'
+;C:\mcuproject\xj\fan0919\fan.c (line 256)
+;}
+  RET                   ;'0x000002'
+  ADD   A, @0xFF        ;'0x000003'
+  ADD   A, @0xFF        ;'0x000004'
+  ADD   A, @0xFF        ;'0x000005'
+  ADD   A, @0xFF        ;'0x000006'
+  ADD   A, @0xFF        ;'0x000007'
+  JMP   0x009           ;'0x000008'
+;C:\mcuproject\xj\fan0919\fan.c (line 278)
+;MOV 0x3D,A ;保存 A
+  MOV   0x10, A         ;'0x000009'
+  SWAPA 0x04            ;'0x00000A'
+  MOV   0x32, A         ;'0x00000B'
+  SWAPA 0x03            ;'0x00000C'
+  MOV   0x33, A         ;'0x00000D'
+  MOV   0x3D, A         ;'0x00000E'
+;C:\mcuproject\xj\fan0919\fan.c (line 279)
+;MOV A,0x03
+  MOV   A, 0x03         ;'0x00000F'
+;C:\mcuproject\xj\fan0919\fan.c (line 280)
+;MOV 0x3E,A ;保存 R3
+  MOV   0x3E, A         ;'0x000010'
+;C:\mcuproject\xj\fan0919\fan.c (line 281)
+;MOV A,0x04
+  MOV   A, 0x04         ;'0x000011'
+;C:\mcuproject\xj\fan0919\fan.c (line 282)
+;MOV 0x3F,A ;保存 R4
+  MOV   0x3F, A         ;'0x000012'
+;C:\mcuproject\xj\fan0919\fan.c (line 285)
+;if	(TCIF==1)
+  JBS   0x0F, 0         ;'0x000013'
+  JMP   0x03F           ;'0x000014'
+;C:\mcuproject\xj\fan0919\fan.c (line 288)
+;ISR&=0XFE;				//清TCC中断标志位
+  MOV   A, @0xFE        ;'0x000015'
+  AND   0x0F, A         ;'0x000016'
+;C:\mcuproject\xj\fan0919\fan.c (line 289)
+;TCC+=206;					//TCC赋初值 0.2ms
+  MOV   A, @0xCE        ;'0x000017'
+  ADD   0x01, A         ;'0x000018'
+;C:\mcuproject\xj\fan0919\fan.c (line 291)
+;if(++intCount >= 50)
+  INC   0x23            ;'0x000019'
+  MOV   A, @0x32        ;'0x00001A'
+  SUB   A, 0x23         ;'0x00001B'
+  JBS   0x03, 0         ;'0x00001C'
+  JMP   0x026           ;'0x00001D'
+;C:\mcuproject\xj\fan0919\fan.c (line 293)
+;intCount = 0;		//10ms
+  CLR   0x23            ;'0x00001E'
+;C:\mcuproject\xj\fan0919\fan.c (line 294)
+;IntFlag = 1;
+  BS    0x20, 0         ;'0x00001F'
+;C:\mcuproject\xj\fan0919\fan.c (line 295)
+;if(++count500ms >=50)
+  INC   0x24            ;'0x000020'
+  MOV   A, @0x32        ;'0x000021'
+  SUB   A, 0x24         ;'0x000022'
+  JBS   0x03, 0         ;'0x000023'
+  JMP   0x026           ;'0x000024'
+;C:\mcuproject\xj\fan0919\fan.c (line 296)
+;count500ms = 0;
+  CLR   0x24            ;'0x000025'
+;C:\mcuproject\xj\fan0919\fan.c (line 298)
+;if(ledStep == 1)
+  MOV   A, 0x27         ;'0x000026'
+  XOR   A, @0x01        ;'0x000027'
+  JBS   0x03, 2         ;'0x000028'
+  JMP   0x038           ;'0x000029'
+;C:\mcuproject\xj\fan0919\fan.c (line 300)
+;if(++count64ms >= 32)
+  INC   0x29            ;'0x00002A'
+  MOV   A, @0x20        ;'0x00002B'
+  SUB   A, 0x29         ;'0x00002C'
+  JBS   0x03, 0         ;'0x00002D'
+  JMP   0x030           ;'0x00002E'
+;C:\mcuproject\xj\fan0919\fan.c (line 302)
+;count64ms = 0;
+  CLR   0x29            ;'0x00002F'
+;C:\mcuproject\xj\fan0919\fan.c (line 304)
+;if(count64ms < 16)
+  MOV   A, @0x10        ;'0x000030'
+  SUB   A, 0x29         ;'0x000031'
+  JBC   0x03, 0         ;'0x000032'
+  JMP   0x036           ;'0x000033'
+;C:\mcuproject\xj\fan0919\fan.c (line 305)
+;P50 = 1;
+  BS    0x05, 0         ;'0x000034'
+  JMP   0x03F           ;'0x000035'
+;C:\mcuproject\xj\fan0919\fan.c (line 307)
+;P50 = 0;
+  BC    0x05, 0         ;'0x000036'
+  JMP   0x03F           ;'0x000037'
+;C:\mcuproject\xj\fan0919\fan.c (line 309)
+;else if(ledStep == 2)
+  MOV   A, 0x27         ;'0x000038'
+  XOR   A, @0x02        ;'0x000039'
+  JBS   0x03, 2         ;'0x00003A'
+  JMP   0x03E           ;'0x00003B'
+;C:\mcuproject\xj\fan0919\fan.c (line 311)
+;P50 = 1;
+  BS    0x05, 0         ;'0x00003C'
+  JMP   0x03F           ;'0x00003D'
+;C:\mcuproject\xj\fan0919\fan.c (line 315)
+;P50 = 0;
+  BC    0x05, 0         ;'0x00003E'
+;C:\mcuproject\xj\fan0919\fan.c (line 322)
+;MOV A,0x3F ;返回 R4
+  MOV   A, 0x3F         ;'0x00003F'
+;C:\mcuproject\xj\fan0919\fan.c (line 323)
+;MOV 0x04,A
+  MOV   0x04, A         ;'0x000040'
+;C:\mcuproject\xj\fan0919\fan.c (line 324)
+;MOV A,0x3E ;返回 R3
+  MOV   A, 0x3E         ;'0x000041'
+;C:\mcuproject\xj\fan0919\fan.c (line 325)
+;MOV 0x03,A
+  MOV   0x03, A         ;'0x000042'
+;C:\mcuproject\xj\fan0919\fan.c (line 326)
+;SWAP 0x3D  ;返回 A
+  SWAP  0x3D            ;'0x000043'
+;C:\mcuproject\xj\fan0919\fan.c (line 327)
+;SWAPA 0x3D
+  SWAPA 0x3D            ;'0x000044'
+;C:\mcuproject\xj\fan0919\fan.c (line 329)
+;}
+  SWAPA 0x33            ;'0x000045'
+  MOV   0x03, A         ;'0x000046'
+  SWAPA 0x32            ;'0x000047'
+  MOV   0x04, A         ;'0x000048'
+  RETI                  ;'0x000049'
+  ADD   A, @0xFF        ;'0x00004A'
+  ADD   A, @0xFF        ;'0x00004B'
+;C:\mcuproject\xj\fan0919\fan.c (line 51)
+;WDTC();
+  MOV   A, @0x00        ;'0x00004C'
+  MOV   0x21, A         ;'0x00004D'
+  MOV   0x22, A         ;'0x00004E'
+  MOV   0x23, A         ;'0x00004F'
+  MOV   0x24, A         ;'0x000050'
+  MOV   0x25, A         ;'0x000051'
+  MOV   0x26, A         ;'0x000052'
+  MOV   0x27, A         ;'0x000053'
+  MOV   0x28, A         ;'0x000054'
+  MOV   0x29, A         ;'0x000055'
+  MOV   0x2A, A         ;'0x000056'
+  MOV   0x2B, A         ;'0x000057'
+  MOV   0x2C, A         ;'0x000058'
+  WDTC                  ;'0x000059'
+;C:\mcuproject\xj\fan0919\fan.c (line 52)
+;DISI();
+  DISI                  ;'0x00005A'
+;C:\mcuproject\xj\fan0919\fan.c (line 53)
+;WDTCR=0;				//禁止WDT
+  MOV   A, @0x00        ;'0x00005B'
+  IOW   0xE             ;'0x00005C'
+;C:\mcuproject\xj\fan0919\fan.c (line 55)
+;IO_Init();	            //IO初始化
+  CALL  0x08B           ;'0x00005D'
+;C:\mcuproject\xj\fan0919\fan.c (line 57)
+;TCC=206;					//timer=1/8*2*(256-6)*16=1ms,TCC中断1ms定时		主频8M/2T
+  MOV   A, @0xCE        ;'0x00005E'
+  MOV   0x01, A         ;'0x00005F'
+;C:\mcuproject\xj\fan0919\fan.c (line 58)
+;ISR=0;
+  CLR   0x0F            ;'0x000060'
+;C:\mcuproject\xj\fan0919\fan.c (line 59)
+;IMR=1;
+  MOV   A, @0x01        ;'0x000061'
+  IOW   0xF             ;'0x000062'
+;C:\mcuproject\xj\fan0919\fan.c (line 61)
+;ENI();
+  ENI                   ;'0x000063'
+  JMP   0x089           ;'0x000064'
+;C:\mcuproject\xj\fan0919\fan.c (line 66)
+;WDTC(); //清狗
+  WDTC                  ;'0x000065'
+;C:\mcuproject\xj\fan0919\fan.c (line 67)
+;if(!IntFlag)
+  JBC   0x20, 0         ;'0x000066'
+  JMP   0x069           ;'0x000067'
+;C:\mcuproject\xj\fan0919\fan.c (line 68)
+;continue;
+  JMP   0x089           ;'0x000068'
+;C:\mcuproject\xj\fan0919\fan.c (line 69)
+;IntFlag = 0;
+  BC    0x20, 0         ;'0x000069'
+;C:\mcuproject\xj\fan0919\fan.c (line 70)
+;keyCtr();
+  CALL  0x096           ;'0x00006A'
+;C:\mcuproject\xj\fan0919\fan.c (line 71)
+;if(ledStep || workStep)
+  MOV   0x27, 0x27      ;'0x00006B'
+  JBS   0x03, 2         ;'0x00006C'
+  JMP   0x071           ;'0x00006D'
+  MOV   0x26, 0x26      ;'0x00006E'
+  JBC   0x03, 2         ;'0x00006F'
+  JMP   0x074           ;'0x000070'
+;C:\mcuproject\xj\fan0919\fan.c (line 73)
+;P52 = 1;
+  BS    0x05, 2         ;'0x000071'
+;C:\mcuproject\xj\fan0919\fan.c (line 74)
+;lvdCheck();
+  CALL  0x0FF           ;'0x000072'
+  JMP   0x081           ;'0x000073'
+;C:\mcuproject\xj\fan0919\fan.c (line 78)
+;P52 = 0;
+  BC    0x05, 2         ;'0x000074'
+;C:\mcuproject\xj\fan0919\fan.c (line 79)
+;P53 = 0;
+  BC    0x05, 3         ;'0x000075'
+;C:\mcuproject\xj\fan0919\fan.c (line 80)
+;if(keyCount == 0 && P66 == 1)
+  MOV   0x25, 0x25      ;'0x000076'
+  JBS   0x03, 2         ;'0x000077'
+  JMP   0x081           ;'0x000078'
+  JBS   0x06, 6         ;'0x000079'
+  JMP   0x081           ;'0x00007A'
+;C:\mcuproject\xj\fan0919\fan.c (line 82)
+;if(++sleepTime >= 200)
+  INC   0x2C            ;'0x00007B'
+  MOV   A, @0xC8        ;'0x00007C'
+  SUB   A, 0x2C         ;'0x00007D'
+  JBS   0x03, 0         ;'0x00007E'
+  JMP   0x081           ;'0x00007F'
+;C:\mcuproject\xj\fan0919\fan.c (line 83)
+;gotoSleep();
+  CALL  0x135           ;'0x000080'
+;C:\mcuproject\xj\fan0919\fan.c (line 87)
+;if(workStep == 0)
+  MOV   0x26, 0x26      ;'0x000081'
+  JBS   0x03, 2         ;'0x000082'
+  JMP   0x089           ;'0x000083'
+;C:\mcuproject\xj\fan0919\fan.c (line 89)
+;if(P66)
+  JBS   0x06, 6         ;'0x000084'
+  JMP   0x088           ;'0x000085'
+;C:\mcuproject\xj\fan0919\fan.c (line 91)
+;PWM_Stop();
+  CALL  0x001           ;'0x000086'
+  JMP   0x089           ;'0x000087'
+;C:\mcuproject\xj\fan0919\fan.c (line 95)
+;PWM_Init();
+  CALL  0x0F6           ;'0x000088'
+;C:\mcuproject\xj\fan0919\fan.c (line 64)
+;while(1)
+  JMP   0x065           ;'0x000089'
+;C:\mcuproject\xj\fan0919\fan.c (line 101)
+;}
+  RET                   ;'0x00008A'
+;C:\mcuproject\xj\fan0919\fan.c (line 262)
+;PORT5 = 0x00;
+  CLR   0x05            ;'0x00008B'
+;C:\mcuproject\xj\fan0919\fan.c (line 263)
+;P5CR = 0x00;			//PORT5设为输出(0 输出,1 输入)
+  MOV   A, @0x00        ;'0x00008C'
+  IOW   0x5             ;'0x00008D'
+;C:\mcuproject\xj\fan0919\fan.c (line 264)
+;PORT6 = 0x00;
+  CLR   0x06            ;'0x00008E'
+;C:\mcuproject\xj\fan0919\fan.c (line 265)
+;P6CR = 0x43;			//PORT6设为输出(0 输出,1 输入)	P60 61 66 输入
+  MOV   A, @0x43        ;'0x00008F'
+  IOW   0x6             ;'0x000090'
+;C:\mcuproject\xj\fan0919\fan.c (line 266)
+;PHCR = 0xBC;				//打开上拉
+  MOV   A, @0xBC        ;'0x000091'
+  IOW   0xD             ;'0x000092'
+;C:\mcuproject\xj\fan0919\fan.c (line 268)
+;mov	a,@0x03			//TCC分频比设为1：16
+  MOV   A, @0x03        ;'0x000093'
+;C:\mcuproject\xj\fan0919\fan.c (line 269)
+;contw
+  CONTW                 ;'0x000094'
+;C:\mcuproject\xj\fan0919\fan.c (line 271)
+;}
+  RET                   ;'0x000095'
+  MOV   A, 0x12         ;'0x000096'
+  MOV   0x2F, A         ;'0x000097'
+;C:\mcuproject\xj\fan0919\fan.c (line 144)
+;char kclick = keyRead(0x03 & (~PORT6));
+  MOV   A, 0x06         ;'0x000098'
+  MOV   0x12, A         ;'0x000099'
+  COM   0x12            ;'0x00009A'
+  MOV   A, @0x03        ;'0x00009B'
+  AND   A, 0x12         ;'0x00009C'
+  MOV   0x30, A         ;'0x00009D'
+  CALL  0x0DC           ;'0x00009E'
+  MOV   A, 0x11         ;'0x00009F'
+  MOV   0x2E, A         ;'0x0000A0'
+;C:\mcuproject\xj\fan0919\fan.c (line 145)
+;if(kclick == 1)
+  MOV   A, 0x2E         ;'0x0000A1'
+  XOR   A, @0x01        ;'0x0000A2'
+  JBS   0x03, 2         ;'0x0000A3'
+  JMP   0x0D9           ;'0x0000A4'
+;C:\mcuproject\xj\fan0919\fan.c (line 147)
+;if(keyNub & 0x01)
+  MOV   A, 0x28         ;'0x0000A5'
+  AND   A, @0x01        ;'0x0000A6'
+  JBC   0x03, 2         ;'0x0000A7'
+  JMP   0x0CD           ;'0x0000A8'
+;C:\mcuproject\xj\fan0919\fan.c (line 150)
+;if(++workStep > 2)
+  INC   0x26            ;'0x0000A9'
+  MOV   A, 0x26         ;'0x0000AA'
+  SUB   A, @0x02        ;'0x0000AB'
+  JBC   0x03, 0         ;'0x0000AC'
+  JMP   0x0AF           ;'0x0000AD'
+;C:\mcuproject\xj\fan0919\fan.c (line 151)
+;workStep = 0;
+  CLR   0x26            ;'0x0000AE'
+;C:\mcuproject\xj\fan0919\fan.c (line 152)
+;if(workStep)
+  MOV   0x26, 0x26      ;'0x0000AF'
+  JBC   0x03, 2         ;'0x0000B0'
+  JMP   0x0B5           ;'0x0000B1'
+;C:\mcuproject\xj\fan0919\fan.c (line 154)
+;P51 = 1;
+  BS    0x05, 1         ;'0x0000B2'
+;C:\mcuproject\xj\fan0919\fan.c (line 155)
+;PWM_Init();
+  CALL  0x0F6           ;'0x0000B3'
+  JMP   0x0B7           ;'0x0000B4'
+;C:\mcuproject\xj\fan0919\fan.c (line 159)
+;PWM_Stop();
+  CALL  0x001           ;'0x0000B5'
+;C:\mcuproject\xj\fan0919\fan.c (line 160)
+;P51 = 0;
+  BC    0x05, 1         ;'0x0000B6'
+;C:\mcuproject\xj\fan0919\fan.c (line 162)
+;switch(workStep)
+  MOV   A, 0x26         ;'0x0000B7'
+  MOV   0x12, A         ;'0x0000B8'
+  MOV   0x12, 0x12      ;'0x0000B9'
+  JBC   0x03, 2         ;'0x0000BA'
+  JMP   0x0C5           ;'0x0000BB'
+  MOV   A, 0x12         ;'0x0000BC'
+  XOR   A, @0x01        ;'0x0000BD'
+  JBC   0x03, 2         ;'0x0000BE'
+  JMP   0x0C7           ;'0x0000BF'
+  MOV   A, 0x12         ;'0x0000C0'
+  XOR   A, @0x02        ;'0x0000C1'
+  JBC   0x03, 2         ;'0x0000C2'
+  JMP   0x0CA           ;'0x0000C3'
+  JMP   0x0D9           ;'0x0000C4'
+;C:\mcuproject\xj\fan0919\fan.c (line 165)
+;PDC1 = 0;
+  CLR   0x0A            ;'0x0000C5'
+;C:\mcuproject\xj\fan0919\fan.c (line 166)
+;break;
+  JMP   0x0D9           ;'0x0000C6'
+;C:\mcuproject\xj\fan0919\fan.c (line 168)
+;PDC1 = 17;
+  MOV   A, @0x11        ;'0x0000C7'
+  MOV   0x0A, A         ;'0x0000C8'
+;C:\mcuproject\xj\fan0919\fan.c (line 169)
+;break;
+  JMP   0x0D9           ;'0x0000C9'
+;C:\mcuproject\xj\fan0919\fan.c (line 171)
+;PDC1 = 27;
+  MOV   A, @0x1B        ;'0x0000CA'
+  MOV   0x0A, A         ;'0x0000CB'
+  JMP   0x0D9           ;'0x0000CC'
+;C:\mcuproject\xj\fan0919\fan.c (line 179)
+;if(++ledStep > 2)
+  INC   0x27            ;'0x0000CD'
+  MOV   A, 0x27         ;'0x0000CE'
+  SUB   A, @0x02        ;'0x0000CF'
+  JBC   0x03, 0         ;'0x0000D0'
+  JMP   0x0D3           ;'0x0000D1'
+;C:\mcuproject\xj\fan0919\fan.c (line 180)
+;ledStep = 0;
+  CLR   0x27            ;'0x0000D2'
+;C:\mcuproject\xj\fan0919\fan.c (line 181)
+;if(ledStep)
+  MOV   0x27, 0x27      ;'0x0000D3'
+  JBC   0x03, 2         ;'0x0000D4'
+  JMP   0x0D8           ;'0x0000D5'
+;C:\mcuproject\xj\fan0919\fan.c (line 183)
+;P67 = 1;
+  BS    0x06, 7         ;'0x0000D6'
+  JMP   0x0D9           ;'0x0000D7'
+;C:\mcuproject\xj\fan0919\fan.c (line 187)
+;P67 = 0;
+  BC    0x06, 7         ;'0x0000D8'
+;C:\mcuproject\xj\fan0919\fan.c (line 192)
+;}
+  MOV   A, 0x2F         ;'0x0000D9'
+  MOV   0x12, A         ;'0x0000DA'
+  RET                   ;'0x0000DB'
+;C:\mcuproject\xj\fan0919\fan.c (line 213)
+;if(keyStatus)
+  MOV   0x30, 0x30      ;'0x0000DC'
+  JBC   0x03, 2         ;'0x0000DD'
+  JMP   0x0E9           ;'0x0000DE'
+;C:\mcuproject\xj\fan0919\fan.c (line 215)
+;keyNub = keyStatus;
+  MOV   A, 0x30         ;'0x0000DF'
+  MOV   0x28, A         ;'0x0000E0'
+;C:\mcuproject\xj\fan0919\fan.c (line 216)
+;keyCount++;
+  INC   0x25            ;'0x0000E1'
+;C:\mcuproject\xj\fan0919\fan.c (line 217)
+;if(keyCount >= 200)
+  MOV   A, @0xC8        ;'0x0000E2'
+  SUB   A, 0x25         ;'0x0000E3'
+  JBS   0x03, 0         ;'0x0000E4'
+  JMP   0x0F3           ;'0x0000E5'
+;C:\mcuproject\xj\fan0919\fan.c (line 219)
+;keyCount = 200;
+  MOV   A, @0xC8        ;'0x0000E6'
+  MOV   0x25, A         ;'0x0000E7'
+  JMP   0x0F3           ;'0x0000E8'
+;C:\mcuproject\xj\fan0919\fan.c (line 224)
+;if(keyCount >= 8)
+  MOV   A, @0x08        ;'0x0000E9'
+  SUB   A, 0x25         ;'0x0000EA'
+  JBS   0x03, 0         ;'0x0000EB'
+  JMP   0x0F1           ;'0x0000EC'
+;C:\mcuproject\xj\fan0919\fan.c (line 226)
+;keyCount = 0;
+  CLR   0x25            ;'0x0000ED'
+;C:\mcuproject\xj\fan0919\fan.c (line 227)
+;return	1;
+  MOV   A, @0x01        ;'0x0000EE'
+  MOV   0x11, A         ;'0x0000EF'
+  JMP   0x0F5           ;'0x0000F0'
+;C:\mcuproject\xj\fan0919\fan.c (line 229)
+;keyCount = 0;
+  CLR   0x25            ;'0x0000F1'
+;C:\mcuproject\xj\fan0919\fan.c (line 230)
+;keyNub = 0;
+  CLR   0x28            ;'0x0000F2'
+;C:\mcuproject\xj\fan0919\fan.c (line 232)
+;return 0;
+  MOV   A, @0x00        ;'0x0000F3'
+  MOV   0x11, A         ;'0x0000F4'
+;C:\mcuproject\xj\fan0919\fan.c (line 233)
+;}
+  RET                   ;'0x0000F5'
+;C:\mcuproject\xj\fan0919\fan.c (line 247)
+;PRD = 49;				//设置周期		1/8*4*136=68us = 14.7K
+  MOV   A, @0x31        ;'0x0000F6'
+  MOV   0x09, A         ;'0x0000F7'
+;C:\mcuproject\xj\fan0919\fan.c (line 248)
+;PDC1 = 17;				//设置占空比
+  MOV   A, @0x11        ;'0x0000F8'
+  MOV   0x0A, A         ;'0x0000F9'
+;C:\mcuproject\xj\fan0919\fan.c (line 249)
+;CPUCON = 0B01000000;	//PWM选择系统时钟8M
+  MOV   A, @0x40        ;'0x0000FA'
+  MOV   0x0E, A         ;'0x0000FB'
+;C:\mcuproject\xj\fan0919\fan.c (line 250)
+;PWMCON = 0B00010000;	//不分频分频
+  MOV   A, @0x10        ;'0x0000FC'
+  MOV   0x08, A         ;'0x0000FD'
+;C:\mcuproject\xj\fan0919\fan.c (line 251)
+;}
+  RET                   ;'0x0000FE'
+;C:\mcuproject\xj\fan0919\fan.c (line 106)
+;LVDCON = 0x8A;
+  MOV   A, @0x8A        ;'0x0000FF'
+  MOV   0x07, A         ;'0x000100'
+;C:\mcuproject\xj\fan0919\fan.c (line 107)
+;delay(100);
+  MOV   A, @0x64        ;'0x000101'
+  MOV   0x31, A         ;'0x000102'
+  CALL  0x126           ;'0x000103'
+;C:\mcuproject\xj\fan0919\fan.c (line 108)
+;if(LVDCON & 0x40)
+  MOV   A, 0x07         ;'0x000104'
+  AND   A, @0x40        ;'0x000105'
+  JBC   0x03, 2         ;'0x000106'
+  JMP   0x121           ;'0x000107'
+;C:\mcuproject\xj\fan0919\fan.c (line 111)
+;lvdFlag = 1;
+  BS    0x20, 2         ;'0x000108'
+;C:\mcuproject\xj\fan0919\fan.c (line 112)
+;count5s++;
+  INC   0x2A            ;'0x000109'
+  JBC   0x03, 2         ;'0x00010A'
+  INC   0x2B            ;'0x00010B'
+;C:\mcuproject\xj\fan0919\fan.c (line 113)
+;if(count5s > 50)
+  MOV   A, 0x2B         ;'0x00010C'
+  SUB   A, @0x00        ;'0x00010D'
+  JBS   0x03, 2         ;'0x00010E'
+  JMP   0x112           ;'0x00010F'
+  MOV   A, 0x2A         ;'0x000110'
+  SUB   A, @0x32        ;'0x000111'
+  JBC   0x03, 0         ;'0x000112'
+  JMP   0x115           ;'0x000113'
+;C:\mcuproject\xj\fan0919\fan.c (line 115)
+;P53 = 1;
+  BS    0x05, 3         ;'0x000114'
+;C:\mcuproject\xj\fan0919\fan.c (line 117)
+;if(count5s > 550)
+  MOV   A, 0x2B         ;'0x000115'
+  SUB   A, @0x02        ;'0x000116'
+  JBS   0x03, 2         ;'0x000117'
+  JMP   0x11B           ;'0x000118'
+  MOV   A, 0x2A         ;'0x000119'
+  SUB   A, @0x26        ;'0x00011A'
+  JBC   0x03, 0         ;'0x00011B'
+  JMP   0x125           ;'0x00011C'
+;C:\mcuproject\xj\fan0919\fan.c (line 119)
+;count5s = 0;
+  CLR   0x2B            ;'0x00011D'
+  CLR   0x2A            ;'0x00011E'
+;C:\mcuproject\xj\fan0919\fan.c (line 120)
+;cloesAll();
+  CALL  0x12F           ;'0x00011F'
+  JMP   0x125           ;'0x000120'
+;C:\mcuproject\xj\fan0919\fan.c (line 126)
+;lvdFlag = 0;
+  BC    0x20, 2         ;'0x000121'
+;C:\mcuproject\xj\fan0919\fan.c (line 127)
+;count5s = 0;
+  CLR   0x2B            ;'0x000122'
+  CLR   0x2A            ;'0x000123'
+;C:\mcuproject\xj\fan0919\fan.c (line 128)
+;P53 = 0;
+  BC    0x05, 3         ;'0x000124'
+;C:\mcuproject\xj\fan0919\fan.c (line 130)
+;}
+  RET                   ;'0x000125'
+;C:\mcuproject\xj\fan0919\fan.c (line 238)
+;u8t i = 0;
+  CLR   0x30            ;'0x000126'
+;C:\mcuproject\xj\fan0919\fan.c (line 239)
+;for(;i<time;i++)
+  JMP   0x12A           ;'0x000127'
+;C:\mcuproject\xj\fan0919\fan.c (line 240)
+;NOP();
+  NOP                   ;'0x000128'
+;C:\mcuproject\xj\fan0919\fan.c (line 239)
+;for(;i<time;i++)
+  INC   0x30            ;'0x000129'
+  MOV   A, 0x31         ;'0x00012A'
+  SUB   A, 0x30         ;'0x00012B'
+  JBS   0x03, 0         ;'0x00012C'
+  JMP   0x128           ;'0x00012D'
+;C:\mcuproject\xj\fan0919\fan.c (line 241)
+;}
+  RET                   ;'0x00012E'
+;C:\mcuproject\xj\fan0919\fan.c (line 134)
+;workStep = 0;
+  CLR   0x26            ;'0x00012F'
+;C:\mcuproject\xj\fan0919\fan.c (line 135)
+;ledStep = 0;
+  CLR   0x27            ;'0x000130'
+;C:\mcuproject\xj\fan0919\fan.c (line 136)
+;PWM_Stop();
+  CALL  0x001           ;'0x000131'
+;C:\mcuproject\xj\fan0919\fan.c (line 137)
+;PORT5 = 0x00;
+  CLR   0x05            ;'0x000132'
+;C:\mcuproject\xj\fan0919\fan.c (line 138)
+;P67 = 0;
+  BC    0x06, 7         ;'0x000133'
+;C:\mcuproject\xj\fan0919\fan.c (line 139)
+;}
+  RET                   ;'0x000134'
+;C:\mcuproject\xj\fan0919\fan.c (line 196)
+;count5s = 0;
+  CLR   0x2B            ;'0x000135'
+  CLR   0x2A            ;'0x000136'
+;C:\mcuproject\xj\fan0919\fan.c (line 197)
+;sleepTime = 0;
+  CLR   0x2C            ;'0x000137'
+;C:\mcuproject\xj\fan0919\fan.c (line 198)
+;WDTCR=0;//禁止WDT
+  MOV   A, @0x00        ;'0x000138'
+  IOW   0xE             ;'0x000139'
+;C:\mcuproject\xj\fan0919\fan.c (line 199)
+;ICIECR = 0x43;
+  MOV   A, @0x43        ;'0x00013A'
+  MOV   0x0D, A         ;'0x00013B'
+;C:\mcuproject\xj\fan0919\fan.c (line 200)
+;IMR = 0x02;
+  MOV   A, @0x02        ;'0x00013C'
+  IOW   0xF             ;'0x00013D'
+;C:\mcuproject\xj\fan0919\fan.c (line 201)
+;ISR&=0XF0;
+  MOV   A, @0xF0        ;'0x00013E'
+  AND   0x0F, A         ;'0x00013F'
+;C:\mcuproject\xj\fan0919\fan.c (line 202)
+;DISI();
+  DISI                  ;'0x000140'
+;C:\mcuproject\xj\fan0919\fan.c (line 203)
+;SLEP();
+  SLEP                  ;'0x000141'
+;C:\mcuproject\xj\fan0919\fan.c (line 204)
+;ENI();
+  ENI                   ;'0x000142'
+;C:\mcuproject\xj\fan0919\fan.c (line 205)
+;ICIECR = 0x00;
+  CLR   0x0D            ;'0x000143'
+;C:\mcuproject\xj\fan0919\fan.c (line 206)
+;ISR=0;
+  CLR   0x0F            ;'0x000144'
+;C:\mcuproject\xj\fan0919\fan.c (line 207)
+;IMR=1;
+  MOV   A, @0x01        ;'0x000145'
+  IOW   0xF             ;'0x000146'
+;C:\mcuproject\xj\fan0919\fan.c (line 208)
+;}
+  RET                   ;'0x000147'

@@ -1,0 +1,592 @@
+  JMP   0x033           ;'0x000000'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 243)
+;PWMCON = 0x00;	//
+  CLR   0x08            ;'0x000001'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 244)
+;}
+  RET                   ;'0x000002'
+  ADD   A, @0xFF        ;'0x000003'
+  ADD   A, @0xFF        ;'0x000004'
+  ADD   A, @0xFF        ;'0x000005'
+  ADD   A, @0xFF        ;'0x000006'
+  ADD   A, @0xFF        ;'0x000007'
+  JMP   0x009           ;'0x000008'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 267)
+;MOV 0x3D,A ;保存 A
+  MOV   0x10, A         ;'0x000009'
+  SWAPA 0x04            ;'0x00000A'
+  MOV   0x2C, A         ;'0x00000B'
+  SWAPA 0x03            ;'0x00000C'
+  MOV   0x2D, A         ;'0x00000D'
+  MOV   0x3D, A         ;'0x00000E'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 268)
+;MOV A,0x03
+  MOV   A, 0x03         ;'0x00000F'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 269)
+;MOV 0x3E,A ;保存 R3
+  MOV   0x3E, A         ;'0x000010'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 270)
+;MOV A,0x04
+  MOV   A, 0x04         ;'0x000011'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 271)
+;MOV 0x3F,A ;保存 R4
+  MOV   0x3F, A         ;'0x000012'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 274)
+;if	(TCIF==1)
+  JBS   0x0F, 0         ;'0x000013'
+  JMP   0x026           ;'0x000014'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 277)
+;ISR&=0XFE;				//清TCC中断标志位
+  MOV   A, @0xFE        ;'0x000015'
+  AND   0x0F, A         ;'0x000016'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 278)
+;TCC+=6;					//TCC赋初值
+  MOV   A, @0x06        ;'0x000017'
+  ADD   0x01, A         ;'0x000018'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 279)
+;if(++intCount >= 10)
+  INC   0x23            ;'0x000019'
+  MOV   A, @0x0A        ;'0x00001A'
+  SUB   A, 0x23         ;'0x00001B'
+  JBS   0x03, 0         ;'0x00001C'
+  JMP   0x026           ;'0x00001D'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 281)
+;intCount = 0;		//10ms
+  CLR   0x23            ;'0x00001E'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 282)
+;IntFlag = 1;
+  BS    0x20, 0         ;'0x00001F'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 283)
+;if(++count500ms >=50)
+  INC   0x24            ;'0x000020'
+  MOV   A, @0x32        ;'0x000021'
+  SUB   A, 0x24         ;'0x000022'
+  JBS   0x03, 0         ;'0x000023'
+  JMP   0x026           ;'0x000024'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 284)
+;count500ms = 0;
+  CLR   0x24            ;'0x000025'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 291)
+;MOV A,0x3F ;返回 R4
+  MOV   A, 0x3F         ;'0x000026'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 292)
+;MOV 0x04,A
+  MOV   0x04, A         ;'0x000027'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 293)
+;MOV A,0x3E ;返回 R3
+  MOV   A, 0x3E         ;'0x000028'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 294)
+;MOV 0x03,A
+  MOV   0x03, A         ;'0x000029'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 295)
+;SWAP 0x3D  ;返回 A
+  SWAP  0x3D            ;'0x00002A'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 296)
+;SWAPA 0x3D
+  SWAPA 0x3D            ;'0x00002B'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 298)
+;}
+  SWAPA 0x2D            ;'0x00002C'
+  MOV   0x03, A         ;'0x00002D'
+  SWAPA 0x2C            ;'0x00002E'
+  MOV   0x04, A         ;'0x00002F'
+  RETI                  ;'0x000030'
+  ADD   A, @0xFF        ;'0x000031'
+  ADD   A, @0xFF        ;'0x000032'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 46)
+;WDTC();
+  MOV   A, @0x00        ;'0x000033'
+  MOV   0x21, A         ;'0x000034'
+  MOV   0x22, A         ;'0x000035'
+  MOV   0x23, A         ;'0x000036'
+  MOV   0x24, A         ;'0x000037'
+  MOV   0x25, A         ;'0x000038'
+  MOV   0x26, A         ;'0x000039'
+  MOV   0x27, A         ;'0x00003A'
+  WDTC                  ;'0x00003B'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 47)
+;DISI();
+  DISI                  ;'0x00003C'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 48)
+;WDTCR=0;				//禁止WDT
+  MOV   A, @0x00        ;'0x00003D'
+  IOW   0xE             ;'0x00003E'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 50)
+;IO_Init();	            //IO初始化
+  CALL  0x054           ;'0x00003F'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 52)
+;TCC=6;					//timer=1/8*2*(256-6)*16=1ms,TCC中断1ms定时		主频8M/2T
+  MOV   A, @0x06        ;'0x000040'
+  MOV   0x01, A         ;'0x000041'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 53)
+;ISR=0;
+  CLR   0x0F            ;'0x000042'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 54)
+;IMR=1;
+  MOV   A, @0x01        ;'0x000043'
+  IOW   0xF             ;'0x000044'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 56)
+;ENI();
+  ENI                   ;'0x000045'
+  JMP   0x052           ;'0x000046'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 61)
+;WDTC(); //清狗
+  WDTC                  ;'0x000047'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 62)
+;if(!IntFlag)
+  JBC   0x20, 0         ;'0x000048'
+  JMP   0x04B           ;'0x000049'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 63)
+;continue;
+  JMP   0x052           ;'0x00004A'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 64)
+;IntFlag = 0;
+  BC    0x20, 0         ;'0x00004B'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 65)
+;chrgCtr();
+  CALL  0x061           ;'0x00004C'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 66)
+;if(count500ms == 0)
+  MOV   0x24, 0x24      ;'0x00004D'
+  JBS   0x03, 2         ;'0x00004E'
+  JMP   0x051           ;'0x00004F'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 68)
+;ledCtr();
+  CALL  0x0D5           ;'0x000050'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 70)
+;workCtr();
+  CALL  0x11B           ;'0x000051'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 59)
+;while(1)
+  JMP   0x047           ;'0x000052'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 73)
+;}
+  RET                   ;'0x000053'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 250)
+;PORT5 = 0x00;
+  CLR   0x05            ;'0x000054'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 251)
+;P5CR = 0x05;			//PORT5设为输出(0 输出,1 输入)	 P50 P52  输入
+  MOV   A, @0x05        ;'0x000055'
+  IOW   0x5             ;'0x000056'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 252)
+;PORT6 = 0x00;
+  CLR   0x06            ;'0x000057'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 253)
+;P6CR = 0x90;			//PORT6设为输出(0 输出,1 输入)	P64 67 输入
+  MOV   A, @0x90        ;'0x000058'
+  IOW   0x6             ;'0x000059'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 254)
+;PDCR = 0xFE;			//P50d打开下拉
+  MOV   A, @0xFE        ;'0x00005A'
+  IOW   0xB             ;'0x00005B'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 255)
+;PHCR = 0x7F;				//67打开上拉
+  MOV   A, @0x7F        ;'0x00005C'
+  IOW   0xD             ;'0x00005D'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 257)
+;mov	a,@0x03			//TCC分频比设为1：16
+  MOV   A, @0x03        ;'0x00005E'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 258)
+;contw
+  CONTW                 ;'0x00005F'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 260)
+;}
+  RET                   ;'0x000060'
+  MOV   A, 0x12         ;'0x000061'
+  MOV   0x2A, A         ;'0x000062'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 208)
+;if(P50)
+  JBS   0x05, 0         ;'0x000063'
+  JMP   0x077           ;'0x000064'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 211)
+;if(P50)
+  JBS   0x05, 0         ;'0x000065'
+  JMP   0x06A           ;'0x000066'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 214)
+;P51 = 1;
+  BS    0x05, 1         ;'0x000067'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 215)
+;P53 = 0;
+  BC    0x05, 3         ;'0x000068'
+  JMP   0x07A           ;'0x000069'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 219)
+;P51 = 0;
+  BC    0x05, 1         ;'0x00006A'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 221)
+;P53 = !P53;
+  JBC   0x05, 3         ;'0x00006B'
+  JMP   0x070           ;'0x00006C'
+  MOV   A, @0x01        ;'0x00006D'
+  MOV   0x29, A         ;'0x00006E'
+  JMP   0x071           ;'0x00006F'
+  CLR   0x29            ;'0x000070'
+  MOV   A, 0x29         ;'0x000071'
+  MOV   0x12, A         ;'0x000072'
+  BC    0x05, 3         ;'0x000073'
+  JBC   0x12, 0         ;'0x000074'
+  BS    0x05, 3         ;'0x000075'
+  JMP   0x07A           ;'0x000076'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 226)
+;P51 = 0;
+  BC    0x05, 1         ;'0x000077'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 227)
+;P53 = 0;
+  BC    0x05, 3         ;'0x000078'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 228)
+;keyCtr();
+  CALL  0x07D           ;'0x000079'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 230)
+;}
+  MOV   A, 0x2A         ;'0x00007A'
+  MOV   0x12, A         ;'0x00007B'
+  RET                   ;'0x00007C'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 141)
+;char kclick = keyRead();
+  CALL  0x0A8           ;'0x00007D'
+  MOV   A, 0x11         ;'0x00007E'
+  MOV   0x2B, A         ;'0x00007F'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 142)
+;if(kclick == 1 && workStep > 0)
+  MOV   A, 0x2B         ;'0x000080'
+  XOR   A, @0x01        ;'0x000081'
+  JBS   0x03, 2         ;'0x000082'
+  JMP   0x094           ;'0x000083'
+  MOV   0x26, 0x26      ;'0x000084'
+  JBC   0x03, 2         ;'0x000085'
+  JMP   0x094           ;'0x000086'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 144)
+;count500ms = 0;
+  CLR   0x24            ;'0x000087'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 145)
+;if(++workStep > 4)
+  INC   0x26            ;'0x000088'
+  MOV   A, 0x26         ;'0x000089'
+  SUB   A, @0x04        ;'0x00008A'
+  JBC   0x03, 0         ;'0x00008B'
+  JMP   0x08F           ;'0x00008C'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 146)
+;workStep = 1;
+  MOV   A, @0x01        ;'0x00008D'
+  MOV   0x26, A         ;'0x00008E'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 147)
+;PWM_Init();
+  CALL  0x0CC           ;'0x00008F'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 148)
+;duty = 1;
+  MOV   A, @0x01        ;'0x000090'
+  MOV   0x21, A         ;'0x000091'
+  CLR   0x22            ;'0x000092'
+  JMP   0x0A7           ;'0x000093'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 151)
+;else if(kclick == 2)
+  MOV   A, 0x2B         ;'0x000094'
+  XOR   A, @0x02        ;'0x000095'
+  JBS   0x03, 2         ;'0x000096'
+  JMP   0x0A7           ;'0x000097'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 153)
+;if(workStep > 0)
+  MOV   0x26, 0x26      ;'0x000098'
+  JBC   0x03, 2         ;'0x000099'
+  JMP   0x09E           ;'0x00009A'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 155)
+;workStep = 0;
+  CLR   0x26            ;'0x00009B'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 156)
+;PWM_Stop();
+  CALL  0x001           ;'0x00009C'
+  JMP   0x0A7           ;'0x00009D'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 160)
+;workStep = 1;
+  MOV   A, @0x01        ;'0x00009E'
+  MOV   0x26, A         ;'0x00009F'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 161)
+;ledStep = 4;
+  MOV   A, @0x04        ;'0x0000A0'
+  MOV   0x27, A         ;'0x0000A1'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 162)
+;count500ms = 0;
+  CLR   0x24            ;'0x0000A2'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 163)
+;PWM_Init();
+  CALL  0x0CC           ;'0x0000A3'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 164)
+;duty = 1;
+  MOV   A, @0x01        ;'0x0000A4'
+  MOV   0x21, A         ;'0x0000A5'
+  CLR   0x22            ;'0x0000A6'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 168)
+;}
+  RET                   ;'0x0000A7'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 173)
+;if(P67 == 0)
+  JBC   0x06, 7         ;'0x0000A8'
+  JMP   0x0B7           ;'0x0000A9'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 175)
+;keyCount++;
+  INC   0x25            ;'0x0000AA'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 176)
+;if(keyCount >= 200)
+  MOV   A, @0xC8        ;'0x0000AB'
+  SUB   A, 0x25         ;'0x0000AC'
+  JBS   0x03, 0         ;'0x0000AD'
+  JMP   0x0C9           ;'0x0000AE'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 178)
+;keyCount = 200;
+  MOV   A, @0xC8        ;'0x0000AF'
+  MOV   0x25, A         ;'0x0000B0'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 179)
+;if(!longPressFlag)
+  JBC   0x20, 1         ;'0x0000B1'
+  JMP   0x0C9           ;'0x0000B2'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 181)
+;longPressFlag = 1;
+  BS    0x20, 1         ;'0x0000B3'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 182)
+;return 2;
+  MOV   A, @0x02        ;'0x0000B4'
+  MOV   0x11, A         ;'0x0000B5'
+  JMP   0x0CB           ;'0x0000B6'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 188)
+;if(keyCount >= 200)
+  MOV   A, @0xC8        ;'0x0000B7'
+  SUB   A, 0x25         ;'0x0000B8'
+  JBS   0x03, 0         ;'0x0000B9'
+  JMP   0x0C0           ;'0x0000BA'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 190)
+;keyCount = 0;
+  CLR   0x25            ;'0x0000BB'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 191)
+;longPressFlag = 0;
+  BC    0x20, 1         ;'0x0000BC'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 192)
+;return	0;
+  MOV   A, @0x00        ;'0x0000BD'
+  MOV   0x11, A         ;'0x0000BE'
+  JMP   0x0CB           ;'0x0000BF'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 194)
+;else if(keyCount >= 8)
+  MOV   A, @0x08        ;'0x0000C0'
+  SUB   A, 0x25         ;'0x0000C1'
+  JBS   0x03, 0         ;'0x0000C2'
+  JMP   0x0C8           ;'0x0000C3'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 196)
+;keyCount = 0;
+  CLR   0x25            ;'0x0000C4'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 197)
+;return	1;
+  MOV   A, @0x01        ;'0x0000C5'
+  MOV   0x11, A         ;'0x0000C6'
+  JMP   0x0CB           ;'0x0000C7'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 199)
+;keyCount = 0;
+  CLR   0x25            ;'0x0000C8'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 201)
+;return 0;
+  MOV   A, @0x00        ;'0x0000C9'
+  MOV   0x11, A         ;'0x0000CA'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 202)
+;}
+  RET                   ;'0x0000CB'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 235)
+;PRD = 128;				//设置周期		1/8*4*136=68us = 14.7K
+  MOV   A, @0x80        ;'0x0000CC'
+  MOV   0x09, A         ;'0x0000CD'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 236)
+;PDC1 = 1;				//设置占空比
+  MOV   A, @0x01        ;'0x0000CE'
+  MOV   0x0A, A         ;'0x0000CF'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 237)
+;CPUCON = 0B01000000;	//PWM选择系统时钟8M
+  MOV   A, @0x40        ;'0x0000D0'
+  MOV   0x0E, A         ;'0x0000D1'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 238)
+;PWMCON = 0B00011001;	//4分频
+  MOV   A, @0x19        ;'0x0000D2'
+  MOV   0x08, A         ;'0x0000D3'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 239)
+;}
+  RET                   ;'0x0000D4'
+  MOV   A, 0x12         ;'0x0000D5'
+  MOV   0x29, A         ;'0x0000D6'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 86)
+;if(ledStep)
+  MOV   0x27, 0x27      ;'0x0000D7'
+  JBC   0x03, 2         ;'0x0000D8'
+  JMP   0x0F3           ;'0x0000D9'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 89)
+;if(ledStep == 4)
+  MOV   A, 0x27         ;'0x0000DA'
+  XOR   A, @0x04        ;'0x0000DB'
+  JBS   0x03, 2         ;'0x0000DC'
+  JMP   0x0E0           ;'0x0000DD'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 91)
+;LED1ON();
+  BS    0x06, 1         ;'0x0000DE'
+  JMP   0x0F1           ;'0x0000DF'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 93)
+;else if(ledStep == 3)
+  MOV   A, 0x27         ;'0x0000E0'
+  XOR   A, @0x03        ;'0x0000E1'
+  JBS   0x03, 2         ;'0x0000E2'
+  JMP   0x0E6           ;'0x0000E3'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 95)
+;LED2ON();
+  BS    0x06, 0         ;'0x0000E4'
+  JMP   0x0F1           ;'0x0000E5'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 97)
+;else if(ledStep == 2)
+  MOV   A, 0x27         ;'0x0000E6'
+  XOR   A, @0x02        ;'0x0000E7'
+  JBS   0x03, 2         ;'0x0000E8'
+  JMP   0x0EC           ;'0x0000E9'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 99)
+;LED3ON();
+  BS    0x06, 6         ;'0x0000EA'
+  JMP   0x0F1           ;'0x0000EB'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 101)
+;else if(ledStep == 1)
+  MOV   A, 0x27         ;'0x0000EC'
+  XOR   A, @0x01        ;'0x0000ED'
+  JBS   0x03, 2         ;'0x0000EE'
+  JMP   0x0F1           ;'0x0000EF'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 103)
+;LED4ON();
+  BS    0x06, 5         ;'0x0000F0'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 105)
+;ledStep--;
+  DEC   0x27            ;'0x0000F1'
+  JMP   0x118           ;'0x0000F2'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 110)
+;switch(workStep)
+  MOV   A, 0x26         ;'0x0000F3'
+  MOV   0x12, A         ;'0x0000F4'
+  MOV   0x12, 0x12      ;'0x0000F5'
+  JBC   0x03, 2         ;'0x0000F6'
+  JMP   0x109           ;'0x0000F7'
+  MOV   A, 0x12         ;'0x0000F8'
+  XOR   A, @0x01        ;'0x0000F9'
+  JBC   0x03, 2         ;'0x0000FA'
+  JMP   0x10E           ;'0x0000FB'
+  MOV   A, 0x12         ;'0x0000FC'
+  XOR   A, @0x02        ;'0x0000FD'
+  JBC   0x03, 2         ;'0x0000FE'
+  JMP   0x113           ;'0x0000FF'
+  MOV   A, 0x12         ;'0x000100'
+  XOR   A, @0x03        ;'0x000101'
+  JBC   0x03, 2         ;'0x000102'
+  JMP   0x115           ;'0x000103'
+  MOV   A, 0x12         ;'0x000104'
+  XOR   A, @0x04        ;'0x000105'
+  JBC   0x03, 2         ;'0x000106'
+  JMP   0x117           ;'0x000107'
+  JMP   0x118           ;'0x000108'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 113)
+;P60=0;
+  BC    0x06, 0         ;'0x000109'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 114)
+;P61=0;
+  BC    0x06, 1         ;'0x00010A'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 115)
+;P65=0;
+  BC    0x06, 5         ;'0x00010B'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 116)
+;P66=0;
+  BC    0x06, 6         ;'0x00010C'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 117)
+;break;
+  JMP   0x118           ;'0x00010D'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 119)
+;LED1ON();
+  BS    0x06, 1         ;'0x00010E'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 120)
+;LED2OFF();
+  BC    0x06, 0         ;'0x00010F'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 121)
+;LED3OFF();
+  BC    0x06, 6         ;'0x000110'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 122)
+;LED4OFF();
+  BC    0x06, 5         ;'0x000111'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 123)
+;break;
+  JMP   0x118           ;'0x000112'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 125)
+;LED2ON();
+  BS    0x06, 0         ;'0x000113'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 126)
+;break;
+  JMP   0x118           ;'0x000114'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 128)
+;LED3ON();
+  BS    0x06, 6         ;'0x000115'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 129)
+;break;
+  JMP   0x118           ;'0x000116'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 131)
+;LED4ON();
+  BS    0x06, 5         ;'0x000117'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 136)
+;}
+  MOV   A, 0x29         ;'0x000118'
+  MOV   0x12, A         ;'0x000119'
+  RET                   ;'0x00011A'
+  MOV   A, 0x12         ;'0x00011B'
+  MOV   0x29, A         ;'0x00011C'
+  MOV   A, 0x13         ;'0x00011D'
+  MOV   0x2A, A         ;'0x00011E'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 78)
+;if(++duty > 120)
+  MOV   A, 0x21         ;'0x00011F'
+  MOV   0x12, A         ;'0x000120'
+  MOV   A, 0x22         ;'0x000121'
+  MOV   0x13, A         ;'0x000122'
+  MOV   A, @0x01        ;'0x000123'
+  ADD   A, 0x12         ;'0x000124'
+  MOV   0x12, A         ;'0x000125'
+  JBC   0x03, 0         ;'0x000126'
+  INC   0x13            ;'0x000127'
+  MOV   A, @0x00        ;'0x000128'
+  ADD   0x13, A         ;'0x000129'
+  MOV   A, 0x12         ;'0x00012A'
+  MOV   0x21, A         ;'0x00012B'
+  MOV   A, 0x13         ;'0x00012C'
+  MOV   0x22, A         ;'0x00012D'
+  MOV   A, 0x13         ;'0x00012E'
+  SUB   A, @0x00        ;'0x00012F'
+  JBS   0x03, 2         ;'0x000130'
+  JMP   0x134           ;'0x000131'
+  MOV   A, 0x12         ;'0x000132'
+  SUB   A, @0x78        ;'0x000133'
+  JBC   0x03, 0         ;'0x000134'
+  JMP   0x139           ;'0x000135'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 79)
+;duty = 120;
+  MOV   A, @0x78        ;'0x000136'
+  MOV   0x21, A         ;'0x000137'
+  CLR   0x22            ;'0x000138'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 80)
+;if(duty < 120)
+  MOV   A, @0x00        ;'0x000139'
+  SUB   A, 0x22         ;'0x00013A'
+  JBS   0x03, 2         ;'0x00013B'
+  JMP   0x13F           ;'0x00013C'
+  MOV   A, @0x78        ;'0x00013D'
+  SUB   A, 0x21         ;'0x00013E'
+  JBC   0x03, 0         ;'0x00013F'
+  JMP   0x147           ;'0x000140'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 81)
+;PDC1 = duty;
+  MOV   A, 0x21         ;'0x000141'
+  MOV   0x12, A         ;'0x000142'
+  MOV   A, 0x22         ;'0x000143'
+  MOV   0x13, A         ;'0x000144'
+  MOV   A, 0x12         ;'0x000145'
+  MOV   0x0A, A         ;'0x000146'
+;C:\mcuproject\xj\X8P1101B_PWM_Demo\PWM.c (line 82)
+;}
+  MOV   A, 0x29         ;'0x000147'
+  MOV   0x12, A         ;'0x000148'
+  MOV   A, 0x2A         ;'0x000149'
+  MOV   0x13, A         ;'0x00014A'
+  RET                   ;'0x00014B'
