@@ -1,0 +1,569 @@
+*************************************
+------------- Call Depth ------------
+ Depth  Interrupt    Function
+-------------------------------------
+    0        N         ProgramStart
+    1        Y           _interrupt_l
+    1        Y           _interrupt
+    0        N         _main
+C   1        N           _IO_Init
+C   1        N           _keyCtr
+C   2        N             _keyRead
+C   1        N           _workCtr
+C   2        N             _gotoSleep
+C   2        N             _gotoSleep
+-------------------------------------
+Stack Depth: 2
+****************************************
+------------- Free ROM Size ------------
+Start=0X1    , End=0X7    , Size=7
+Start=0X35   , End=0X36   , Size=2
+Start=0X11E  , End=0X3FF  , Size=738
+----------------------------------------
+EM78P153B       |        ROM Size        
+----------------+-----------------------
+Total           |  1024 x 13 bits(100.0%)
+Used            |   277 x 13 bits( 27.1%)
+Free            |   747 x 13 bits( 72.9%)
+----------------------------------------
+*************************************
+-------------- Data Map -------------
+d -- Uninitialized data
+D -- Initialized data
+b -- Uninitialized bit data
+B -- Initialized bit data
+C -- C Register
+-------------- RAM Data -------------
+0x00  - - - - - - - - - - - - - - - - 
+0x10  - - - - - - - - - - - - - - - - 
+0x20  b D D D D D D D D d d d d C C - 
+0x30  - - - - - - - - - - - - - - - - 
+----------- Register Data -----------
+0x00  d d d b d b b - d d d d d d d b 
+0x10  d C C C C - - - - - - - - - - - 
+-------------- IO Data --------------
+0x00  - - - - - d d - - d - d - d d d 
+****************************************
+--------------- ROM Code ---------------
+    0x0000 :  JMP   0x037       
+    0x0001 :  ADD   A, @0xFF    
+    0x0002 :  ADD   A, @0xFF    
+    0x0003 :  ADD   A, @0xFF    
+    0x0004 :  ADD   A, @0xFF    
+    0x0005 :  ADD   A, @0xFF    
+    0x0006 :  ADD   A, @0xFF    
+    0x0007 :  ADD   A, @0xFF    
+    0x0008 :  JMP   0x009       
+C:\mcuproject\xj\motor0910\PWM.c (line 226)
+  ;MOV 0x3D,A ;保存 A
+    0x0009 :  MOV   0x10, A     
+    0x000A :  SWAPA 0x04        
+    0x000B :  MOV   0x2D, A     
+    0x000C :  SWAPA 0x03        
+    0x000D :  MOV   0x2E, A     
+    0x000E :  MOV   0x3D, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 227)
+  ;MOV A,0x03
+    0x000F :  MOV   A, 0x03     
+C:\mcuproject\xj\motor0910\PWM.c (line 228)
+  ;MOV 0x3E,A ;保存 R3
+    0x0010 :  MOV   0x3E, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 229)
+  ;MOV A,0x04
+    0x0011 :  MOV   A, 0x04     
+C:\mcuproject\xj\motor0910\PWM.c (line 230)
+  ;MOV 0x3F,A ;保存 R4
+    0x0012 :  MOV   0x3F, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 233)
+  ;if	(TCIF==1)
+    0x0013 :  JBS   0x0F, 0     
+    0x0014 :  JMP   0x02A       
+C:\mcuproject\xj\motor0910\PWM.c (line 236)
+  ;ISR&=0XFE;				//清TCC中断标志位
+    0x0015 :  MOV   A, @0xFE    
+    0x0016 :  AND   0x0F, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 237)
+  ;TCC+=206;					//TCC赋初值 0.2ms
+    0x0017 :  MOV   A, @0xCE    
+    0x0018 :  ADD   0x01, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 239)
+  ;if(++intCount >= 100)
+    0x0019 :  INC   0x21        
+    0x001A :  MOV   A, @0x64    
+    0x001B :  SUB   A, 0x21     
+    0x001C :  JBS   0x03, 0     
+    0x001D :  JMP   0x02A       
+C:\mcuproject\xj\motor0910\PWM.c (line 241)
+  ;intCount = 0;		//10ms
+    0x001E :  CLR   0x21        
+C:\mcuproject\xj\motor0910\PWM.c (line 242)
+  ;IntFlag = 1;
+    0x001F :  BS    0x20, 0     
+C:\mcuproject\xj\motor0910\PWM.c (line 244)
+  ;if(workStep)
+    0x0020 :  MOV   0x26, 0x26  
+    0x0021 :  JBC   0x03, 2     
+    0x0022 :  JMP   0x02A       
+C:\mcuproject\xj\motor0910\PWM.c (line 246)
+  ;if(++count1s>= 100)
+    0x0023 :  INC   0x24        
+    0x0024 :  MOV   A, @0x64    
+    0x0025 :  SUB   A, 0x24     
+    0x0026 :  JBS   0x03, 0     
+    0x0027 :  JMP   0x02A       
+C:\mcuproject\xj\motor0910\PWM.c (line 248)
+  ;count1s = 0;
+    0x0028 :  CLR   0x24        
+C:\mcuproject\xj\motor0910\PWM.c (line 249)
+  ;count900s++;
+    0x0029 :  INC   0x25        
+C:\mcuproject\xj\motor0910\PWM.c (line 259)
+  ;MOV A,0x3F ;返回 R4
+    0x002A :  MOV   A, 0x3F     
+C:\mcuproject\xj\motor0910\PWM.c (line 260)
+  ;MOV 0x04,A
+    0x002B :  MOV   0x04, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 261)
+  ;MOV A,0x3E ;返回 R3
+    0x002C :  MOV   A, 0x3E     
+C:\mcuproject\xj\motor0910\PWM.c (line 262)
+  ;MOV 0x03,A
+    0x002D :  MOV   0x03, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 263)
+  ;SWAP 0x3D  ;返回 A
+    0x002E :  SWAP  0x3D        
+C:\mcuproject\xj\motor0910\PWM.c (line 264)
+  ;SWAPA 0x3D
+    0x002F :  SWAPA 0x3D        
+C:\mcuproject\xj\motor0910\PWM.c (line 266)
+  ;}
+    0x0030 :  SWAPA 0x2E        
+    0x0031 :  MOV   0x03, A     
+    0x0032 :  SWAPA 0x2D        
+    0x0033 :  MOV   0x04, A     
+    0x0034 :  RETI              
+    0x0035 :  ADD   A, @0xFF    
+    0x0036 :  ADD   A, @0xFF    
+C:\mcuproject\xj\motor0910\PWM.c (line 54)
+  ;WDTC();
+    0x0037 :  MOV   A, @0x00    
+    0x0038 :  MOV   0x21, A     
+    0x0039 :  MOV   0x22, A     
+    0x003A :  MOV   0x23, A     
+    0x003B :  MOV   0x24, A     
+    0x003C :  MOV   0x25, A     
+    0x003D :  MOV   0x26, A     
+    0x003E :  MOV   0x27, A     
+    0x003F :  MOV   0x28, A     
+    0x0040 :  WDTC              
+C:\mcuproject\xj\motor0910\PWM.c (line 55)
+  ;DISI();
+    0x0041 :  DISI              
+C:\mcuproject\xj\motor0910\PWM.c (line 56)
+  ;WDTCR=0x80;
+    0x0042 :  MOV   A, @0x80    
+    0x0043 :  IOW   0xE         
+C:\mcuproject\xj\motor0910\PWM.c (line 58)
+  ;IO_Init();	            //IO初始化
+    0x0044 :  CALL  0x062       
+C:\mcuproject\xj\motor0910\PWM.c (line 60)
+  ;TCC=206;					//timer=1/8*2*(256-6)*16=1ms,TCC中断1ms定时		主频8M/2T
+    0x0045 :  MOV   A, @0xCE    
+    0x0046 :  MOV   0x01, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 61)
+  ;ISR=0;
+    0x0047 :  CLR   0x0F        
+C:\mcuproject\xj\motor0910\PWM.c (line 62)
+  ;IMR=1;
+    0x0048 :  MOV   A, @0x01    
+    0x0049 :  IOW   0xF         
+C:\mcuproject\xj\motor0910\PWM.c (line 63)
+  ;duty = 0;
+    0x004A :  CLR   0x22        
+C:\mcuproject\xj\motor0910\PWM.c (line 64)
+  ;ENI();
+    0x004B :  ENI               
+C:\mcuproject\xj\motor0910\PWM.c (line 69)
+  ;if(pwmCount < duty)		//400us
+    0x004C :  MOV   A, 0x22     
+    0x004D :  SUB   A, 0x28     
+    0x004E :  JBC   0x03, 0     
+    0x004F :  JMP   0x052       
+C:\mcuproject\xj\motor0910\PWM.c (line 71)
+  ;P65 = 1;
+    0x0050 :  BS    0x06, 5     
+    0x0051 :  JMP   0x053       
+C:\mcuproject\xj\motor0910\PWM.c (line 75)
+  ;P65 = 0;
+    0x0052 :  BC    0x06, 5     
+C:\mcuproject\xj\motor0910\PWM.c (line 77)
+  ;if(++pwmCount >= 20)
+    0x0053 :  INC   0x28        
+    0x0054 :  MOV   A, @0x14    
+    0x0055 :  SUB   A, 0x28     
+    0x0056 :  JBS   0x03, 0     
+    0x0057 :  JMP   0x059       
+C:\mcuproject\xj\motor0910\PWM.c (line 79)
+  ;pwmCount = 0;
+    0x0058 :  CLR   0x28        
+C:\mcuproject\xj\motor0910\PWM.c (line 80)
+  ;}
+    0x0059 :  WDTC              
+C:\mcuproject\xj\motor0910\PWM.c (line 82)
+  ;if(!IntFlag)
+    0x005A :  JBC   0x20, 0     
+    0x005B :  JMP   0x05D       
+C:\mcuproject\xj\motor0910\PWM.c (line 83)
+  ;continue;
+    0x005C :  JMP   0x04C       
+C:\mcuproject\xj\motor0910\PWM.c (line 84)
+  ;IntFlag = 0;
+    0x005D :  BC    0x20, 0     
+C:\mcuproject\xj\motor0910\PWM.c (line 85)
+  ;keyCtr();
+    0x005E :  CALL  0x06D       
+C:\mcuproject\xj\motor0910\PWM.c (line 86)
+  ;workCtr();
+    0x005F :  CALL  0x0B0       
+C:\mcuproject\xj\motor0910\PWM.c (line 87)
+  ;}
+    0x0060 :  JMP   0x04C       
+C:\mcuproject\xj\motor0910\PWM.c (line 89)
+  ;}
+    0x0061 :  RET               
+C:\mcuproject\xj\motor0910\PWM.c (line 210)
+  ;PORT5 = 0x00;
+    0x0062 :  CLR   0x05        
+C:\mcuproject\xj\motor0910\PWM.c (line 211)
+  ;P5CR = 0x00;			//PORT5设为输出(0 输出,1 输入)
+    0x0063 :  MOV   A, @0x00    
+    0x0064 :  IOW   0x5         
+C:\mcuproject\xj\motor0910\PWM.c (line 212)
+  ;PORT6 = 0x00;
+    0x0065 :  CLR   0x06        
+C:\mcuproject\xj\motor0910\PWM.c (line 213)
+  ;P6CR = 0x80;			//PORT6设为输出(0 输出,1 输入)
+    0x0066 :  MOV   A, @0x80    
+    0x0067 :  IOW   0x6         
+C:\mcuproject\xj\motor0910\PWM.c (line 214)
+  ;PHCR = 0x7F;
+    0x0068 :  MOV   A, @0x7F    
+    0x0069 :  IOW   0xD         
+C:\mcuproject\xj\motor0910\PWM.c (line 216)
+  ;mov	a,@0x02			//TCC分频比设为1：8
+    0x006A :  MOV   A, @0x02    
+C:\mcuproject\xj\motor0910\PWM.c (line 217)
+  ;contw
+    0x006B :  CONTW             
+C:\mcuproject\xj\motor0910\PWM.c (line 219)
+  ;}
+    0x006C :  RET               
+    0x006D :  MOV   A, 0x12     
+    0x006E :  MOV   0x2B, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 94)
+  ;char kclick = keyRead(0x80 & (~PORT6));
+    0x006F :  MOV   A, 0x06     
+    0x0070 :  MOV   0x12, A     
+    0x0071 :  COM   0x12        
+    0x0072 :  MOV   A, @0x80    
+    0x0073 :  AND   A, 0x12     
+    0x0074 :  MOV   0x2C, A     
+    0x0075 :  CALL  0x08B       
+    0x0076 :  MOV   A, 0x11     
+    0x0077 :  MOV   0x2A, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 96)
+  ;if(kclick == 1)
+    0x0078 :  MOV   A, 0x2A     
+    0x0079 :  XOR   A, @0x01    
+    0x007A :  JBS   0x03, 2     
+    0x007B :  JMP   0x083       
+C:\mcuproject\xj\motor0910\PWM.c (line 100)
+  ;if(++workStep >= 7)
+    0x007C :  INC   0x26        
+    0x007D :  MOV   A, @0x07    
+    0x007E :  SUB   A, 0x26     
+    0x007F :  JBS   0x03, 0     
+    0x0080 :  JMP   0x088       
+C:\mcuproject\xj\motor0910\PWM.c (line 101)
+  ;workStep = 0;
+    0x0081 :  CLR   0x26        
+    0x0082 :  JMP   0x088       
+C:\mcuproject\xj\motor0910\PWM.c (line 104)
+  ;else if(kclick == 2)
+    0x0083 :  MOV   A, 0x2A     
+    0x0084 :  XOR   A, @0x02    
+    0x0085 :  JBS   0x03, 2     
+    0x0086 :  JMP   0x088       
+C:\mcuproject\xj\motor0910\PWM.c (line 106)
+  ;workStep = 0;
+    0x0087 :  CLR   0x26        
+C:\mcuproject\xj\motor0910\PWM.c (line 111)
+  ;}
+    0x0088 :  MOV   A, 0x2B     
+    0x0089 :  MOV   0x12, A     
+    0x008A :  RET               
+C:\mcuproject\xj\motor0910\PWM.c (line 158)
+  ;if(keyStatus)
+    0x008B :  MOV   0x2C, 0x2C  
+    0x008C :  JBC   0x03, 2     
+    0x008D :  JMP   0x09B       
+C:\mcuproject\xj\motor0910\PWM.c (line 160)
+  ;keyCount++;
+    0x008E :  INC   0x27        
+C:\mcuproject\xj\motor0910\PWM.c (line 161)
+  ;if(keyCount >= 200)
+    0x008F :  MOV   A, @0xC8    
+    0x0090 :  SUB   A, 0x27     
+    0x0091 :  JBS   0x03, 0     
+    0x0092 :  JMP   0x0AD       
+C:\mcuproject\xj\motor0910\PWM.c (line 163)
+  ;keyCount = 200;
+    0x0093 :  MOV   A, @0xC8    
+    0x0094 :  MOV   0x27, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 164)
+  ;if(!longPressFlag)
+    0x0095 :  JBC   0x20, 1     
+    0x0096 :  JMP   0x0AD       
+C:\mcuproject\xj\motor0910\PWM.c (line 166)
+  ;longPressFlag = 1;
+    0x0097 :  BS    0x20, 1     
+C:\mcuproject\xj\motor0910\PWM.c (line 167)
+  ;return 2;
+    0x0098 :  MOV   A, @0x02    
+    0x0099 :  MOV   0x11, A     
+    0x009A :  JMP   0x0AF       
+C:\mcuproject\xj\motor0910\PWM.c (line 173)
+  ;if(keyCount >= 200)
+    0x009B :  MOV   A, @0xC8    
+    0x009C :  SUB   A, 0x27     
+    0x009D :  JBS   0x03, 0     
+    0x009E :  JMP   0x0A4       
+C:\mcuproject\xj\motor0910\PWM.c (line 175)
+  ;keyCount = 0;
+    0x009F :  CLR   0x27        
+C:\mcuproject\xj\motor0910\PWM.c (line 176)
+  ;longPressFlag = 0;
+    0x00A0 :  BC    0x20, 1     
+C:\mcuproject\xj\motor0910\PWM.c (line 177)
+  ;return	0;
+    0x00A1 :  MOV   A, @0x00    
+    0x00A2 :  MOV   0x11, A     
+    0x00A3 :  JMP   0x0AF       
+C:\mcuproject\xj\motor0910\PWM.c (line 179)
+  ;else if(keyCount >= 8)
+    0x00A4 :  MOV   A, @0x08    
+    0x00A5 :  SUB   A, 0x27     
+    0x00A6 :  JBS   0x03, 0     
+    0x00A7 :  JMP   0x0AC       
+C:\mcuproject\xj\motor0910\PWM.c (line 181)
+  ;keyCount = 0;
+    0x00A8 :  CLR   0x27        
+C:\mcuproject\xj\motor0910\PWM.c (line 182)
+  ;return	1;
+    0x00A9 :  MOV   A, @0x01    
+    0x00AA :  MOV   0x11, A     
+    0x00AB :  JMP   0x0AF       
+C:\mcuproject\xj\motor0910\PWM.c (line 184)
+  ;keyCount = 0;
+    0x00AC :  CLR   0x27        
+C:\mcuproject\xj\motor0910\PWM.c (line 186)
+  ;return 0;
+    0x00AD :  MOV   A, @0x00    
+    0x00AE :  MOV   0x11, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 187)
+  ;}
+    0x00AF :  RET               
+    0x00B0 :  MOV   A, 0x12     
+    0x00B1 :  MOV   0x2A, A     
+    0x00B2 :  MOV   A, 0x13     
+    0x00B3 :  MOV   0x2B, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 115)
+  ;switch(workStep)
+    0x00B4 :  MOV   A, 0x26     
+    0x00B5 :  MOV   0x12, A     
+    0x00B6 :  MOV   0x12, 0x12  
+    0x00B7 :  JBC   0x03, 2     
+    0x00B8 :  JMP   0x0D2       
+    0x00B9 :  MOV   A, 0x12     
+    0x00BA :  XOR   A, @0x01    
+    0x00BB :  JBC   0x03, 2     
+    0x00BC :  JMP   0x0DD       
+    0x00BD :  MOV   A, 0x12     
+    0x00BE :  XOR   A, @0x02    
+    0x00BF :  JBC   0x03, 2     
+    0x00C0 :  JMP   0x0E1       
+    0x00C1 :  MOV   A, 0x12     
+    0x00C2 :  XOR   A, @0x03    
+    0x00C3 :  JBC   0x03, 2     
+    0x00C4 :  JMP   0x0E5       
+    0x00C5 :  MOV   A, 0x12     
+    0x00C6 :  XOR   A, @0x04    
+    0x00C7 :  JBC   0x03, 2     
+    0x00C8 :  JMP   0x0E9       
+    0x00C9 :  MOV   A, 0x12     
+    0x00CA :  XOR   A, @0x05    
+    0x00CB :  JBC   0x03, 2     
+    0x00CC :  JMP   0x0ED       
+    0x00CD :  MOV   A, 0x12     
+    0x00CE :  XOR   A, @0x06    
+    0x00CF :  JBC   0x03, 2     
+    0x00D0 :  JMP   0x0F1       
+    0x00D1 :  JMP   0x0F4       
+C:\mcuproject\xj\motor0910\PWM.c (line 118)
+  ;duty = 0;
+    0x00D2 :  CLR   0x22        
+C:\mcuproject\xj\motor0910\PWM.c (line 119)
+  ;LAOFF();
+    0x00D3 :  MOV   A, @0xF1    
+    0x00D4 :  AND   0x05, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 120)
+  ;LBOFF();
+    0x00D5 :  MOV   A, @0xF8    
+    0x00D6 :  AND   0x06, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 121)
+  ;PB5OFF();
+    0x00D7 :  BC    0x06, 5     
+C:\mcuproject\xj\motor0910\PWM.c (line 122)
+  ;if(keyCount == 0)
+    0x00D8 :  MOV   0x27, 0x27  
+    0x00D9 :  JBS   0x03, 2     
+    0x00DA :  JMP   0x0F4       
+C:\mcuproject\xj\motor0910\PWM.c (line 123)
+  ;gotoSleep();
+    0x00DB :  CALL  0x10B       
+C:\mcuproject\xj\motor0910\PWM.c (line 124)
+  ;break;
+    0x00DC :  JMP   0x0F4       
+C:\mcuproject\xj\motor0910\PWM.c (line 126)
+  ;duty = 14;
+    0x00DD :  MOV   A, @0x0E    
+    0x00DE :  MOV   0x22, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 127)
+  ;L1ON();
+    0x00DF :  BS    0x05, 1     
+C:\mcuproject\xj\motor0910\PWM.c (line 128)
+  ;break;
+    0x00E0 :  JMP   0x0F4       
+C:\mcuproject\xj\motor0910\PWM.c (line 130)
+  ;duty = 15;
+    0x00E1 :  MOV   A, @0x0F    
+    0x00E2 :  MOV   0x22, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 131)
+  ;L2ON();
+    0x00E3 :  BS    0x05, 2     
+C:\mcuproject\xj\motor0910\PWM.c (line 132)
+  ;break;
+    0x00E4 :  JMP   0x0F4       
+C:\mcuproject\xj\motor0910\PWM.c (line 134)
+  ;duty = 16;
+    0x00E5 :  MOV   A, @0x10    
+    0x00E6 :  MOV   0x22, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 135)
+  ;L3ON();
+    0x00E7 :  BS    0x05, 3     
+C:\mcuproject\xj\motor0910\PWM.c (line 136)
+  ;break;
+    0x00E8 :  JMP   0x0F4       
+C:\mcuproject\xj\motor0910\PWM.c (line 138)
+  ;duty = 17;
+    0x00E9 :  MOV   A, @0x11    
+    0x00EA :  MOV   0x22, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 139)
+  ;L4ON();
+    0x00EB :  BS    0x06, 0     
+C:\mcuproject\xj\motor0910\PWM.c (line 140)
+  ;break;
+    0x00EC :  JMP   0x0F4       
+C:\mcuproject\xj\motor0910\PWM.c (line 142)
+  ;duty = 18;
+    0x00ED :  MOV   A, @0x12    
+    0x00EE :  MOV   0x22, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 143)
+  ;L5ON();
+    0x00EF :  BS    0x06, 1     
+C:\mcuproject\xj\motor0910\PWM.c (line 144)
+  ;break;
+    0x00F0 :  JMP   0x0F4       
+C:\mcuproject\xj\motor0910\PWM.c (line 146)
+  ;duty = 19;
+    0x00F1 :  MOV   A, @0x13    
+    0x00F2 :  MOV   0x22, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 147)
+  ;L6ON();
+    0x00F3 :  BS    0x06, 2     
+C:\mcuproject\xj\motor0910\PWM.c (line 151)
+  ;if(count900s >= 900 && keyCount == 0)
+    0x00F4 :  MOV   A, 0x25     
+    0x00F5 :  MOV   0x12, A     
+    0x00F6 :  CLR   0x13        
+    0x00F7 :  MOV   A, @0x80    
+    0x00F8 :  XOR   A, 0x13     
+    0x00F9 :  MOV   0x14, A     
+    0x00FA :  MOV   A, @0x83    
+    0x00FB :  SUB   A, 0x14     
+    0x00FC :  JBS   0x03, 2     
+    0x00FD :  JMP   0x100       
+    0x00FE :  MOV   A, @0x84    
+    0x00FF :  SUB   A, 0x12     
+    0x0100 :  JBS   0x03, 0     
+    0x0101 :  JMP   0x106       
+    0x0102 :  MOV   0x27, 0x27  
+    0x0103 :  JBS   0x03, 2     
+    0x0104 :  JMP   0x106       
+C:\mcuproject\xj\motor0910\PWM.c (line 152)
+  ;gotoSleep();
+    0x0105 :  CALL  0x10B       
+C:\mcuproject\xj\motor0910\PWM.c (line 153)
+  ;}
+    0x0106 :  MOV   A, 0x2A     
+    0x0107 :  MOV   0x12, A     
+    0x0108 :  MOV   A, 0x2B     
+    0x0109 :  MOV   0x13, A     
+    0x010A :  RET               
+C:\mcuproject\xj\motor0910\PWM.c (line 191)
+  ;P65 = 0;
+    0x010B :  BC    0x06, 5     
+C:\mcuproject\xj\motor0910\PWM.c (line 192)
+  ;count900s = 0;
+    0x010C :  CLR   0x25        
+C:\mcuproject\xj\motor0910\PWM.c (line 193)
+  ;workStep = 0;
+    0x010D :  CLR   0x26        
+C:\mcuproject\xj\motor0910\PWM.c (line 194)
+  ;WDTCR=0x80;//禁止WDT
+    0x010E :  MOV   A, @0x80    
+    0x010F :  IOW   0xE         
+C:\mcuproject\xj\motor0910\PWM.c (line 195)
+  ;ICIECR = 0x80;
+    0x0110 :  MOV   A, @0x80    
+    0x0111 :  MOV   0x0D, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 196)
+  ;IMR = 0x02;
+    0x0112 :  MOV   A, @0x02    
+    0x0113 :  IOW   0xF         
+C:\mcuproject\xj\motor0910\PWM.c (line 197)
+  ;ISR&=0XF0;
+    0x0114 :  MOV   A, @0xF0    
+    0x0115 :  AND   0x0F, A     
+C:\mcuproject\xj\motor0910\PWM.c (line 198)
+  ;DISI();
+    0x0116 :  DISI              
+C:\mcuproject\xj\motor0910\PWM.c (line 199)
+  ;SLEP();
+    0x0117 :  SLEP              
+C:\mcuproject\xj\motor0910\PWM.c (line 200)
+  ;ENI();
+    0x0118 :  ENI               
+C:\mcuproject\xj\motor0910\PWM.c (line 201)
+  ;ICIECR = 0x00;
+    0x0119 :  CLR   0x0D        
+C:\mcuproject\xj\motor0910\PWM.c (line 202)
+  ;ISR=0;
+    0x011A :  CLR   0x0F        
+C:\mcuproject\xj\motor0910\PWM.c (line 203)
+  ;IMR=1;
+    0x011B :  MOV   A, @0x01    
+    0x011C :  IOW   0xF         
+C:\mcuproject\xj\motor0910\PWM.c (line 204)
+  ;}
+    0x011D :  RET               

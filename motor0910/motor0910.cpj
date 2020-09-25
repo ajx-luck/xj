@@ -1,5 +1,5 @@
 [PROJECT]
-PROJECTNAME=$\fan0919.cpj
+PROJECTNAME=$\motor0910.cpj
 [MCU]
 NAME=EM78P153B
 ICE=ICE151
@@ -13,7 +13,7 @@ BP Num=0
 Option Num=53
 Target Power=1
 Protect=1
-CLKS0=1
+CLKS0=0
 CLKS1=1
 WDTPS=1
 WDTPS0=1
@@ -21,7 +21,7 @@ WDTPS1=1
 WD07=1
 LVR0=1
 LVR1=1
-ENWDT=1
+ENWDT=0
 RESETEN=1
 SHSEL=1
 OSC0=1
@@ -82,13 +82,13 @@ LibraryProject=0
 File Num=0
 [Source Files]
 File Num=1
-File0=$\fan.c
+File0=$\PWM.c
 [Reference Files]
 File Num=1
 File0=$\X8P1101B.h
 [Map Files]
 File Num=1
-File0=?
+File0=$\motor0910.map
 [Library Files]
 File Num=0
 [BOOKMARK]

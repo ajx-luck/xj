@@ -24,10 +24,11 @@ u8t count500ms = 0;
 u8t	keyCount = 0;//消抖计数
 u8t workStep = 0;
 u8t ledStep = 0;
-u8t keyNub = 0;
+u8t keyCount2 = 0;
 u8t count64ms = 0;
 u16t count5s = 0;
 u8t sleepTime = 0;
+u8t highCheckTime = 0;
 
 static bit IntFlag @0X20@0:bank 0;
 static bit	longPressFlag @0X20@1:bank 0;
@@ -42,6 +43,7 @@ void lvdCheck();
 void delay(u8t time);
 void cloesAll();
 void gotoSleep();
+char keyRead2(u8t keyStatus);
 
 void main()
 {
@@ -77,23 +79,26 @@ void main()
 		{
 			P52 = 0;
 			P53 = 0;
-			if(keyCount == 0 && P66 == 1)
+			if(keyCount == 0 && P66 == 0)
 			{
 				if(++sleepTime >= 200)
 					gotoSleep();
 			}
 		}
 		
-		if(workStep == 0)
+		if(P66)
 		{
-			if(P66)
+			if(++highCheckTime >= 20)
 			{
+				highCheckTime = 20;
 				PWM_Stop();
+				P51 = 0;
+				workStep = 0;
 			}
-			else
-			{
-				PWM_Init();	
-			}
+		}
+		else
+		{
+			highCheckTime = 0;
 		}
 		
 	 }
@@ -141,15 +146,32 @@ void cloesAll()
 
 void keyCtr()
 {
-	char kclick = keyRead(0x03 & (~PORT6));
+	char kclick = keyRead(0x02 & (~PORT6));
+	
+	char kclick2 = keyRead2(0x01 & (~PORT6));
 	if(kclick == 1)
 	{
-		if(keyNub & 0x01)
+		
+	//Key1单击
+		if(++ledStep > 2)
+			ledStep = 0;
+		if(ledStep)
 		{
-			//Key2单击
+			P67 = 1;
+		}
+		else
+		{
+			P67 = 0;
+		}
+		
+	}
+	
+	if(kclick2 == 1)
+	{
+		//Key2单击
 			if(++workStep > 2)
 				workStep = 0;
-			if(workStep)
+			if(workStep && P66 == 0)
 			{
 				P51 = 1;
 				PWM_Init();
@@ -165,28 +187,14 @@ void keyCtr()
 				PDC1 = 0;
 				break;
 				case 1:
-				PDC1 = 17;
+				PDC1 = 14;
 				break;
 				case 2:
-				PDC1 = 27;
+				PDC1 = 24;
 				break;
 			
 			}
-		}
-		else
-		{
-			//Key1单击
-			if(++ledStep > 2)
-				ledStep = 0;
-			if(ledStep)
-			{
-				P67 = 1;
-			}
-			else
-			{
-				P67 = 0;
-			}
-		}
+	
 	}
 	
 }
@@ -212,7 +220,28 @@ char keyRead(u8t keyStatus)
 { 
 	if(keyStatus)
 	{
-		keyNub = keyStatus;
+		keyCount2++;
+		if(keyCount2 >= 200)
+		{
+			keyCount2 = 200;
+		}
+	}
+	else
+	{
+		if(keyCount2 >= 8)
+		{
+			keyCount2 = 0;
+			return	1;
+		}
+		keyCount2 = 0;
+	}
+	return 0;
+}
+
+char keyRead2(u8t keyStatus)	
+{ 
+	if(keyStatus)
+	{
 		keyCount++;
 		if(keyCount >= 200)
 		{
@@ -227,10 +256,10 @@ char keyRead(u8t keyStatus)
 			return	1;
 		}
 		keyCount = 0;
-		keyNub = 0;
 	}
 	return 0;
 }
+
 
 
 void delay(u8t time)
@@ -263,7 +292,9 @@ void IO_Init(void)
 	P5CR = 0x00;			//PORT5设为输出(0 输出,1 输入)
 	PORT6 = 0x00;           	
 	P6CR = 0x43;			//PORT6设为输出(0 输出,1 输入)	P60 61 66 输入 
-	PHCR = 0xBC;				//打开上拉
+	PHCR = 0xFC;				//打开上拉
+	PHDCR = 0xBF;				//P66打开下拉
+	PRD = 0xBF;				//打开下拉
 	_asm{
 		mov	a,@0x03			//TCC分频比设为1：16
 		contw					

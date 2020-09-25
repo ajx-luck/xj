@@ -58,12 +58,12 @@ _ledStep:
 .SYMDEF "_ledStep" LEN:1
 db 0x0
 .stabs "ledStep:G10",32,0,0,_ledStep
-public _keyNub
+public _keyCount2
 .align 1
-_keyNub:
-.SYMDEF "_keyNub" LEN:1
+_keyCount2:
+.SYMDEF "_keyCount2" LEN:1
 db 0x0
-.stabs "keyNub:G10",32,0,0,_keyNub
+.stabs "keyCount2:G10",32,0,0,_keyCount2
 public _count64ms
 .align 1
 _count64ms:
@@ -82,6 +82,12 @@ _sleepTime:
 .SYMDEF "_sleepTime" LEN:1
 db 0x0
 .stabs "sleepTime:G10",32,0,0,_sleepTime
+public _highCheckTime
+.align 1
+_highCheckTime:
+.SYMDEF "_highCheckTime" LEN:1
+db 0x0
+.stabs "highCheckTime:G10",32,0,0,_highCheckTime
 public _main
 public main_bp
 .section ".code"
@@ -93,71 +99,71 @@ _main:
 .stabs "i:14",128,0,0,main_bp-1
 .stabn 192,0,0,L18
 L18:
-.stabn 68,0,47,L20
+.stabn 68,0,49,L20
 L20:
-.stabn 68,0,51,L21
+.stabn 68,0,53,L21
 L21:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(51):"
+.cfile "C:\mcuproject\xj\fan0919\fan.c(53):"
 wdtc
-.stabn 68,0,51,L22
+.stabn 68,0,53,L22
 L22:
-.stabn 68,0,52,L23
+.stabn 68,0,54,L23
 L23:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(52):"
+.cfile "C:\mcuproject\xj\fan0919\fan.c(54):"
 disi
-.stabn 68,0,52,L24
+.stabn 68,0,54,L24
 L24:
-.stabn 68,0,53,L25
+.stabn 68,0,55,L25
 L25:
 mov a,@0
 STA _WDTCR,0,2
-.stabn 68,0,55,L26
+.stabn 68,0,57,L26
 L26:
 call _IO_Init
-.stabn 68,0,57,L27
+.stabn 68,0,59,L27
 L27:
 mov a,@206
 STA _TCC,0,0
-.stabn 68,0,58,L28
+.stabn 68,0,60,L28
 L28:
 clr _ISR
-.stabn 68,0,59,L29
+.stabn 68,0,61,L29
 L29:
 mov a,@1
 STA _IMR,0,2
-.stabn 68,0,61,L30
+.stabn 68,0,63,L30
 L30:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(61):"
+.cfile "C:\mcuproject\xj\fan0919\fan.c(63):"
 eni
-.stabn 68,0,61,L31
+.stabn 68,0,63,L31
 L31:
 jmp @L$3
 L$2:
 .stabn 192,0,1,L32
 L32:
-.stabn 68,0,65,L33
+.stabn 68,0,67,L33
 L33:
-.stabn 68,0,66,L34
+.stabn 68,0,68,L34
 L34:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(66):"
+.cfile "C:\mcuproject\xj\fan0919\fan.c(68):"
 wdtc
-.stabn 68,0,66,L35
+.stabn 68,0,68,L35
 L35:
-.stabn 68,0,67,L36
+.stabn 68,0,69,L36
 L36:
 jbc _IntFlag,0
 EXTJMP @L$5
-.stabn 68,0,68,L37
+.stabn 68,0,70,L37
 L37:
 jmp @L$3
 L$5:
-.stabn 68,0,69,L38
+.stabn 68,0,71,L38
 L38:
 bc _IntFlag,0
-.stabn 68,0,70,L39
+.stabn 68,0,72,L39
 L39:
 call _keyCtr
-.stabn 68,0,71,L40
+.stabn 68,0,73,L40
 L40:
 EQNEPRIB _ledStep,0
 jbs STATUS,zf
@@ -168,15 +174,15 @@ EXTJMP @L$7
 L$9:
 .stabn 192,0,2,L41
 L41:
-.stabn 68,0,72,L42
+.stabn 68,0,74,L42
 L42:
-.stabn 68,0,73,L43
+.stabn 68,0,75,L43
 L43:
 bs _P52,2
-.stabn 68,0,74,L44
+.stabn 68,0,76,L44
 L44:
 call _lvdCheck
-.stabn 68,0,75,L45
+.stabn 68,0,77,L45
 L45:
 .stabn 224,0,2,L46
 L46:
@@ -184,26 +190,26 @@ jmp @L$8
 L$7:
 .stabn 192,0,2,L47
 L47:
-.stabn 68,0,77,L48
+.stabn 68,0,79,L48
 L48:
-.stabn 68,0,78,L49
+.stabn 68,0,80,L49
 L49:
 bc _P52,2
-.stabn 68,0,79,L50
+.stabn 68,0,81,L50
 L50:
 bc _P53,3
-.stabn 68,0,80,L51
+.stabn 68,0,82,L51
 L51:
 EQNEPRIB _keyCount,0
 jbs STATUS,zf
 EXTJMP @L$10
-jbs _P66,6
+jbc _P66,6
 EXTJMP @L$10
 .stabn 192,0,3,L52
 L52:
-.stabn 68,0,81,L53
+.stabn 68,0,83,L53
 L53:
-.stabn 68,0,82,L54
+.stabn 68,0,84,L54
 L54:
 LDA _sleepTime,0,0
 mov ecx,a
@@ -214,75 +220,90 @@ STA _sleepTime,0,0
 ULTRIB ecx,0xc8
 jbs STATUS, cf
 EXTJMP L$12
-.stabn 68,0,83,L55
+.stabn 68,0,85,L55
 L55:
 call _gotoSleep
 L$12:
-.stabn 68,0,84,L56
+.stabn 68,0,86,L56
 L56:
 .stabn 224,0,3,L57
 L57:
 L$10:
-.stabn 68,0,85,L58
+.stabn 68,0,87,L58
 L58:
 .stabn 224,0,2,L59
 L59:
 L$8:
-.stabn 68,0,87,L60
+.stabn 68,0,89,L60
 L60:
-EQNEPRIB _workStep,0
-jbs STATUS,zf
+jbs _P66,6
 EXTJMP @L$14
 .stabn 192,0,2,L61
 L61:
-.stabn 68,0,88,L62
+.stabn 68,0,90,L62
 L62:
-.stabn 68,0,89,L63
+.stabn 68,0,91,L63
 L63:
-jbs _P66,6
-EXTJMP @L$16
+LDA _highCheckTime,0,0
+mov ecx,a
+mov a,@1
+add ecx,a
+mov a,ecx
+STA _highCheckTime,0,0
+ULTRIB ecx,0x14
+jbs STATUS, cf
+EXTJMP L$15
 .stabn 192,0,3,L64
 L64:
-.stabn 68,0,90,L65
+.stabn 68,0,92,L65
 L65:
-.stabn 68,0,91,L66
+.stabn 68,0,93,L66
 L66:
-call _PWM_Stop
-.stabn 68,0,92,L67
+mov a,@20
+STA _highCheckTime,0,0
+.stabn 68,0,94,L67
 L67:
-.stabn 224,0,3,L68
+call _PWM_Stop
+.stabn 68,0,95,L68
 L68:
-jmp @L$17
-L$16:
-.stabn 192,0,3,L69
+bc _P51,1
+.stabn 68,0,96,L69
 L69:
-.stabn 68,0,94,L70
+clr _workStep
+.stabn 68,0,97,L70
 L70:
-.stabn 68,0,95,L71
+.stabn 224,0,3,L71
 L71:
-call _PWM_Init
-.stabn 68,0,96,L72
+.stabn 68,0,98,L72
 L72:
-.stabn 224,0,3,L73
+.stabn 224,0,2,L73
 L73:
-L$17:
-.stabn 68,0,97,L74
-L74:
-.stabn 224,0,2,L75
-L75:
+jmp @L$15
 L$14:
-.stabn 68,0,99,L76
+.stabn 192,0,2,L74
+L74:
+.stabn 68,0,100,L75
+L75:
+.stabn 68,0,101,L76
 L76:
-.stabn 224,0,1,L77
+clr _highCheckTime
+.stabn 68,0,102,L77
 L77:
-L$3:
-.stabn 68,0,64,L78
+.stabn 224,0,2,L78
 L78:
-jmp @L$2
-.stabn 68,0,101,L79
+L$15:
+.stabn 68,0,104,L79
 L79:
-.stabn 224,0,0,L80
+.stabn 224,0,1,L80
 L80:
+L$3:
+.stabn 68,0,66,L81
+L81:
+jmp @L$2
+.stabn 68,0,106,L82
+L82:
+.stabn 224,0,0,L83
+L83:
 L$1:
 ret
 .STACK main_bp,local,1
@@ -301,106 +322,106 @@ mov a,ecx+2
 mov lvdCheck_bp-2,a
 mov a,ecx+3
 mov lvdCheck_bp-1,a
-.stabn 192,0,0,L88
-L88:
-.stabn 68,0,105,L89
-L89:
-.stabn 68,0,106,L90
-L90:
+.stabn 192,0,0,L91
+L91:
+.stabn 68,0,110,L92
+L92:
+.stabn 68,0,111,L93
+L93:
 mov a,@138
 STA _LVDCON,0,0
-.stabn 68,0,107,L91
-L91:
+.stabn 68,0,112,L94
+L94:
 mov a,@100
 mov delay_bp+0,a
 .STACK delay_bp,parameter,1
 call _delay
-.stabn 68,0,108,L92
-L92:
+.stabn 68,0,113,L95
+L95:
 LDA _LVDCON,0,0
 mov ecx,a
 mov a,@64
 and ecx,a
 EQNEPRIB ecx,0
 jbc STATUS,zf
-EXTJMP @L$82
-.stabn 192,0,1,L93
-L93:
-.stabn 68,0,109,L94
-L94:
-.stabn 68,0,111,L95
-L95:
-bs _lvdFlag,2
-.stabn 68,0,112,L96
+EXTJMP @L$85
+.stabn 192,0,1,L96
 L96:
-INCMW _count5s,0
-.stabn 68,0,113,L97
+.stabn 68,0,114,L97
 L97:
+.stabn 68,0,116,L98
+L98:
+bs _lvdFlag,2
+.stabn 68,0,117,L99
+L99:
+INCMW _count5s,0
+.stabn 68,0,118,L100
+L100:
 UGTRIW _count5s,0x32
 jbc STATUS, cf
-EXTJMP L$84
-.stabn 192,0,2,L98
-L98:
-.stabn 68,0,114,L99
-L99:
-.stabn 68,0,115,L100
-L100:
-bs _P53,3
-.stabn 68,0,116,L101
+EXTJMP L$87
+.stabn 192,0,2,L101
 L101:
-.stabn 224,0,2,L102
+.stabn 68,0,119,L102
 L102:
-L$84:
-.stabn 68,0,117,L103
+.stabn 68,0,120,L103
 L103:
+bs _P53,3
+.stabn 68,0,121,L104
+L104:
+.stabn 224,0,2,L105
+L105:
+L$87:
+.stabn 68,0,122,L106
+L106:
 UGTRIW _count5s,0x226
 jbc STATUS, cf
-EXTJMP L$83
-.stabn 192,0,2,L104
-L104:
-.stabn 68,0,118,L105
-L105:
-.stabn 68,0,119,L106
-L106:
-clr _count5s+1
-clr _count5s
-.stabn 68,0,120,L107
+EXTJMP L$86
+.stabn 192,0,2,L107
 L107:
-call _cloesAll
-.stabn 68,0,121,L108
+.stabn 68,0,123,L108
 L108:
-.stabn 224,0,2,L109
+.stabn 68,0,124,L109
 L109:
-.stabn 68,0,122,L110
-L110:
-.stabn 224,0,1,L111
-L111:
-jmp @L$83
-L$82:
-.stabn 192,0,1,L112
-L112:
-.stabn 68,0,124,L113
-L113:
-.stabn 68,0,126,L114
-L114:
-bc _lvdFlag,2
-.stabn 68,0,127,L115
-L115:
 clr _count5s+1
 clr _count5s
-.stabn 68,0,128,L116
+.stabn 68,0,125,L110
+L110:
+call _cloesAll
+.stabn 68,0,126,L111
+L111:
+.stabn 224,0,2,L112
+L112:
+.stabn 68,0,127,L113
+L113:
+.stabn 224,0,1,L114
+L114:
+jmp @L$86
+L$85:
+.stabn 192,0,1,L115
+L115:
+.stabn 68,0,129,L116
 L116:
-bc _P53,3
-.stabn 68,0,129,L117
+.stabn 68,0,131,L117
 L117:
-.stabn 224,0,1,L118
+bc _lvdFlag,2
+.stabn 68,0,132,L118
 L118:
-L$83:
-.stabn 68,0,130,L119
+clr _count5s+1
+clr _count5s
+.stabn 68,0,133,L119
 L119:
-.stabn 224,0,0,L120
+bc _P53,3
+.stabn 68,0,134,L120
 L120:
-L$81:
+.stabn 224,0,1,L121
+L121:
+L$86:
+.stabn 68,0,135,L122
+L122:
+.stabn 224,0,0,L123
+L123:
+L$84:
 mov a,lvdCheck_bp-4
 mov ecx,a
 mov a,lvdCheck_bp-3
@@ -426,30 +447,30 @@ mov a,ecx+2
 mov cloesAll_bp-2,a
 mov a,ecx+3
 mov cloesAll_bp-1,a
-.stabn 192,0,0,L122
-L122:
-.stabn 68,0,133,L123
-L123:
-.stabn 68,0,134,L124
-L124:
-clr _workStep
-.stabn 68,0,135,L125
+.stabn 192,0,0,L125
 L125:
-clr _ledStep
-.stabn 68,0,136,L126
+.stabn 68,0,138,L126
 L126:
-call _PWM_Stop
-.stabn 68,0,137,L127
+.stabn 68,0,139,L127
 L127:
-clr _PORT5
-.stabn 68,0,138,L128
+clr _workStep
+.stabn 68,0,140,L128
 L128:
-bc _P67,7
-.stabn 68,0,139,L129
+clr _ledStep
+.stabn 68,0,141,L129
 L129:
-.stabn 224,0,0,L130
+call _PWM_Stop
+.stabn 68,0,142,L130
 L130:
-L$121:
+clr _PORT5
+.stabn 68,0,143,L131
+L131:
+bc _P67,7
+.stabn 68,0,144,L132
+L132:
+.stabn 224,0,0,L133
+L133:
+L$124:
 mov a,cloesAll_bp-4
 mov ecx,a
 mov a,cloesAll_bp-3
@@ -476,16 +497,17 @@ mov keyCtr_bp-2,a
 mov a,ecx+3
 mov keyCtr_bp-1,a
 .stabs "kclick:2",128,0,0,keyCtr_bp-5
-.stabn 192,0,0,L149
-L149:
-.stabn 68,0,143,L150
-L150:
-.stabn 68,0,144,L151
-L151:
+.stabs "kclick2:2",128,0,0,keyCtr_bp-6
+.stabn 192,0,0,L152
+L152:
+.stabn 68,0,148,L153
+L153:
+.stabn 68,0,149,L154
+L154:
 LDA _PORT6,0,0
 mov ecx,a
 com ecx
-mov a,@3
+mov a,@2
 and ecx,a
 mov a,ecx
 mov keyRead_bp+0,a
@@ -493,135 +515,30 @@ mov keyRead_bp+0,a
 call _keyRead
 mov a,eax
 STA keyCtr_bp-5,0,0
-.stabn 68,0,145,L152
-L152:
-EQNEPRIB keyCtr_bp-5,1
-jbs STATUS,zf
-EXTJMP @L$132
-.stabn 192,0,1,L153
-L153:
-.stabn 68,0,146,L154
-L154:
-.stabn 68,0,147,L155
+.stabn 68,0,151,L155
 L155:
-LDA _keyNub,0,0
+LDA _PORT6,0,0
 mov ecx,a
+com ecx
 mov a,@1
 and ecx,a
-EQNEPRIB ecx,0
-jbc STATUS,zf
-EXTJMP @L$134
-.stabn 192,0,2,L156
-L156:
-.stabn 68,0,148,L157
-L157:
-.stabn 68,0,150,L158
-L158:
-LDA _workStep,0,0
-mov ecx,a
-mov a,@1
-add ecx,a
 mov a,ecx
-STA _workStep,0,0
-UGTRIB ecx,0x2
-jbc STATUS, cf
-EXTJMP L$136
-.stabn 68,0,151,L159
+mov keyRead2_bp+0,a
+.STACK keyRead2_bp,parameter,1
+call _keyRead2
+mov a,eax
+STA keyCtr_bp-6,0,0
+.stabn 68,0,152,L156
+L156:
+EQNEPRIB keyCtr_bp-5,1
+jbs STATUS,zf
+EXTJMP @L$135
+.stabn 192,0,1,L157
+L157:
+.stabn 68,0,153,L158
+L158:
+.stabn 68,0,156,L159
 L159:
-clr _workStep
-L$136:
-.stabn 68,0,152,L160
-L160:
-EQNEPRIB _workStep,0
-jbc STATUS,zf
-EXTJMP @L$138
-.stabn 192,0,3,L161
-L161:
-.stabn 68,0,153,L162
-L162:
-.stabn 68,0,154,L163
-L163:
-bs _P51,1
-.stabn 68,0,155,L164
-L164:
-call _PWM_Init
-.stabn 68,0,156,L165
-L165:
-.stabn 224,0,3,L166
-L166:
-jmp @L$139
-L$138:
-.stabn 192,0,3,L167
-L167:
-.stabn 68,0,158,L168
-L168:
-.stabn 68,0,159,L169
-L169:
-call _PWM_Stop
-.stabn 68,0,160,L170
-L170:
-bc _P51,1
-.stabn 68,0,161,L171
-L171:
-.stabn 224,0,3,L172
-L172:
-L$139:
-.stabn 68,0,162,L173
-L173:
-LDA _workStep,0,0
-mov ecx,a
-EQNEPRIB ecx,0
-jbc STATUS,zf
-EXTJMP @L$142
-EQNEPRIB ecx,1
-jbc STATUS,zf
-EXTJMP @L$143
-EQNEPRIB ecx,2
-jbc STATUS,zf
-EXTJMP @L$144
-jmp @L$135
-.stabn 192,0,3,L174
-L174:
-.stabn 68,0,163,L175
-L175:
-L$142:
-.stabn 68,0,165,L176
-L176:
-clr _PDC1
-.stabn 68,0,166,L177
-L177:
-jmp @L$135
-L$143:
-.stabn 68,0,168,L178
-L178:
-mov a,@17
-STA _PDC1,0,0
-.stabn 68,0,169,L179
-L179:
-jmp @L$135
-L$144:
-.stabn 68,0,171,L180
-L180:
-mov a,@27
-STA _PDC1,0,0
-.stabn 68,0,172,L181
-L181:
-.stabn 68,0,174,L182
-L182:
-.stabn 224,0,3,L183
-L183:
-.stabn 68,0,175,L184
-L184:
-.stabn 224,0,2,L185
-L185:
-jmp @L$135
-L$134:
-.stabn 192,0,2,L186
-L186:
-.stabn 68,0,177,L187
-L187:
-.stabn 68,0,179,L188
-L188:
 LDA _ledStep,0,0
 mov ecx,a
 mov a,@1
@@ -630,56 +547,164 @@ mov a,ecx
 STA _ledStep,0,0
 UGTRIB ecx,0x2
 jbc STATUS, cf
-EXTJMP L$145
-.stabn 68,0,180,L189
-L189:
+EXTJMP L$137
+.stabn 68,0,157,L160
+L160:
 clr _ledStep
-L$145:
-.stabn 68,0,181,L190
-L190:
+L$137:
+.stabn 68,0,158,L161
+L161:
 EQNEPRIB _ledStep,0
 jbc STATUS,zf
-EXTJMP @L$147
-.stabn 192,0,3,L191
-L191:
-.stabn 68,0,182,L192
-L192:
-.stabn 68,0,183,L193
-L193:
+EXTJMP @L$139
+.stabn 192,0,2,L162
+L162:
+.stabn 68,0,159,L163
+L163:
+.stabn 68,0,160,L164
+L164:
 bs _P67,7
-.stabn 68,0,184,L194
-L194:
-.stabn 224,0,3,L195
-L195:
-jmp @L$148
-L$147:
-.stabn 192,0,3,L196
-L196:
-.stabn 68,0,186,L197
-L197:
-.stabn 68,0,187,L198
-L198:
+.stabn 68,0,161,L165
+L165:
+.stabn 224,0,2,L166
+L166:
+jmp @L$140
+L$139:
+.stabn 192,0,2,L167
+L167:
+.stabn 68,0,163,L168
+L168:
+.stabn 68,0,164,L169
+L169:
 bc _P67,7
-.stabn 68,0,188,L199
+.stabn 68,0,165,L170
+L170:
+.stabn 224,0,2,L171
+L171:
+L$140:
+.stabn 68,0,167,L172
+L172:
+.stabn 224,0,1,L173
+L173:
+L$135:
+.stabn 68,0,169,L174
+L174:
+EQNEPRIB keyCtr_bp-6,1
+jbs STATUS,zf
+EXTJMP @L$141
+.stabn 192,0,1,L175
+L175:
+.stabn 68,0,170,L176
+L176:
+.stabn 68,0,172,L177
+L177:
+LDA _workStep,0,0
+mov ecx,a
+mov a,@1
+add ecx,a
+mov a,ecx
+STA _workStep,0,0
+UGTRIB ecx,0x2
+jbc STATUS, cf
+EXTJMP L$143
+.stabn 68,0,173,L178
+L178:
+clr _workStep
+L$143:
+.stabn 68,0,174,L179
+L179:
+EQNEPRIB _workStep,0
+jbc STATUS,zf
+EXTJMP @L$145
+jbc _P66,6
+EXTJMP @L$145
+.stabn 192,0,2,L180
+L180:
+.stabn 68,0,175,L181
+L181:
+.stabn 68,0,176,L182
+L182:
+bs _P51,1
+.stabn 68,0,177,L183
+L183:
+call _PWM_Init
+.stabn 68,0,178,L184
+L184:
+.stabn 224,0,2,L185
+L185:
+jmp @L$146
+L$145:
+.stabn 192,0,2,L186
+L186:
+.stabn 68,0,180,L187
+L187:
+.stabn 68,0,181,L188
+L188:
+call _PWM_Stop
+.stabn 68,0,182,L189
+L189:
+bc _P51,1
+.stabn 68,0,183,L190
+L190:
+.stabn 224,0,2,L191
+L191:
+L$146:
+.stabn 68,0,184,L192
+L192:
+LDA _workStep,0,0
+mov ecx,a
+EQNEPRIB ecx,0
+jbc STATUS,zf
+EXTJMP @L$149
+EQNEPRIB ecx,1
+jbc STATUS,zf
+EXTJMP @L$150
+EQNEPRIB ecx,2
+jbc STATUS,zf
+EXTJMP @L$151
+jmp @L$147
+.stabn 192,0,2,L193
+L193:
+.stabn 68,0,185,L194
+L194:
+L$149:
+.stabn 68,0,187,L195
+L195:
+clr _PDC1
+.stabn 68,0,188,L196
+L196:
+jmp @L$148
+L$150:
+.stabn 68,0,190,L197
+L197:
+mov a,@14
+STA _PDC1,0,0
+.stabn 68,0,191,L198
+L198:
+jmp @L$148
+L$151:
+.stabn 68,0,193,L199
 L199:
-.stabn 224,0,3,L200
+mov a,@24
+STA _PDC1,0,0
+.stabn 68,0,194,L200
 L200:
-L$148:
-.stabn 68,0,189,L201
+.stabn 68,0,196,L201
 L201:
 .stabn 224,0,2,L202
 L202:
-L$135:
-.stabn 68,0,190,L203
+L$147:
+L$148:
+.stabn 68,0,198,L203
 L203:
 .stabn 224,0,1,L204
 L204:
-L$132:
-.stabn 68,0,192,L205
+L$141:
+.stabn 68,0,200,L205
 L205:
 .stabn 224,0,0,L206
 L206:
-L$131:
+L$134:
 mov a,keyCtr_bp-4
 mov ecx,a
 mov a,keyCtr_bp-3
@@ -689,7 +714,7 @@ mov ecx+2,a
 mov a,keyCtr_bp-1
 mov ecx+3,a
 ret
-.STACK keyCtr_bp,local,5
+.STACK keyCtr_bp,local,6
 public _gotoSleep
 public gotoSleep_bp
 .stabs "gotoSleep:F15",36,0,0,_gotoSleep
@@ -707,61 +732,61 @@ mov a,ecx+3
 mov gotoSleep_bp-1,a
 .stabn 192,0,0,L208
 L208:
-.stabn 68,0,195,L209
+.stabn 68,0,203,L209
 L209:
-.stabn 68,0,196,L210
+.stabn 68,0,204,L210
 L210:
 clr _count5s+1
 clr _count5s
-.stabn 68,0,197,L211
+.stabn 68,0,205,L211
 L211:
 clr _sleepTime
-.stabn 68,0,198,L212
+.stabn 68,0,206,L212
 L212:
 mov a,@0
 STA _WDTCR,0,2
-.stabn 68,0,199,L213
+.stabn 68,0,207,L213
 L213:
 mov a,@67
 STA _ICIECR,0,0
-.stabn 68,0,200,L214
+.stabn 68,0,208,L214
 L214:
 mov a,@2
 STA _IMR,0,2
-.stabn 68,0,201,L215
+.stabn 68,0,209,L215
 L215:
 LDA _ISR,0,0
 and a,@240
 STA _ISR,0,0
-.stabn 68,0,202,L216
+.stabn 68,0,210,L216
 L216:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(202):"
+.cfile "C:\mcuproject\xj\fan0919\fan.c(210):"
 disi
-.stabn 68,0,202,L217
+.stabn 68,0,210,L217
 L217:
-.stabn 68,0,203,L218
+.stabn 68,0,211,L218
 L218:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(203):"
+.cfile "C:\mcuproject\xj\fan0919\fan.c(211):"
 slep
-.stabn 68,0,203,L219
+.stabn 68,0,211,L219
 L219:
-.stabn 68,0,204,L220
+.stabn 68,0,212,L220
 L220:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(204):"
+.cfile "C:\mcuproject\xj\fan0919\fan.c(212):"
 eni
-.stabn 68,0,204,L221
+.stabn 68,0,212,L221
 L221:
-.stabn 68,0,205,L222
+.stabn 68,0,213,L222
 L222:
 clr _ICIECR
-.stabn 68,0,206,L223
+.stabn 68,0,214,L223
 L223:
 clr _ISR
-.stabn 68,0,207,L224
+.stabn 68,0,215,L224
 L224:
 mov a,@1
 STA _IMR,0,2
-.stabn 68,0,208,L225
+.stabn 68,0,216,L225
 L225:
 .stabn 224,0,0,L226
 L226:
@@ -794,94 +819,87 @@ mov keyRead_bp-1,a
 .stabs "keyStatus:10",160,0,0,keyRead_bp+0
 .stabn 192,0,0,L234
 L234:
-.stabn 68,0,212,L235
+.stabn 68,0,220,L235
 L235:
-.stabn 68,0,213,L236
+.stabn 68,0,221,L236
 L236:
 EQNEPRIB keyRead_bp+0,0
 jbc STATUS,zf
 EXTJMP @L$228
 .stabn 192,0,1,L237
 L237:
-.stabn 68,0,214,L238
+.stabn 68,0,222,L238
 L238:
-.stabn 68,0,215,L239
+.stabn 68,0,223,L239
 L239:
-LDA keyRead_bp+0,0,0
-STA _keyNub,0,0
-.stabn 68,0,216,L240
-L240:
-LDA _keyCount,0,0
+LDA _keyCount2,0,0
 add a,@1
-STA _keyCount,0,0
-.stabn 68,0,217,L241
-L241:
-ULTRIB _keyCount,0xc8
+STA _keyCount2,0,0
+.stabn 68,0,224,L240
+L240:
+ULTRIB _keyCount2,0xc8
 jbs STATUS, cf
 EXTJMP L$229
-.stabn 192,0,2,L242
+.stabn 192,0,2,L241
+L241:
+.stabn 68,0,225,L242
 L242:
-.stabn 68,0,218,L243
+.stabn 68,0,226,L243
 L243:
-.stabn 68,0,219,L244
-L244:
 mov a,@200
-STA _keyCount,0,0
-.stabn 68,0,220,L245
+STA _keyCount2,0,0
+.stabn 68,0,227,L244
+L244:
+.stabn 224,0,2,L245
 L245:
-.stabn 224,0,2,L246
+.stabn 68,0,228,L246
 L246:
-.stabn 68,0,221,L247
+.stabn 224,0,1,L247
 L247:
-.stabn 224,0,1,L248
-L248:
 jmp @L$229
 L$228:
-.stabn 192,0,1,L249
+.stabn 192,0,1,L248
+L248:
+.stabn 68,0,230,L249
 L249:
-.stabn 68,0,223,L250
+.stabn 68,0,231,L250
 L250:
-.stabn 68,0,224,L251
-L251:
-ULTRIB _keyCount,0x8
+ULTRIB _keyCount2,0x8
 jbs STATUS, cf
 EXTJMP L$232
-.stabn 192,0,2,L252
+.stabn 192,0,2,L251
+L251:
+.stabn 68,0,232,L252
 L252:
-.stabn 68,0,225,L253
+.stabn 68,0,233,L253
 L253:
-.stabn 68,0,226,L254
+clr _keyCount2
+.stabn 68,0,234,L254
 L254:
-clr _keyCount
-.stabn 68,0,227,L255
-L255:
 mov a,@1
 mov eax,a
 jmp @L$227
-.stabn 68,0,228,L256
+.stabn 68,0,235,L255
+L255:
+.stabn 224,0,2,L256
 L256:
-.stabn 224,0,2,L257
-L257:
 L$232:
-.stabn 68,0,229,L258
+.stabn 68,0,236,L257
+L257:
+clr _keyCount2
+.stabn 68,0,237,L258
 L258:
-clr _keyCount
-.stabn 68,0,230,L259
+.stabn 224,0,1,L259
 L259:
-clr _keyNub
-.stabn 68,0,231,L260
-L260:
-.stabn 224,0,1,L261
-L261:
 L$229:
-.stabn 68,0,232,L262
-L262:
+.stabn 68,0,238,L260
+L260:
 mov a,@0
 mov eax,a
-.stabn 68,0,233,L263
-L263:
-.stabn 224,0,0,L264
-L264:
+.stabn 68,0,239,L261
+L261:
+.stabn 224,0,0,L262
+L262:
 L$227:
 mov a,keyRead_bp-4
 mov ecx,a
@@ -893,11 +911,121 @@ mov a,keyRead_bp-1
 mov ecx+3,a
 ret
 .STACK keyRead_bp,local,4
+public _keyRead2
+public keyRead2_bp
+.stabs "keyRead2:F2",36,0,0,_keyRead2
+.section ".S6",C_CODE
+.SYMDEF ".S6" 
+_keyRead2:
+.SYMDEF "_keyRead2" 
+mov a,ecx
+mov keyRead2_bp-4,a
+mov a,ecx+1
+mov keyRead2_bp-3,a
+mov a,ecx+2
+mov keyRead2_bp-2,a
+mov a,ecx+3
+mov keyRead2_bp-1,a
+.stabs "keyStatus:10",160,0,0,keyRead2_bp+0
+.stabn 192,0,0,L270
+L270:
+.stabn 68,0,242,L271
+L271:
+.stabn 68,0,243,L272
+L272:
+EQNEPRIB keyRead2_bp+0,0
+jbc STATUS,zf
+EXTJMP @L$264
+.stabn 192,0,1,L273
+L273:
+.stabn 68,0,244,L274
+L274:
+.stabn 68,0,245,L275
+L275:
+LDA _keyCount,0,0
+add a,@1
+STA _keyCount,0,0
+.stabn 68,0,246,L276
+L276:
+ULTRIB _keyCount,0xc8
+jbs STATUS, cf
+EXTJMP L$265
+.stabn 192,0,2,L277
+L277:
+.stabn 68,0,247,L278
+L278:
+.stabn 68,0,248,L279
+L279:
+mov a,@200
+STA _keyCount,0,0
+.stabn 68,0,249,L280
+L280:
+.stabn 224,0,2,L281
+L281:
+.stabn 68,0,250,L282
+L282:
+.stabn 224,0,1,L283
+L283:
+jmp @L$265
+L$264:
+.stabn 192,0,1,L284
+L284:
+.stabn 68,0,252,L285
+L285:
+.stabn 68,0,253,L286
+L286:
+ULTRIB _keyCount,0x8
+jbs STATUS, cf
+EXTJMP L$268
+.stabn 192,0,2,L287
+L287:
+.stabn 68,0,254,L288
+L288:
+.stabn 68,0,255,L289
+L289:
+clr _keyCount
+.stabn 68,0,256,L290
+L290:
+mov a,@1
+mov eax,a
+jmp @L$263
+.stabn 68,0,257,L291
+L291:
+.stabn 224,0,2,L292
+L292:
+L$268:
+.stabn 68,0,258,L293
+L293:
+clr _keyCount
+.stabn 68,0,259,L294
+L294:
+.stabn 224,0,1,L295
+L295:
+L$265:
+.stabn 68,0,260,L296
+L296:
+mov a,@0
+mov eax,a
+.stabn 68,0,261,L297
+L297:
+.stabn 224,0,0,L298
+L298:
+L$263:
+mov a,keyRead2_bp-4
+mov ecx,a
+mov a,keyRead2_bp-3
+mov ecx+1,a
+mov a,keyRead2_bp-2
+mov ecx+2,a
+mov a,keyRead2_bp-1
+mov ecx+3,a
+ret
+.STACK keyRead2_bp,local,4
 public _delay
 public delay_bp
 .stabs "delay:F15",36,0,0,_delay
-.section ".S6",C_CODE
-.SYMDEF ".S6" 
+.section ".S7",C_CODE
+.SYMDEF ".S7" 
 _delay:
 .SYMDEF "_delay" 
 mov a,ecx
@@ -910,40 +1038,40 @@ mov a,ecx+3
 mov delay_bp-1,a
 .stabs "time:10",160,0,0,delay_bp+0
 .stabs "i:10",128,0,0,delay_bp-5
-.stabn 192,0,0,L270
-L270:
-.stabn 68,0,237,L271
-L271:
-.stabn 68,0,238,L272
-L272:
+.stabn 192,0,0,L304
+L304:
+.stabn 68,0,266,L305
+L305:
+.stabn 68,0,267,L306
+L306:
 clr delay_bp-5
-.stabn 68,0,239,L273
-L273:
-jmp @L$269
-L$266:
-.stabn 68,0,240,L274
-L274:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(240):"
+.stabn 68,0,268,L307
+L307:
+jmp @L$303
+L$300:
+.stabn 68,0,269,L308
+L308:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(269):"
 nop
-L$267:
-.stabn 68,0,239,L275
-L275:
+L$301:
+.stabn 68,0,268,L309
+L309:
 LDA delay_bp-5,0,0
 add a,@1
 STA delay_bp-5,0,0
-L$269:
-.stabn 68,0,239,L276
-L276:
+L$303:
+.stabn 68,0,268,L310
+L310:
 ULTRRB delay_bp-5,delay_bp+0
 jbs STATUS,cf
-EXTJMP @L$266
-.stabn 68,0,240,L277
-L277:
-.stabn 68,0,241,L278
-L278:
-.stabn 224,0,0,L279
-L279:
-L$265:
+EXTJMP @L$300
+.stabn 68,0,269,L311
+L311:
+.stabn 68,0,270,L312
+L312:
+.stabn 224,0,0,L313
+L313:
+L$299:
 mov a,delay_bp-4
 mov ecx,a
 mov a,delay_bp-3
@@ -957,8 +1085,8 @@ ret
 public _PWM_Init
 public PWM_Init_bp
 .stabs "PWM_Init:F15",36,0,0,_PWM_Init
-.section ".S7",C_CODE
-.SYMDEF ".S7" 
+.section ".S8",C_CODE
+.SYMDEF ".S8" 
 _PWM_Init:
 .SYMDEF "_PWM_Init" 
 mov a,ecx
@@ -969,31 +1097,31 @@ mov a,ecx+2
 mov PWM_Init_bp-2,a
 mov a,ecx+3
 mov PWM_Init_bp-1,a
-.stabn 192,0,0,L281
-L281:
-.stabn 68,0,245,L282
-L282:
-.stabn 68,0,247,L283
-L283:
+.stabn 192,0,0,L315
+L315:
+.stabn 68,0,274,L316
+L316:
+.stabn 68,0,276,L317
+L317:
 mov a,@49
 STA _PRD,0,0
-.stabn 68,0,248,L284
-L284:
+.stabn 68,0,277,L318
+L318:
 mov a,@17
 STA _PDC1,0,0
-.stabn 68,0,249,L285
-L285:
+.stabn 68,0,278,L319
+L319:
 mov a,@64
 STA _CPUCON,0,0
-.stabn 68,0,250,L286
-L286:
+.stabn 68,0,279,L320
+L320:
 mov a,@16
 STA _PWMCON,0,0
-.stabn 68,0,251,L287
-L287:
-.stabn 224,0,0,L288
-L288:
-L$280:
+.stabn 68,0,280,L321
+L321:
+.stabn 224,0,0,L322
+L322:
+L$314:
 mov a,PWM_Init_bp-4
 mov ecx,a
 mov a,PWM_Init_bp-3
@@ -1007,8 +1135,8 @@ ret
 public _PWM_Stop
 public PWM_Stop_bp
 .stabs "PWM_Stop:F15",36,0,0,_PWM_Stop
-.section ".S8",C_CODE
-.SYMDEF ".S8" 
+.section ".S9",C_CODE
+.SYMDEF ".S9" 
 _PWM_Stop:
 .SYMDEF "_PWM_Stop" 
 mov a,ecx
@@ -1019,18 +1147,18 @@ mov a,ecx+2
 mov PWM_Stop_bp-2,a
 mov a,ecx+3
 mov PWM_Stop_bp-1,a
-.stabn 192,0,0,L290
-L290:
-.stabn 68,0,254,L291
-L291:
-.stabn 68,0,255,L292
-L292:
+.stabn 192,0,0,L324
+L324:
+.stabn 68,0,283,L325
+L325:
+.stabn 68,0,284,L326
+L326:
 clr _PWMCON
-.stabn 68,0,256,L293
-L293:
-.stabn 224,0,0,L294
-L294:
-L$289:
+.stabn 68,0,285,L327
+L327:
+.stabn 224,0,0,L328
+L328:
+L$323:
 mov a,PWM_Stop_bp-4
 mov ecx,a
 mov a,PWM_Stop_bp-3
@@ -1044,8 +1172,8 @@ ret
 public _IO_Init
 public IO_Init_bp
 .stabs "IO_Init:F15",36,0,0,_IO_Init
-.section ".S9",C_CODE
-.SYMDEF ".S9" 
+.section ".S10",C_CODE
+.SYMDEF ".S10" 
 _IO_Init:
 .SYMDEF "_IO_Init" 
 mov a,ecx
@@ -1056,41 +1184,49 @@ mov a,ecx+2
 mov IO_Init_bp-2,a
 mov a,ecx+3
 mov IO_Init_bp-1,a
-.stabn 192,0,0,L296
-L296:
-.stabn 68,0,260,L297
-L297:
-.stabn 68,0,262,L298
-L298:
+.stabn 192,0,0,L330
+L330:
+.stabn 68,0,289,L331
+L331:
+.stabn 68,0,291,L332
+L332:
 clr _PORT5
-.stabn 68,0,263,L299
-L299:
+.stabn 68,0,292,L333
+L333:
 mov a,@0
 STA _P5CR,0,2
-.stabn 68,0,264,L300
-L300:
+.stabn 68,0,293,L334
+L334:
 clr _PORT6
-.stabn 68,0,265,L301
-L301:
+.stabn 68,0,294,L335
+L335:
 mov a,@67
 STA _P6CR,0,2
-.stabn 68,0,266,L302
-L302:
-mov a,@188
+.stabn 68,0,295,L336
+L336:
+mov a,@252
 STA _PHCR,0,2
-.stabn 68,0,268,L303
-L303:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(268):"
+.stabn 68,0,296,L337
+L337:
+mov a,@191
+STA _PHDCR,0,2
+.stabn 68,0,297,L338
+L338:
+mov a,@191
+STA _PRD,0,0
+.stabn 68,0,299,L339
+L339:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(299):"
 mov	a,@0x03
-.stabn 68,0,269,L304
-L304:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(269):"
+.stabn 68,0,300,L340
+L340:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(300):"
 contw
-.stabn 68,0,271,L305
-L305:
-.stabn 224,0,0,L306
-L306:
-L$295:
+.stabn 68,0,302,L341
+L341:
+.stabn 224,0,0,L342
+L342:
+L$329:
 mov a,IO_Init_bp-4
 mov ecx,a
 mov a,IO_Init_bp-3
@@ -1104,54 +1240,54 @@ ret
 public _interrupt
 public interrupt_bp
 .stabs "interrupt:F15",36,0,0,_interrupt
-.section ".S10",C_CODE
-.SYMDEF ".S10" INT:-1
+.section ".S11",C_CODE
+.SYMDEF ".S11" INT:-1
 _interrupt:
 .SYMDEF "_interrupt" INT:-1
-.stabn 192,0,0,L322
-L322:
-.stabn 68,0,275,L323
-L323:
-.stabn 68,0,278,L324
-L324:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(278):"
+.stabn 192,0,0,L358
+L358:
+.stabn 68,0,306,L359
+L359:
+.stabn 68,0,309,L360
+L360:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(309):"
 MOV 0x3D,A ;保存 A
-.stabn 68,0,279,L325
-L325:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(279):"
+.stabn 68,0,310,L361
+L361:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(310):"
 MOV A,0x03
-.stabn 68,0,280,L326
-L326:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(280):"
+.stabn 68,0,311,L362
+L362:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(311):"
 MOV 0x3E,A ;保存 R3
-.stabn 68,0,281,L327
-L327:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(281):"
+.stabn 68,0,312,L363
+L363:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(312):"
 MOV A,0x04
-.stabn 68,0,282,L328
-L328:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(282):"
+.stabn 68,0,313,L364
+L364:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(313):"
 MOV 0x3F,A ;保存 R4
-.stabn 68,0,285,L329
-L329:
+.stabn 68,0,316,L365
+L365:
 jbs _TCIF,0
-EXTJMP @L$308
-.stabn 192,0,1,L330
-L330:
-.stabn 68,0,286,L331
-L331:
-.stabn 68,0,288,L332
-L332:
+EXTJMP @L$344
+.stabn 192,0,1,L366
+L366:
+.stabn 68,0,317,L367
+L367:
+.stabn 68,0,319,L368
+L368:
 LDA _ISR,0,0
 and a,@254
 STA _ISR,0,0
-.stabn 68,0,289,L333
-L333:
+.stabn 68,0,320,L369
+L369:
 LDA _TCC,0,0
 add a,@206
 STA _TCC,0,0
-.stabn 68,0,291,L334
-L334:
+.stabn 68,0,322,L370
+L370:
 LDA _intCount,0,0
 mov ecx,a
 mov a,@1
@@ -1160,19 +1296,19 @@ mov a,ecx
 STA _intCount,0,0
 ULTRIB ecx,0x32
 jbs STATUS, cf
-EXTJMP L$310
-.stabn 192,0,2,L335
-L335:
-.stabn 68,0,292,L336
-L336:
-.stabn 68,0,293,L337
-L337:
+EXTJMP L$346
+.stabn 192,0,2,L371
+L371:
+.stabn 68,0,323,L372
+L372:
+.stabn 68,0,324,L373
+L373:
 clr _intCount
-.stabn 68,0,294,L338
-L338:
+.stabn 68,0,325,L374
+L374:
 bs _IntFlag,0
-.stabn 68,0,295,L339
-L339:
+.stabn 68,0,326,L375
+L375:
 LDA _count500ms,0,0
 mov ecx,a
 mov a,@1
@@ -1181,27 +1317,27 @@ mov a,ecx
 STA _count500ms,0,0
 ULTRIB ecx,0x32
 jbs STATUS, cf
-EXTJMP L$312
-.stabn 68,0,296,L340
-L340:
+EXTJMP L$348
+.stabn 68,0,327,L376
+L376:
 clr _count500ms
-L$312:
-.stabn 68,0,297,L341
-L341:
-.stabn 224,0,2,L342
-L342:
-L$310:
-.stabn 68,0,298,L343
-L343:
+L$348:
+.stabn 68,0,328,L377
+L377:
+.stabn 224,0,2,L378
+L378:
+L$346:
+.stabn 68,0,329,L379
+L379:
 EQNEPRIB _ledStep,1
 jbs STATUS,zf
-EXTJMP @L$314
-.stabn 192,0,2,L344
-L344:
-.stabn 68,0,299,L345
-L345:
-.stabn 68,0,300,L346
-L346:
+EXTJMP @L$350
+.stabn 192,0,2,L380
+L380:
+.stabn 68,0,330,L381
+L381:
+.stabn 68,0,331,L382
+L382:
 LDA _count64ms,0,0
 mov ecx,a
 mov a,@1
@@ -1210,121 +1346,121 @@ mov a,ecx
 STA _count64ms,0,0
 ULTRIB ecx,0x20
 jbs STATUS, cf
-EXTJMP L$316
-.stabn 192,0,3,L347
-L347:
-.stabn 68,0,301,L348
-L348:
-.stabn 68,0,302,L349
-L349:
+EXTJMP L$352
+.stabn 192,0,3,L383
+L383:
+.stabn 68,0,332,L384
+L384:
+.stabn 68,0,333,L385
+L385:
 clr _count64ms
-.stabn 68,0,303,L350
-L350:
-.stabn 224,0,3,L351
-L351:
-L$316:
-.stabn 68,0,304,L352
-L352:
+.stabn 68,0,334,L386
+L386:
+.stabn 224,0,3,L387
+L387:
+L$352:
+.stabn 68,0,335,L388
+L388:
 ULTRIB _count64ms,0x10
 jbc STATUS, cf
-EXTJMP L$318
-.stabn 68,0,305,L353
-L353:
+EXTJMP L$354
+.stabn 68,0,336,L389
+L389:
 bs _P50,0
-jmp @L$315
-L$318:
-.stabn 68,0,307,L354
-L354:
+jmp @L$351
+L$354:
+.stabn 68,0,338,L390
+L390:
 bc _P50,0
-.stabn 68,0,308,L355
-L355:
-.stabn 224,0,2,L356
-L356:
-jmp @L$315
-L$314:
-.stabn 68,0,309,L357
-L357:
+.stabn 68,0,339,L391
+L391:
+.stabn 224,0,2,L392
+L392:
+jmp @L$351
+L$350:
+.stabn 68,0,340,L393
+L393:
 EQNEPRIB _ledStep,2
 jbs STATUS,zf
-EXTJMP @L$320
-.stabn 192,0,2,L358
-L358:
-.stabn 68,0,310,L359
-L359:
-.stabn 68,0,311,L360
-L360:
+EXTJMP @L$356
+.stabn 192,0,2,L394
+L394:
+.stabn 68,0,341,L395
+L395:
+.stabn 68,0,342,L396
+L396:
 bs _P50,0
-.stabn 68,0,312,L361
-L361:
-.stabn 224,0,2,L362
-L362:
-jmp @L$321
-L$320:
-.stabn 192,0,2,L363
-L363:
-.stabn 68,0,314,L364
-L364:
-.stabn 68,0,315,L365
-L365:
+.stabn 68,0,343,L397
+L397:
+.stabn 224,0,2,L398
+L398:
+jmp @L$357
+L$356:
+.stabn 192,0,2,L399
+L399:
+.stabn 68,0,345,L400
+L400:
+.stabn 68,0,346,L401
+L401:
 bc _P50,0
-.stabn 68,0,316,L366
-L366:
-.stabn 224,0,2,L367
-L367:
-L$321:
-L$315:
-.stabn 68,0,318,L368
-L368:
-.stabn 224,0,1,L369
-L369:
-L$308:
-.stabn 68,0,322,L370
-L370:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(322):"
+.stabn 68,0,347,L402
+L402:
+.stabn 224,0,2,L403
+L403:
+L$357:
+L$351:
+.stabn 68,0,349,L404
+L404:
+.stabn 224,0,1,L405
+L405:
+L$344:
+.stabn 68,0,353,L406
+L406:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(353):"
 MOV A,0x3F ;返回 R4
-.stabn 68,0,323,L371
-L371:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(323):"
+.stabn 68,0,354,L407
+L407:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(354):"
 MOV 0x04,A
-.stabn 68,0,324,L372
-L372:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(324):"
+.stabn 68,0,355,L408
+L408:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(355):"
 MOV A,0x3E ;返回 R3
-.stabn 68,0,325,L373
-L373:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(325):"
+.stabn 68,0,356,L409
+L409:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(356):"
 MOV 0x03,A
-.stabn 68,0,326,L374
-L374:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(326):"
+.stabn 68,0,357,L410
+L410:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(357):"
 SWAP 0x3D  ;返回 A
-.stabn 68,0,327,L375
-L375:
-.cfile "C:\mcuproject\xj\fan0919\fan.c(327):"
+.stabn 68,0,358,L411
+L411:
+.cfile "C:\mcuproject\xj\fan0919\fan.c(358):"
 SWAPA 0x3D
-.stabn 68,0,329,L376
-L376:
-.stabn 224,0,0,L377
-L377:
-L$307:
+.stabn 68,0,360,L412
+L412:
+.stabn 224,0,0,L413
+L413:
+L$343:
 reti
 .STACK interrupt_bp,local,0
 public _interrupt_l
 public interrupt_l_bp
 .stabs "interrupt_l:F15",36,0,0,_interrupt_l
-.section ".S11",C_CODE
-.SYMDEF ".S11" LOWINT:0,8
+.section ".S12",C_CODE
+.SYMDEF ".S12" LOWINT:0,8
 _interrupt_l:
 .SYMDEF "_interrupt_l" LOWINT:0,8
-.stabn 192,0,0,L379
-L379:
-.stabn 68,0,334,L380
-L380:
-.stabn 68,0,336,L381
-L381:
-.stabn 224,0,0,L382
-L382:
-L$378:
+.stabn 192,0,0,L415
+L415:
+.stabn 68,0,365,L416
+L416:
+.stabn 68,0,367,L417
+L417:
+.stabn 224,0,0,L418
+L418:
+L$414:
 reti
 .STACK interrupt_l_bp,local,0
 .section ".bss"
