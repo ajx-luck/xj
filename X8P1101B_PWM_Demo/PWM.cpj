@@ -139,3 +139,7 @@ Size#1=0
 Size#2=0
 [ICEVOLTAGE SETTING]
 Voltage=1
+[$\PWM.c]
+Rectangle=0000 0000 0829 0267
+Iconized=0
+Maximized=0

@@ -1,0 +1,608 @@
+*************************************
+------------- Call Depth ------------
+ Depth  Interrupt    Function
+-------------------------------------
+    0        N         ProgramStart
+    1        Y           _interrupt_l
+    1        Y           _interrupt
+    0        N         _main
+C   1        N           _IO_Init
+C   1        N           _keyCtr
+C   2        N             _keyRead
+C   1        N           _workCtr
+C   2        N             _gotoSleep
+C   1        N           _gotoSleep
+-------------------------------------
+Stack Depth: 2
+****************************************
+------------- Free ROM Size ------------
+Start=0X1    , End=0X7    , Size=7
+Start=0X2B   , End=0X2C   , Size=2
+Start=0X125  , End=0X3FF  , Size=731
+----------------------------------------
+EM78P153B       |        ROM Size        
+----------------+-----------------------
+Total           |  1024 x 13 bits(100.0%)
+Used            |   284 x 13 bits( 27.7%)
+Free            |   740 x 13 bits( 72.3%)
+----------------------------------------
+*************************************
+-------------- Data Map -------------
+d -- Uninitialized data
+D -- Initialized data
+b -- Uninitialized bit data
+B -- Initialized bit data
+C -- C Register
+-------------- RAM Data -------------
+0x00  - - - - - - - - - - - - - - - - 
+0x10  - - - - - - - - - - - - - - - - 
+0x20  b D D D D D D D D D d d d d C C 
+0x30  - - - - - - - - - - - - - - - - 
+----------- Register Data -----------
+0x00  d d d b d b b - d d d d d d d b 
+0x10  d C C - - - - - - - - - - - - - 
+-------------- IO Data --------------
+0x00  - - - - - d d - - d - d - d d d 
+****************************************
+--------------- ROM Code ---------------
+    0x0000 :  JMP   0x02D       
+    0x0001 :  ADD   A, @0xFF    
+    0x0002 :  ADD   A, @0xFF    
+    0x0003 :  ADD   A, @0xFF    
+    0x0004 :  ADD   A, @0xFF    
+    0x0005 :  ADD   A, @0xFF    
+    0x0006 :  ADD   A, @0xFF    
+    0x0007 :  ADD   A, @0xFF    
+    0x0008 :  JMP   0x009       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 254)
+  ;MOV 0x3D,A ;保存 A
+    0x0009 :  MOV   0x10, A     
+    0x000A :  SWAPA 0x04        
+    0x000B :  MOV   0x2E, A     
+    0x000C :  SWAPA 0x03        
+    0x000D :  MOV   0x2F, A     
+    0x000E :  MOV   0x3D, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 255)
+  ;MOV A,0x03
+    0x000F :  MOV   A, 0x03     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 256)
+  ;MOV 0x3E,A ;保存 R3
+    0x0010 :  MOV   0x3E, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 257)
+  ;MOV A,0x04
+    0x0011 :  MOV   A, 0x04     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 258)
+  ;MOV 0x3F,A ;保存 R4
+    0x0012 :  MOV   0x3F, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 261)
+  ;if	(TCIF==1)
+    0x0013 :  JBS   0x0F, 0     
+    0x0014 :  JMP   0x020       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 264)
+  ;ISR&=0XFE;				//清TCC中断标志位
+    0x0015 :  MOV   A, @0xFE    
+    0x0016 :  AND   0x0F, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 265)
+  ;TCC+=206;					//TCC赋初值 0.2ms
+    0x0017 :  MOV   A, @0xCE    
+    0x0018 :  ADD   0x01, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 267)
+  ;if(++intCount >= 100)
+    0x0019 :  INC   0x21        
+    0x001A :  MOV   A, @0x64    
+    0x001B :  SUB   A, 0x21     
+    0x001C :  JBS   0x03, 0     
+    0x001D :  JMP   0x020       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 269)
+  ;intCount = 0;		//10ms
+    0x001E :  CLR   0x21        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 270)
+  ;IntFlag = 1;
+    0x001F :  BS    0x20, 0     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 281)
+  ;MOV A,0x3F ;返回 R4
+    0x0020 :  MOV   A, 0x3F     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 282)
+  ;MOV 0x04,A
+    0x0021 :  MOV   0x04, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 283)
+  ;MOV A,0x3E ;返回 R3
+    0x0022 :  MOV   A, 0x3E     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 284)
+  ;MOV 0x03,A
+    0x0023 :  MOV   0x03, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 285)
+  ;SWAP 0x3D  ;返回 A
+    0x0024 :  SWAP  0x3D        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 286)
+  ;SWAPA 0x3D
+    0x0025 :  SWAPA 0x3D        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 288)
+  ;}
+    0x0026 :  SWAPA 0x2F        
+    0x0027 :  MOV   0x03, A     
+    0x0028 :  SWAPA 0x2E        
+    0x0029 :  MOV   0x04, A     
+    0x002A :  RETI              
+    0x002B :  ADD   A, @0xFF    
+    0x002C :  ADD   A, @0xFF    
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 55)
+  ;WDTC();
+    0x002D :  MOV   A, @0x00    
+    0x002E :  MOV   0x21, A     
+    0x002F :  MOV   0x22, A     
+    0x0030 :  MOV   0x23, A     
+    0x0031 :  MOV   0x24, A     
+    0x0032 :  MOV   0x25, A     
+    0x0033 :  MOV   0x26, A     
+    0x0034 :  MOV   0x27, A     
+    0x0035 :  MOV   0x28, A     
+    0x0036 :  MOV   0x29, A     
+    0x0037 :  WDTC              
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 56)
+  ;DISI();
+    0x0038 :  DISI              
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 57)
+  ;WDTCR=0x80;
+    0x0039 :  MOV   A, @0x80    
+    0x003A :  IOW   0xE         
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 58)
+  ;workStep = 0;
+    0x003B :  CLR   0x27        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 60)
+  ;IO_Init();	            //IO初始化
+    0x003C :  CALL  0x07E       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 61)
+  ;TCC=206;					//timer=1/8*2*(256-6)*16=1ms,TCC中断1ms定时		主频8M/2T
+    0x003D :  MOV   A, @0xCE    
+    0x003E :  MOV   0x01, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 62)
+  ;ISR=0;
+    0x003F :  CLR   0x0F        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 63)
+  ;IMR=1;
+    0x0040 :  MOV   A, @0x01    
+    0x0041 :  IOW   0xF         
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 64)
+  ;duty = 0;
+    0x0042 :  CLR   0x22        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 65)
+  ;ENI();
+    0x0043 :  ENI               
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 70)
+  ;P50 = 0;
+    0x0044 :  BC    0x05, 0     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 71)
+  ;if(workStep < 4)
+    0x0045 :  MOV   A, @0x04    
+    0x0046 :  SUB   A, 0x27     
+    0x0047 :  JBC   0x03, 0     
+    0x0048 :  JMP   0x04D       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 73)
+  ;P50 = 0;
+    0x0049 :  BC    0x05, 0     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 74)
+  ;NOP();
+    0x004A :  NOP               
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 75)
+  ;NOP();
+    0x004B :  NOP               
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 76)
+  ;NOP();
+    0x004C :  NOP               
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 78)
+  ;for(i=0;i<duty;i++)
+    0x004D :  CLR   0x2A        
+    0x004E :  JMP   0x052       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 80)
+  ;P50 = 1;
+    0x004F :  BS    0x05, 0     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 81)
+  ;NOP();
+    0x0050 :  NOP               
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 82)
+  ;}
+    0x0051 :  INC   0x2A        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 78)
+  ;for(i=0;i<duty;i++)
+    0x0052 :  MOV   A, 0x22     
+    0x0053 :  SUB   A, 0x2A     
+    0x0054 :  JBS   0x03, 0     
+    0x0055 :  JMP   0x04F       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 83)
+  ;WDTC(); //清狗
+    0x0056 :  WDTC              
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 84)
+  ;if(!IntFlag)
+    0x0057 :  JBC   0x20, 0     
+    0x0058 :  JMP   0x05A       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 85)
+  ;continue;
+    0x0059 :  JMP   0x044       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 86)
+  ;IntFlag = 0;
+    0x005A :  BC    0x20, 0     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 87)
+  ;if(P64 == 0)
+    0x005B :  JBC   0x06, 4     
+    0x005C :  JMP   0x05F       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 88)
+  ;keyCtr();
+    0x005D :  CALL  0x08B       
+    0x005E :  JMP   0x063       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 91)
+  ;P50 = 0;
+    0x005F :  BC    0x05, 0     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 92)
+  ;duty = 0;
+    0x0060 :  CLR   0x22        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 93)
+  ;workStep = 0;
+    0x0061 :  CLR   0x27        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 94)
+  ;count900s = 0;
+    0x0062 :  CLR   0x26        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 96)
+  ;workCtr();
+    0x0063 :  CALL  0x0CE       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 97)
+  ;if(workStep)
+    0x0064 :  MOV   0x27, 0x27  
+    0x0065 :  JBC   0x03, 2     
+    0x0066 :  JMP   0x044       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 99)
+  ;if(++count1s>= 100)
+    0x0067 :  INC   0x24        
+    0x0068 :  MOV   A, @0x64    
+    0x0069 :  SUB   A, 0x24     
+    0x006A :  JBS   0x03, 0     
+    0x006B :  JMP   0x074       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 101)
+  ;count1s = 0;
+    0x006C :  CLR   0x24        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 102)
+  ;if(++count1min >= 60)
+    0x006D :  INC   0x25        
+    0x006E :  MOV   A, @0x3C    
+    0x006F :  SUB   A, 0x25     
+    0x0070 :  JBS   0x03, 0     
+    0x0071 :  JMP   0x074       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 104)
+  ;count1min = 0;
+    0x0072 :  CLR   0x25        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 105)
+  ;count900s++;
+    0x0073 :  INC   0x26        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 110)
+  ;if(count900s >= 15 && keyCount == 0)
+    0x0074 :  MOV   A, @0x0F    
+    0x0075 :  SUB   A, 0x26     
+    0x0076 :  JBS   0x03, 0     
+    0x0077 :  JMP   0x044       
+    0x0078 :  MOV   0x28, 0x28  
+    0x0079 :  JBS   0x03, 2     
+    0x007A :  JMP   0x044       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 111)
+  ;gotoSleep();
+    0x007B :  CALL  0x10B       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 115)
+  ;}
+    0x007C :  JMP   0x044       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 117)
+  ;}
+    0x007D :  RET               
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 237)
+  ;PORT5 = 0x00;
+    0x007E :  CLR   0x05        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 238)
+  ;P5CR = 0x00;			//PORT5设为输出(0 输出,1 输入)
+    0x007F :  MOV   A, @0x00    
+    0x0080 :  IOW   0x5         
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 239)
+  ;PORT6 = 0x00;
+    0x0081 :  CLR   0x06        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 240)
+  ;P6CR = 0x90;			//PORT6设为输出(0 输出,1 输入)
+    0x0082 :  MOV   A, @0x90    
+    0x0083 :  IOW   0x6         
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 241)
+  ;PHCR = 0x7F;
+    0x0084 :  MOV   A, @0x7F    
+    0x0085 :  IOW   0xD         
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 242)
+  ;PHDCR = 0xFF;
+    0x0086 :  MOV   A, @0xFF    
+    0x0087 :  IOW   0x9         
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 244)
+  ;mov	a,@0x02			//TCC分频比设为1：8
+    0x0088 :  MOV   A, @0x02    
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 245)
+  ;contw
+    0x0089 :  CONTW             
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 247)
+  ;}
+    0x008A :  RET               
+    0x008B :  MOV   A, 0x12     
+    0x008C :  MOV   0x2C, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 122)
+  ;char kclick = keyRead(0x80 & (~PORT6));
+    0x008D :  MOV   A, 0x06     
+    0x008E :  MOV   0x12, A     
+    0x008F :  COM   0x12        
+    0x0090 :  MOV   A, @0x80    
+    0x0091 :  AND   A, 0x12     
+    0x0092 :  MOV   0x2D, A     
+    0x0093 :  CALL  0x0A9       
+    0x0094 :  MOV   A, 0x11     
+    0x0095 :  MOV   0x2B, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 124)
+  ;if(kclick == 1)
+    0x0096 :  MOV   A, 0x2B     
+    0x0097 :  XOR   A, @0x01    
+    0x0098 :  JBS   0x03, 2     
+    0x0099 :  JMP   0x0A1       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 128)
+  ;if(++workStep >= 6)
+    0x009A :  INC   0x27        
+    0x009B :  MOV   A, @0x06    
+    0x009C :  SUB   A, 0x27     
+    0x009D :  JBS   0x03, 0     
+    0x009E :  JMP   0x0A6       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 129)
+  ;workStep = 0;
+    0x009F :  CLR   0x27        
+    0x00A0 :  JMP   0x0A6       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 132)
+  ;else if(kclick == 2)
+    0x00A1 :  MOV   A, 0x2B     
+    0x00A2 :  XOR   A, @0x02    
+    0x00A3 :  JBS   0x03, 2     
+    0x00A4 :  JMP   0x0A6       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 134)
+  ;workStep = 0;
+    0x00A5 :  CLR   0x27        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 139)
+  ;}
+    0x00A6 :  MOV   A, 0x2C     
+    0x00A7 :  MOV   0x12, A     
+    0x00A8 :  RET               
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 181)
+  ;if(keyStatus)
+    0x00A9 :  MOV   0x2D, 0x2D  
+    0x00AA :  JBC   0x03, 2     
+    0x00AB :  JMP   0x0B9       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 183)
+  ;keyCount++;
+    0x00AC :  INC   0x28        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 184)
+  ;if(keyCount >= 200)
+    0x00AD :  MOV   A, @0xC8    
+    0x00AE :  SUB   A, 0x28     
+    0x00AF :  JBS   0x03, 0     
+    0x00B0 :  JMP   0x0CB       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 186)
+  ;keyCount = 200;
+    0x00B1 :  MOV   A, @0xC8    
+    0x00B2 :  MOV   0x28, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 187)
+  ;if(!longPressFlag)
+    0x00B3 :  JBC   0x20, 1     
+    0x00B4 :  JMP   0x0CB       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 189)
+  ;longPressFlag = 1;
+    0x00B5 :  BS    0x20, 1     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 190)
+  ;return 2;
+    0x00B6 :  MOV   A, @0x02    
+    0x00B7 :  MOV   0x11, A     
+    0x00B8 :  JMP   0x0CD       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 196)
+  ;if(keyCount >= 200)
+    0x00B9 :  MOV   A, @0xC8    
+    0x00BA :  SUB   A, 0x28     
+    0x00BB :  JBS   0x03, 0     
+    0x00BC :  JMP   0x0C2       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 198)
+  ;keyCount = 0;
+    0x00BD :  CLR   0x28        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 199)
+  ;longPressFlag = 0;
+    0x00BE :  BC    0x20, 1     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 200)
+  ;return	0;
+    0x00BF :  MOV   A, @0x00    
+    0x00C0 :  MOV   0x11, A     
+    0x00C1 :  JMP   0x0CD       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 202)
+  ;else if(keyCount >= 8)
+    0x00C2 :  MOV   A, @0x08    
+    0x00C3 :  SUB   A, 0x28     
+    0x00C4 :  JBS   0x03, 0     
+    0x00C5 :  JMP   0x0CA       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 204)
+  ;keyCount = 0;
+    0x00C6 :  CLR   0x28        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 205)
+  ;return	1;
+    0x00C7 :  MOV   A, @0x01    
+    0x00C8 :  MOV   0x11, A     
+    0x00C9 :  JMP   0x0CD       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 207)
+  ;keyCount = 0;
+    0x00CA :  CLR   0x28        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 209)
+  ;return 0;
+    0x00CB :  MOV   A, @0x00    
+    0x00CC :  MOV   0x11, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 210)
+  ;}
+    0x00CD :  RET               
+    0x00CE :  MOV   A, 0x12     
+    0x00CF :  MOV   0x2B, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 143)
+  ;switch(workStep)
+    0x00D0 :  MOV   A, 0x27     
+    0x00D1 :  MOV   0x12, A     
+    0x00D2 :  MOV   0x12, 0x12  
+    0x00D3 :  JBC   0x03, 2     
+    0x00D4 :  JMP   0x0EA       
+    0x00D5 :  MOV   A, 0x12     
+    0x00D6 :  XOR   A, @0x01    
+    0x00D7 :  JBC   0x03, 2     
+    0x00D8 :  JMP   0x0F5       
+    0x00D9 :  MOV   A, 0x12     
+    0x00DA :  XOR   A, @0x02    
+    0x00DB :  JBC   0x03, 2     
+    0x00DC :  JMP   0x0F9       
+    0x00DD :  MOV   A, 0x12     
+    0x00DE :  XOR   A, @0x03    
+    0x00DF :  JBC   0x03, 2     
+    0x00E0 :  JMP   0x0FD       
+    0x00E1 :  MOV   A, 0x12     
+    0x00E2 :  XOR   A, @0x04    
+    0x00E3 :  JBC   0x03, 2     
+    0x00E4 :  JMP   0x101       
+    0x00E5 :  MOV   A, 0x12     
+    0x00E6 :  XOR   A, @0x05    
+    0x00E7 :  JBC   0x03, 2     
+    0x00E8 :  JMP   0x105       
+    0x00E9 :  JMP   0x108       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 146)
+  ;duty = 0;
+    0x00EA :  CLR   0x22        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 147)
+  ;LAOFF();
+    0x00EB :  MOV   A, @0xF1    
+    0x00EC :  AND   0x05, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 148)
+  ;LBOFF();
+    0x00ED :  MOV   A, @0xF8    
+    0x00EE :  AND   0x06, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 149)
+  ;PB5OFF();
+    0x00EF :  BC    0x05, 0     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 150)
+  ;if(keyCount == 0)
+    0x00F0 :  MOV   0x28, 0x28  
+    0x00F1 :  JBS   0x03, 2     
+    0x00F2 :  JMP   0x108       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 151)
+  ;gotoSleep();
+    0x00F3 :  CALL  0x10B       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 152)
+  ;break;
+    0x00F4 :  JMP   0x108       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 154)
+  ;duty = 9;
+    0x00F5 :  MOV   A, @0x09    
+    0x00F6 :  MOV   0x22, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 155)
+  ;L1ON();
+    0x00F7 :  BS    0x05, 1     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 156)
+  ;break;
+    0x00F8 :  JMP   0x108       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 158)
+  ;duty = 11;
+    0x00F9 :  MOV   A, @0x0B    
+    0x00FA :  MOV   0x22, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 159)
+  ;L2ON();
+    0x00FB :  BS    0x05, 2     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 160)
+  ;break;
+    0x00FC :  JMP   0x108       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 162)
+  ;duty = 14;
+    0x00FD :  MOV   A, @0x0E    
+    0x00FE :  MOV   0x22, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 163)
+  ;L3ON();
+    0x00FF :  BS    0x05, 3     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 164)
+  ;break;
+    0x0100 :  JMP   0x108       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 166)
+  ;duty = 19;
+    0x0101 :  MOV   A, @0x13    
+    0x0102 :  MOV   0x22, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 167)
+  ;L4ON();
+    0x0103 :  BS    0x06, 0     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 168)
+  ;break;
+    0x0104 :  JMP   0x108       
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 170)
+  ;duty = 45;
+    0x0105 :  MOV   A, @0x2D    
+    0x0106 :  MOV   0x22, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 171)
+  ;L5ON();
+    0x0107 :  BS    0x06, 1     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 176)
+  ;}
+    0x0108 :  MOV   A, 0x2B     
+    0x0109 :  MOV   0x12, A     
+    0x010A :  RET               
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 214)
+  ;P65 = 0;
+    0x010B :  BC    0x06, 5     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 215)
+  ;P50 = 0;
+    0x010C :  BC    0x05, 0     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 216)
+  ;LAOFF();
+    0x010D :  MOV   A, @0xF1    
+    0x010E :  AND   0x05, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 217)
+  ;LBOFF();
+    0x010F :  MOV   A, @0xF8    
+    0x0110 :  AND   0x06, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 218)
+  ;count900s = 0;
+    0x0111 :  CLR   0x26        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 219)
+  ;workStep = 0;
+    0x0112 :  CLR   0x27        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 220)
+  ;WDTCR=0x00;//禁止WDT
+    0x0113 :  MOV   A, @0x00    
+    0x0114 :  IOW   0xE         
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 221)
+  ;ICIECR = 0x80;
+    0x0115 :  MOV   A, @0x80    
+    0x0116 :  MOV   0x0D, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 222)
+  ;IMR = 0x02;
+    0x0117 :  MOV   A, @0x02    
+    0x0118 :  IOW   0xF         
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 223)
+  ;ISR&=0XF0;
+    0x0119 :  MOV   A, @0xF0    
+    0x011A :  AND   0x0F, A     
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 224)
+  ;DISI();
+    0x011B :  DISI              
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 225)
+  ;SLEP();
+    0x011C :  SLEP              
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 226)
+  ;ENI();
+    0x011D :  ENI               
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 227)
+  ;WDTCR=0x80;
+    0x011E :  MOV   A, @0x80    
+    0x011F :  IOW   0xE         
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 228)
+  ;ICIECR = 0x00;
+    0x0120 :  CLR   0x0D        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 229)
+  ;ISR=0;
+    0x0121 :  CLR   0x0F        
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 230)
+  ;IMR=1;
+    0x0122 :  MOV   A, @0x01    
+    0x0123 :  IOW   0xF         
+C:\mcuproject\xj\S2_V3_1101B_SOP14\PWM.c (line 231)
+  ;}
+    0x0124 :  RET               

@@ -1,0 +1,492 @@
+*************************************
+------------- Call Depth ------------
+ Depth  Interrupt    Function
+-------------------------------------
+    0        N         ProgramStart
+    1        Y           _interrupt_l
+    1        Y           _interrupt
+    0        N         _main
+C   1        N           _IO_Init
+C   1        N           _PWM_Init
+C   1        N           _keyCtr
+C   2        N             _keyRead
+C   1        N           _pwmOn
+C   1        N           _pwmOff
+C   1        N           _pwmOn
+C   1        N           _pwmOff
+C   1        N           _pwmOn
+C   1        N           _pwmOff
+C   1        N           _gotoSleep
+-------------------------------------
+Stack Depth: 2
+****************************************
+------------- Free ROM Size ------------
+Start=0X2B   , End=0X2C   , Size=2
+Start=0XDD   , End=0X3FF  , Size=803
+----------------------------------------
+EM78P153B       |        ROM Size        
+----------------+-----------------------
+Total           |  1024 x 13 bits(100.0%)
+Used            |   219 x 13 bits( 21.4%)
+Free            |   805 x 13 bits( 78.6%)
+----------------------------------------
+*************************************
+-------------- Data Map -------------
+d -- Uninitialized data
+D -- Initialized data
+b -- Uninitialized bit data
+B -- Initialized bit data
+C -- C Register
+-------------- RAM Data -------------
+0x00  - - - - - - - - - - - - - - - - 
+0x10  - - - - - - - - - - - - - - - - 
+0x20  b D D D D D d d d d C C - - - - 
+0x30  - - - - - - - - - - - - - - - - 
+----------- Register Data -----------
+0x00  d d d b d b b - d d d d d d d b 
+0x10  d C C - - - - - - - - - - - - - 
+-------------- IO Data --------------
+0x00  - - - - - - d - - d - d - d d d 
+****************************************
+--------------- ROM Code ---------------
+    0x0000 :  JMP   0x02D       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 117)
+  ;if((PWMCON & 0x10) == 0)
+    0x0001 :  MOV   A, 0x08     
+    0x0002 :  AND   A, @0x10    
+    0x0003 :  JBS   0x03, 2     
+    0x0004 :  JMP   0x007       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 119)
+  ;PWMCON |= 0x10;		//开启PWM
+    0x0005 :  MOV   A, @0x10    
+    0x0006 :  OR    0x08, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 121)
+  ;}
+    0x0007 :  RET               
+    0x0008 :  JMP   0x009       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 230)
+  ;MOV 0x3D,A ;保存 A
+    0x0009 :  MOV   0x10, A     
+    0x000A :  SWAPA 0x04        
+    0x000B :  MOV   0x2A, A     
+    0x000C :  SWAPA 0x03        
+    0x000D :  MOV   0x2B, A     
+    0x000E :  MOV   0x3D, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 231)
+  ;MOV A,0x03
+    0x000F :  MOV   A, 0x03     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 232)
+  ;MOV 0x3E,A ;保存 R3
+    0x0010 :  MOV   0x3E, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 233)
+  ;MOV A,0x04
+    0x0011 :  MOV   A, 0x04     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 234)
+  ;MOV 0x3F,A ;保存 R4
+    0x0012 :  MOV   0x3F, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 237)
+  ;if	(TCIF==1)
+    0x0013 :  JBS   0x0F, 0     
+    0x0014 :  JMP   0x020       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 240)
+  ;ISR&=0XFE;				//清TCC中断标志位
+    0x0015 :  MOV   A, @0xFE    
+    0x0016 :  AND   0x0F, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 241)
+  ;TCC+=206;					//TCC赋初值 0.2ms
+    0x0017 :  MOV   A, @0xCE    
+    0x0018 :  ADD   0x01, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 243)
+  ;if(++intCount >= 100)
+    0x0019 :  INC   0x21        
+    0x001A :  MOV   A, @0x64    
+    0x001B :  SUB   A, 0x21     
+    0x001C :  JBS   0x03, 0     
+    0x001D :  JMP   0x020       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 245)
+  ;intCount = 0;		//10ms
+    0x001E :  CLR   0x21        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 246)
+  ;IntFlag = 1;
+    0x001F :  BS    0x20, 0     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 254)
+  ;MOV A,0x3F ;返回 R4
+    0x0020 :  MOV   A, 0x3F     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 255)
+  ;MOV 0x04,A
+    0x0021 :  MOV   0x04, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 256)
+  ;MOV A,0x3E ;返回 R3
+    0x0022 :  MOV   A, 0x3E     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 257)
+  ;MOV 0x03,A
+    0x0023 :  MOV   0x03, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 258)
+  ;SWAP 0x3D  ;返回 A
+    0x0024 :  SWAP  0x3D        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 259)
+  ;SWAPA 0x3D
+    0x0025 :  SWAPA 0x3D        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 261)
+  ;}
+    0x0026 :  SWAPA 0x2B        
+    0x0027 :  MOV   0x03, A     
+    0x0028 :  SWAPA 0x2A        
+    0x0029 :  MOV   0x04, A     
+    0x002A :  RETI              
+    0x002B :  ADD   A, @0xFF    
+    0x002C :  ADD   A, @0xFF    
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 44)
+  ;WDTC();
+    0x002D :  MOV   A, @0x00    
+    0x002E :  MOV   0x21, A     
+    0x002F :  MOV   0x22, A     
+    0x0030 :  MOV   0x23, A     
+    0x0031 :  MOV   0x24, A     
+    0x0032 :  MOV   0x25, A     
+    0x0033 :  WDTC              
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 45)
+  ;DISI();
+    0x0034 :  DISI              
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 46)
+  ;WDTCR=0;				//禁止WDT
+    0x0035 :  MOV   A, @0x00    
+    0x0036 :  IOW   0xE         
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 48)
+  ;IO_Init();	            //IO初始化
+    0x0037 :  CALL  0x079       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 50)
+  ;TCC=206;					//
+    0x0038 :  MOV   A, @0xCE    
+    0x0039 :  MOV   0x01, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 51)
+  ;ISR=0;
+    0x003A :  CLR   0x0F        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 52)
+  ;IMR=1;
+    0x003B :  MOV   A, @0x01    
+    0x003C :  IOW   0xF         
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 54)
+  ;ENI();
+    0x003D :  ENI               
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 56)
+  ;PWM_Init();
+    0x003E :  CALL  0x081       
+    0x003F :  JMP   0x077       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 60)
+  ;WDTC(); //清狗
+    0x0040 :  WDTC              
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 61)
+  ;if(!IntFlag)
+    0x0041 :  JBC   0x20, 0     
+    0x0042 :  JMP   0x044       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 62)
+  ;continue;
+    0x0043 :  JMP   0x077       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 63)
+  ;IntFlag = 0;
+    0x0044 :  BC    0x20, 0     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 64)
+  ;keyCtr();
+    0x0045 :  CALL  0x089       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 66)
+  ;if(cleanFlag)
+    0x0046 :  JBS   0x20, 1     
+    0x0047 :  JMP   0x071       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 68)
+  ;ledCount++;
+    0x0048 :  INC   0x25        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 69)
+  ;if(ledCount < 25)
+    0x0049 :  MOV   A, @0x19    
+    0x004A :  SUB   A, 0x25     
+    0x004B :  JBC   0x03, 0     
+    0x004C :  JMP   0x050       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 71)
+  ;pwmOn();
+    0x004D :  CALL  0x001       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 72)
+  ;P60 = 0;
+    0x004E :  BC    0x06, 0     
+    0x004F :  JMP   0x077       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 74)
+  ;else if(ledCount < 64)
+    0x0050 :  MOV   A, @0x40    
+    0x0051 :  SUB   A, 0x25     
+    0x0052 :  JBC   0x03, 0     
+    0x0053 :  JMP   0x057       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 76)
+  ;pwmOff();
+    0x0054 :  CALL  0x0C7       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 77)
+  ;P60 = 0;
+    0x0055 :  BC    0x06, 0     
+    0x0056 :  JMP   0x077       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 79)
+  ;else if(ledCount < 90)
+    0x0057 :  MOV   A, @0x5A    
+    0x0058 :  SUB   A, 0x25     
+    0x0059 :  JBC   0x03, 0     
+    0x005A :  JMP   0x05E       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 81)
+  ;pwmOn();
+    0x005B :  CALL  0x001       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 82)
+  ;P60 = 1;
+    0x005C :  BS    0x06, 0     
+    0x005D :  JMP   0x077       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 84)
+  ;else if(ledCount < 118)
+    0x005E :  MOV   A, @0x76    
+    0x005F :  SUB   A, 0x25     
+    0x0060 :  JBC   0x03, 0     
+    0x0061 :  JMP   0x065       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 86)
+  ;pwmOff();
+    0x0062 :  CALL  0x0C7       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 87)
+  ;P60 = 0;
+    0x0063 :  BC    0x06, 0     
+    0x0064 :  JMP   0x077       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 89)
+  ;else if(ledCount < 120)
+    0x0065 :  MOV   A, @0x78    
+    0x0066 :  SUB   A, 0x25     
+    0x0067 :  JBC   0x03, 0     
+    0x0068 :  JMP   0x06C       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 91)
+  ;pwmOn();
+    0x0069 :  CALL  0x001       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 92)
+  ;P60 = 0;
+    0x006A :  BC    0x06, 0     
+    0x006B :  JMP   0x077       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 96)
+  ;ledCount = 0;
+    0x006C :  CLR   0x25        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 97)
+  ;pwmOff();
+    0x006D :  CALL  0x0C7       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 98)
+  ;P60 = 0;
+    0x006E :  BC    0x06, 0     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 99)
+  ;cleanFlag = 0;
+    0x006F :  BC    0x20, 1     
+    0x0070 :  JMP   0x077       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 104)
+  ;PWMCON &= 0xEF;		//关闭PWM
+    0x0071 :  MOV   A, @0xEF    
+    0x0072 :  AND   0x08, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 105)
+  ;if(keyCount == 0)
+    0x0073 :  MOV   0x23, 0x23  
+    0x0074 :  JBS   0x03, 2     
+    0x0075 :  JMP   0x077       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 106)
+  ;gotoSleep();
+    0x0076 :  CALL  0x0CA       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 58)
+  ;while(1)
+    0x0077 :  JMP   0x040       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 111)
+  ;}
+    0x0078 :  RET               
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 145)
+  ;PORT6 = 0x00;
+    0x0079 :  CLR   0x06        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 146)
+  ;P6CR = 0x10;			//PORT6设为输出(0 输出,1 输入)
+    0x007A :  MOV   A, @0x10    
+    0x007B :  IOW   0x6         
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 147)
+  ;PHCR = 0xEF;
+    0x007C :  MOV   A, @0xEF    
+    0x007D :  IOW   0xD         
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 149)
+  ;mov	a,@0x02			//TCC分频比设为1：8
+    0x007E :  MOV   A, @0x02    
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 150)
+  ;contw
+    0x007F :  CONTW             
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 152)
+  ;}
+    0x0080 :  RET               
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 133)
+  ;PRD = 126;				//设置周期		1/8*1*128=16us = 62.5K
+    0x0081 :  MOV   A, @0x7E    
+    0x0082 :  MOV   0x09, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 134)
+  ;PDC1 = 69;				//设置占空比
+    0x0083 :  MOV   A, @0x45    
+    0x0084 :  MOV   0x0A, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 135)
+  ;CPUCON = 0B01000000;	//PWM选择系统时钟8M
+    0x0085 :  MOV   A, @0x40    
+    0x0086 :  MOV   0x0E, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 136)
+  ;PWMCON = 0B00000000;
+    0x0087 :  CLR   0x08        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 137)
+  ;}
+    0x0088 :  RET               
+    0x0089 :  MOV   A, 0x12     
+    0x008A :  MOV   0x28, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 156)
+  ;char kclick = keyRead(0x10 & (~PORT6));
+    0x008B :  MOV   A, 0x06     
+    0x008C :  MOV   0x12, A     
+    0x008D :  COM   0x12        
+    0x008E :  MOV   A, @0x10    
+    0x008F :  AND   A, 0x12     
+    0x0090 :  MOV   0x29, A     
+    0x0091 :  CALL  0x0A2       
+    0x0092 :  MOV   A, 0x11     
+    0x0093 :  MOV   0x27, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 158)
+  ;if(kclick == 1)
+    0x0094 :  MOV   A, 0x27     
+    0x0095 :  XOR   A, @0x01    
+    0x0096 :  JBS   0x03, 2     
+    0x0097 :  JMP   0x09A       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 162)
+  ;cleanFlag = 1;
+    0x0098 :  BS    0x20, 1     
+    0x0099 :  JMP   0x09F       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 165)
+  ;else if(kclick == 2)
+    0x009A :  MOV   A, 0x27     
+    0x009B :  XOR   A, @0x02    
+    0x009C :  JBS   0x03, 2     
+    0x009D :  JMP   0x09F       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 167)
+  ;cleanFlag = 1;
+    0x009E :  BS    0x20, 1     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 172)
+  ;}
+    0x009F :  MOV   A, 0x28     
+    0x00A0 :  MOV   0x12, A     
+    0x00A1 :  RET               
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 176)
+  ;if(keyStatus)
+    0x00A2 :  MOV   0x29, 0x29  
+    0x00A3 :  JBC   0x03, 2     
+    0x00A4 :  JMP   0x0B2       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 178)
+  ;keyCount++;
+    0x00A5 :  INC   0x23        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 179)
+  ;if(keyCount >= 200)
+    0x00A6 :  MOV   A, @0xC8    
+    0x00A7 :  SUB   A, 0x23     
+    0x00A8 :  JBS   0x03, 0     
+    0x00A9 :  JMP   0x0C4       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 181)
+  ;keyCount = 200;
+    0x00AA :  MOV   A, @0xC8    
+    0x00AB :  MOV   0x23, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 182)
+  ;if(!longPressFlag)
+    0x00AC :  JBC   0x20, 1     
+    0x00AD :  JMP   0x0C4       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 184)
+  ;longPressFlag = 1;
+    0x00AE :  BS    0x20, 1     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 185)
+  ;return 2;
+    0x00AF :  MOV   A, @0x02    
+    0x00B0 :  MOV   0x11, A     
+    0x00B1 :  JMP   0x0C6       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 191)
+  ;if(keyCount >= 200)
+    0x00B2 :  MOV   A, @0xC8    
+    0x00B3 :  SUB   A, 0x23     
+    0x00B4 :  JBS   0x03, 0     
+    0x00B5 :  JMP   0x0BB       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 193)
+  ;keyCount = 0;
+    0x00B6 :  CLR   0x23        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 194)
+  ;longPressFlag = 0;
+    0x00B7 :  BC    0x20, 1     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 195)
+  ;return	0;
+    0x00B8 :  MOV   A, @0x00    
+    0x00B9 :  MOV   0x11, A     
+    0x00BA :  JMP   0x0C6       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 197)
+  ;else if(keyCount >= 8)
+    0x00BB :  MOV   A, @0x08    
+    0x00BC :  SUB   A, 0x23     
+    0x00BD :  JBS   0x03, 0     
+    0x00BE :  JMP   0x0C3       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 199)
+  ;keyCount = 0;
+    0x00BF :  CLR   0x23        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 200)
+  ;return	1;
+    0x00C0 :  MOV   A, @0x01    
+    0x00C1 :  MOV   0x11, A     
+    0x00C2 :  JMP   0x0C6       
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 202)
+  ;keyCount = 0;
+    0x00C3 :  CLR   0x23        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 204)
+  ;return 0;
+    0x00C4 :  MOV   A, @0x00    
+    0x00C5 :  MOV   0x11, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 205)
+  ;}
+    0x00C6 :  RET               
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 125)
+  ;PWMCON &= 0xEF;		//关闭PWM
+    0x00C7 :  MOV   A, @0xEF    
+    0x00C8 :  AND   0x08, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 126)
+  ;}
+    0x00C9 :  RET               
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 210)
+  ;workStep = 0;
+    0x00CA :  CLR   0x22        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 211)
+  ;WDTCR=0x00;//禁止WDT
+    0x00CB :  MOV   A, @0x00    
+    0x00CC :  IOW   0xE         
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 212)
+  ;ICIECR = 0x10;
+    0x00CD :  MOV   A, @0x10    
+    0x00CE :  MOV   0x0D, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 213)
+  ;IMR = 0x02;
+    0x00CF :  MOV   A, @0x02    
+    0x00D0 :  IOW   0xF         
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 214)
+  ;ISR&=0XF0;
+    0x00D1 :  MOV   A, @0xF0    
+    0x00D2 :  AND   0x0F, A     
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 215)
+  ;DISI();
+    0x00D3 :  DISI              
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 216)
+  ;SLEP();
+    0x00D4 :  SLEP              
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 217)
+  ;ENI();
+    0x00D5 :  ENI               
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 218)
+  ;WDTCR=0x80;
+    0x00D6 :  MOV   A, @0x80    
+    0x00D7 :  IOW   0xE         
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 219)
+  ;ICIECR = 0x00;
+    0x00D8 :  CLR   0x0D        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 220)
+  ;ISR=0;
+    0x00D9 :  CLR   0x0F        
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 221)
+  ;IMR=1;
+    0x00DA :  MOV   A, @0x01    
+    0x00DB :  IOW   0xF         
+C:\mcuproject\xj\s1_ms153_sop8\PWM.c (line 222)
+  ;}
+    0x00DC :  RET               

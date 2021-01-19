@@ -1,0 +1,1665 @@
+start listing elf file - .\Bin/AD_NTC_PROJECT.out
+
+
+------------------begin data section------------------
+
+Start   Length(Byte)  Type  Name                             Source File
+000000    0X05        Data  crt0@data                        
+0X0005    0X01        Data  _main_c_GlobalBitDataPool0       C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0006    0X05        Data  _InterruptBackupData             
+0X000B    0X06        Data  _VirtualReg                      
+0X0011    0X0A        Data  __runtime_arg                    
+0X001B    0X01        Data  _LED_CNT@segment                 C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X001C    0X01        Data  _FLAG_LED_LEVEL@segment          C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X001D    0X02        Data  _AD_ONCE_VAL@segment             C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X001F    0X01        Data  _ABL_SUM@segment                 C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0020    0X02        Data  _AD_8T_SUM_OLD@segment           C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0022    0X02        Data  _AD_8T_SUM@segment               C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0024    0X0A        Data  _AD_ARRAY_ONCE@segment           C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X002E    0X01        Data  _AD_8_TIMES@segment              C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X002F    0X01        Data  _AD_RCE_TURNS@segment            C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0030    0X01        Data  _AD_JUDGE_BASE@segment           C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0031    0X02        Data  _AD_LONG_BUF@segment             C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0033    0X01        Data  _Function_inrserv_isr_data       C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0034    0X01        Data  _Function_DELAY_US_data          C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0034    0X05        Data  _Function_RESULT_BUBBLING_data   C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0035    0X02        Data  _Function_AD_NTC_IN_data         C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+0X0035    0X04        Data  _Function_SEND_DAT_TO_PC_data    C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO\Src\main.c
+
+
+crt0@data SEGMENT DATA INBANK
+	H	DS	1
+	L	DS	1
+	X	DS	1
+	I	DS	1
+	T	DS	1
+
+_main_c_GlobalBitDataPool0 SEGMENT DATA INBANK
+	_F_AD_SUCCESS	DSBIT	1
+	_F_DIG1_DIG2	DSBIT	1
+	_F_LED	DSBIT	1
+
+_InterruptBackupData SEGMENT DATA INBANK
+	_bufT	DS	1
+	_bufI	DS	1
+	_bufY	DS	1
+	_bufZ	DS	1
+	_bufR	DS	1
+
+_VirtualReg SEGMENT DATA INBANK
+	W0	DS	1
+	W1	DS	1
+	W2	DS	1
+	W3	DS	1
+	W4	DS	1
+	W5	DS	1
+
+__runtime_arg SEGMENT DATA INBANK
+	__SrcLArg0	DS	1
+	__SrcLArg1	DS	1
+	__SrcLArg2	DS	1
+	__SrcLArg3	DS	1
+	__SrcRArg0	DS	1
+	__SrcRArg1	DS	1
+	__SrcRArg2	DS	1
+	__SrcRArg3	DS	1
+	R0	DS	1
+	R1	DS	1
+
+_LED_CNT@segment SEGMENT DATA INBANK
+	_LED_CNT	DS	1
+
+_FLAG_LED_LEVEL@segment SEGMENT DATA INBANK
+	_FLAG_LED_LEVEL	DS	1
+
+_AD_ONCE_VAL@segment SEGMENT DATA INBANK
+	_AD_ONCE_VAL	DS	2
+
+_ABL_SUM@segment SEGMENT DATA INBANK
+	_ABL_SUM	DS	1
+
+_AD_8T_SUM_OLD@segment SEGMENT DATA INBANK
+	_AD_8T_SUM_OLD	DS	2
+
+_AD_8T_SUM@segment SEGMENT DATA INBANK
+	_AD_8T_SUM	DS	2
+
+_AD_ARRAY_ONCE@segment SEGMENT DATA INBANK
+	_AD_ARRAY_ONCE	DS	10
+
+_AD_8_TIMES@segment SEGMENT DATA INBANK
+	_AD_8_TIMES	DS	1
+
+_AD_RCE_TURNS@segment SEGMENT DATA INBANK
+	_AD_RCE_TURNS	DS	1
+
+_AD_JUDGE_BASE@segment SEGMENT DATA INBANK
+	_AD_JUDGE_BASE	DS	1
+
+_AD_LONG_BUF@segment SEGMENT DATA INBANK
+	_AD_LONG_BUF	DS	2
+
+_Function_inrserv_isr_data SEGMENT DATA INBANK
+	_inrserv_isr_data@0	DS	1
+
+_Function_DELAY_US_data SEGMENT DATA INBANK
+	_DELAY_US_arg@0	DS	1
+
+_Function_RESULT_BUBBLING_data SEGMENT DATA INBANK
+	_RESULT_BUBBLING_data@0	DS	1
+	_RESULT_BUBBLING_data@1	DS	1
+	_RESULT_BUBBLING_data@2	DS	1
+	_RESULT_BUBBLING_data@3	DS	1
+	_RESULT_BUBBLING_data@4	DS	1
+
+_Function_AD_NTC_IN_data SEGMENT DATA INBANK
+	_AD_NTC_IN_data@0	DS	1
+	_AD_NTC_IN_data@1	DS	1
+
+_Function_SEND_DAT_TO_PC_data SEGMENT DATA INBANK
+	_SEND_DAT_TO_PC_arg@0	DS	2
+	_SEND_DAT_TO_PC_data@0	DS	1
+	_SEND_DAT_TO_PC_data@1	DS	1
+
+
+------------------begin disassembly code------------------
+
+    0: 800A       	JMP 0x000A
+    1: 0000       	NOP
+    2: 0000       	NOP
+    3: 0000       	NOP
+    4: 0000       	NOP
+    5: 0000       	NOP
+    6: 0000       	NOP
+    7: 0000       	NOP
+_interrupt@_inrserv_isr:
+    8: 803B       	JMP 0x003B
+.CODE:
+    9: F9F9       	CALL 0x39F9
+_SGV_INIT_CODE_BEGIN:
+    A: 2D7F       	MOV A, #7fh
+    B: 2FDF       	B0MOV STKP, A
+    C: C010       	CALL 0x0010
+    D: C013       	CALL 0x0013
+_SGV_INIT_CODE:
+    E: C010       	CALL 0x0010
+_SGV_INIT_CODE:
+    E: C010       	CALL 0x0010
+    F: 80B6       	JMP 0x00B6
+__ClearWatchDogTimer:
+   10: 2D5A       	MOV A, #5ah
+   11: 2FCC       	B0MOV WDTR, A
+   12: 0E00       	RET
+__ClrRAM:
+   13: 2B84       	CLR 0x84
+   14: 333F       	B0MOV 0x83, #3Fh
+ClrRAM10:
+   15: 2BE7       	CLR 0xE7
+   16: 2683       	DECMS 0x83
+   17: 8015       	JMP 0x0015
+   18: 2BE7       	CLR 0xE7
+   19: 0E00       	RET
+__CmpULong@RTSegment:
+   1A: 2D80       	MOV A, #80h
+   1B: 0312       	B0ADD 0x12, A
+   1C: 0316       	B0ADD 0x16, A
+__CmpULong:
+   1D: 2E12       	B0MOV A, 0x12
+   1E: 0716       	CMPRS A, 0x16
+   1F: 8025       	JMP 0x0025
+@@Judge_equal:
+   20: 2E11       	B0MOV A, 0x11
+   21: 0715       	CMPRS A, 0x15
+   22: 8025       	JMP 0x0025
+   23: 2D00       	MOV A, #00h
+   24: 802A       	JMP 0x002A
+@@Judge_unequal:
+   25: 7A86       	B0BTS1 0x86.2
+   26: 8029       	JMP 0x0029
+   27: 2D01       	MOV A, #01h
+   28: 802A       	JMP 0x002A
+@@Result_Less:
+   29: 2DFF       	MOV A, #ffh
+@@EndLable:
+   2A: 0E00       	RET
+_TEMP_Table@segment:
+   2B: 03BE       	B0ADD 0xBE, A
+   2C: 0483       	PUSH
+   2D: 0558       	POP
+   2E: 0637       	CMPRS A, #37h
+   2F: 071C       	CMPRS A, 0x1C
+   30: 0800       	RRC 0x00
+   31: 08DD       	RRC 0xDD
+   32: 09AF       	RRCM 0xAF
+   33: 0A72       	RLC 0x72
+   34: 0B25       	RLCM 0x25
+   35: 0BC6       	RLCM 0xC6
+   38: 0D41       	MOVC
+   39: 0DA1       	MOVC
+   3A: 0DF4       	MOVC
+_Function_inrserv_isr_code:
+   3B: 0400       	PUSH
+   3C: 2E84       	B0MOV A, Y
+   3D: 2F08       	B0MOV 0x08, A
+   3E: 2E83       	B0MOV A, Z
+   3F: 2F09       	B0MOV 0x09, A
+   40: 2E82       	B0MOV A, R
+   41: 2F0A       	B0MOV 0x0A, A
+   42: 2E04       	B0MOV A, 0x04
+   43: 2F06       	B0MOV 0x06, A
+   44: 2E03       	B0MOV A, 0x03
+   45: 2F07       	B0MOV 0x07, A
+L36:
+                  	                  	//*******************************************************************
+                  	                  	//项目编号：08060
+                  	                  	//程序编号：v1
+                  	                  	//更新版本：
+                  	                  	//更新日期：2018.8.24
+                  	                  	//作    者：CYN	
+                  	                  	//*******************************************************************
+                  	                  	//========================================================
+                  	                  	//              ----------------------------------
+                  	                  	//         3V   |1    VDD             VSS     14 |  GND
+                  	                  	//        SEG_A |2  P0.3/XIN       P4.4/AIN4  13 | SEG_H
+                  	                  	//        SEG_B |3  P0.2/XOUT      P4.3/AIN3  12 |  NTC
+                  	                  	//         NC   |4  P0.4/RST       P4.2/AIN2  11 | SEG_DIG1
+                  	                  	//        SEG_C |5  P5.3/PWM1      P4.1/AIN1  10 | SEG_DIG2
+                  	                  	//        SEG_D |6  P5.4/PWM0      P4.0/AIN0  9  | SEG_G
+                  	                  	//        SEG_E |7  P0.1           P0.0       8  | SEG_F
+                  	                  	//              ----------------------------------
+                  	                  	//                         MCU-SN8P2711
+                  	                  	//========================================================
+                  	                  	#include<SN8P2711B.h>
+                  	                  	#include"define.h"
+                  	                  	//****************************************************************** 
+                  	                  	//函数*声明*********************************************************
+                  	                  	//******************************************************************
+                  	                  	void System_init(void);	//初始化函数
+                  	                  	void TC0_init(void);	//TC0初始化函数
+                  	                  	void DELAY_US(unsigned char DELAY_CNT);//延时函数
+                  	                  	void AD_NTC_IN(void);	//AD初始化函数
+                  	                  	void RESULT_BUBBLING(void);
+                  	                  	void SEND_DAT_TO_PC(unsigned long SEND_DAT);
+                  	                  	//******************************************************************
+                  	                  	//ROM_TABLE
+                  	                  	//******************************************************************
+                  	                  	unsigned long __ROM TEMP_Table[]=
+                  	                  	{
+                  	                  		//0℃	  5	    10	  15	 20		25	   30	 35	   
+                  	                  		0x03BE,0x0483,0x0558,0x0637,0x071C,0x0800,0x8DD,0x09AF,
+                  	                  		//40	  45	 50	  55	   60	  65	70	  75
+                  	                  		0x0A72,0x0b25,0x0BC6,0x0C55,0x0CD3,0x0d41,0x0DA1,0x0DF4
+                  	                  	};
+                  	                  	//******************************************************************
+                  	                  	//中断函数:1ms******************************************************
+                  	                  	//******************************************************************
+                  	                  	void __interrupt[0x08] inrserv(void)//
+                  	                  	{
+                  	                  		unsigned char temp;
+                  	                  		if(FTC0IRQ==SET)//TC0:1ms中断//FP44=~FP44;//test_cui
+   46: 7DC8       	B0BTS1 INTRQ.5
+   47: 80AA       	JMP 0x00AA
+L39:
+                  	                  		{
+                  	                  			FTC0IRQ=0u;
+   48: 65C8       	B0BCLR INTRQ.5
+L42:
+                  	                  			
+                  	                  			AD_JUDGE_BASE++;			//AD采样计时计数器
+   49: 1630       	INCMS 0x30
+   4A: 0000       	NOP
+L43:
+                  	                  			temp = FLAG_LED_LEVEL;			//
+   4B: 1E1C       	MOV A, 0x1C
+   4C: 1F33       	MOV 0x33, A
+L44:
+                  	                  			
+                  	                  			F_DIG1_DIG2=~F_DIG1_DIG2;	//两段扫描
+   4D: 2D00       	MOV A, #00h
+   4E: 5105       	BTS0 0x05.1
+   4F: 2D01       	MOV A, #01h
+   50: 4905       	BSET 0x05.1
+   51: 0600       	CMPRS A, #00h
+   52: 4105       	BCLR 0x05.1
+L45:
+                  	                  	
+                  	                  			P0=0u;						//扫描：正极清0；负极置1
+   53: 2BD0       	CLR 0xD0
+L46:
+                  	                  			P4=0x06u;					//DIG1=1;DIG2=1;
+   54: 2D06       	MOV A, #06h
+   55: 2FD4       	B0MOV P4, A
+L47:
+                  	                  			P5=0u;	
+   56: 2BD5       	CLR 0xD5
+L48:
+                  	                  			
+                  	                  			//--------------------------------------------------------------------
+                  	                  			if(F_DIG1_DIG2==SET)
+   57: 5905       	BTS1 0x05.1
+   58: 8080       	JMP 0x0080
+L49:
+                  	                  			{
+                  	                  				//**********************************************************
+                  	                  				LED_DIG1=0u;
+   59: 62D4       	B0BCLR 0xD4.2
+L52:
+                  	                  				LED_DIG2=1u;
+   5A: 69D4       	B0BSET 0xD4.1
+L53:
+                  	                  				//**********************************************************
+                  	                  				//if(temp>0)	LED_A=1u;//0℃<X<5℃
+                  	                  				LED_A=1u;				//D1// 0℃><X
+   5B: 6BD0       	B0BSET 0xD0.3
+L54:
+                  	                  				if(temp>1)	LED_B=1u;	//D2// 5℃<X
+   5C: 1E33       	MOV A, 0x33
+   5D: 0601       	CMPRS A, #01h
+   5E: 7A86       	B0BTS1 0x86.2
+   5F: 8061       	JMP 0x0061
+L55:
+                  	                  				if(temp>1)	LED_B=1u;	//D2// 5℃<X
+   60: 6AD0       	B0BSET 0xD0.2
+L6:
+                  	                  				if(temp>2)	LED_C=1u;	//D3//10℃<X
+   61: 1E33       	MOV A, 0x33
+   62: 0602       	CMPRS A, #02h
+   63: 7A86       	B0BTS1 0x86.2
+   64: 8066       	JMP 0x0066
+L57:
+                  	                  				if(temp>2)	LED_C=1u;	//D3//10℃<X
+   65: 6BD5       	B0BSET 0xD5.3
+L8:
+                  	                  				if(temp>3)	LED_D=1u;	//D4//15℃<X
+   66: 1E33       	MOV A, 0x33
+   67: 0603       	CMPRS A, #03h
+   68: 7A86       	B0BTS1 0x86.2
+   69: 806B       	JMP 0x006B
+L59:
+                  	                  				if(temp>3)	LED_D=1u;	//D4//15℃<X
+   6A: 6CD5       	B0BSET 0xD5.4
+L10:
+                  	                  				if(temp>4)	LED_E=1u;	//D5//20℃<X
+   6B: 1E33       	MOV A, 0x33
+   6C: 0604       	CMPRS A, #04h
+   6D: 7A86       	B0BTS1 0x86.2
+   6E: 8070       	JMP 0x0070
+L61:
+                  	                  				if(temp>4)	LED_E=1u;	//D5//20℃<X
+   6F: 69D0       	B0BSET 0xD0.1
+L12:
+                  	                  				if(temp>5)	LED_F=1u;	//D6//25℃<X
+   70: 1E33       	MOV A, 0x33
+   71: 0605       	CMPRS A, #05h
+   72: 7A86       	B0BTS1 0x86.2
+   73: 8075       	JMP 0x0075
+L63:
+                  	                  				if(temp>5)	LED_F=1u;	//D6//25℃<X
+   74: 68D0       	B0BSET 0xD0.0
+L14:
+                  	                  				if(temp>6)	LED_G=1u;	//D7//30℃<X
+   75: 1E33       	MOV A, 0x33
+   76: 0606       	CMPRS A, #06h
+   77: 7A86       	B0BTS1 0x86.2
+   78: 807A       	JMP 0x007A
+L65:
+                  	                  				if(temp>6)	LED_G=1u;	//D7//30℃<X
+   79: 68D4       	B0BSET 0xD4.0
+L16:
+                  	                  				if(temp>7)	LED_H=1u;	//D8//35℃<X
+   7A: 1E33       	MOV A, 0x33
+   7B: 0607       	CMPRS A, #07h
+   7C: 7A86       	B0BTS1 0x86.2
+   7D: 80AA       	JMP 0x00AA
+L67:
+                  	                  				if(temp>7)	LED_H=1u;	//D8//35℃<X
+   7E: 6CD4       	B0BSET 0xD4.4
+L68:
+                  	                  			}
+   7F: 80AA       	JMP 0x00AA
+L4:
+                  	                  			//--------------------------------------------------------------------
+                  	                  			else
+                  	                  			{
+                  	                  				//**********************************************************
+                  	                  				LED_DIG1=1u;
+   80: 6AD4       	B0BSET 0xD4.2
+L73:
+                  	                  				LED_DIG2=0u;
+   81: 61D4       	B0BCLR 0xD4.1
+L74:
+                  	                  				//**********************************************************
+                  	                  				if(temp>8)	LED_A=1u;	//D9 //40℃<X
+   82: 1E33       	MOV A, 0x33
+   83: 0608       	CMPRS A, #08h
+   84: 7A86       	B0BTS1 0x86.2
+   85: 8087       	JMP 0x0087
+L75:
+                  	                  				if(temp>8)	LED_A=1u;	//D9 //40℃<X
+   86: 6BD0       	B0BSET 0xD0.3
+L20:
+                  	                  				if(temp>9)	LED_B=1u;	//D10//45℃<X
+   87: 1E33       	MOV A, 0x33
+   88: 0609       	CMPRS A, #09h
+   89: 7A86       	B0BTS1 0x86.2
+   8A: 808C       	JMP 0x008C
+L77:
+                  	                  				if(temp>9)	LED_B=1u;	//D10//45℃<X
+   8B: 6AD0       	B0BSET 0xD0.2
+L22:
+                  	                  				if(temp>10)	LED_C=1u;	//D11//50℃<X
+   8C: 1E33       	MOV A, 0x33
+   8D: 060A       	CMPRS A, #0Ah
+   8E: 7A86       	B0BTS1 0x86.2
+   8F: 8091       	JMP 0x0091
+L79:
+                  	                  				if(temp>10)	LED_C=1u;	//D11//50℃<X
+   90: 6BD5       	B0BSET 0xD5.3
+L24:
+                  	                  				if(temp>11)	LED_D=1u;	//D12//55℃<X
+   91: 1E33       	MOV A, 0x33
+   92: 060B       	CMPRS A, #0Bh
+   93: 7A86       	B0BTS1 0x86.2
+   94: 8096       	JMP 0x0096
+L81:
+                  	                  				if(temp>11)	LED_D=1u;	//D12//55℃<X
+   95: 6CD5       	B0BSET 0xD5.4
+L26:
+                  	                  				if(temp>12)	LED_E=1u;	//D13//60℃<X
+   96: 1E33       	MOV A, 0x33
+   97: 060C       	CMPRS A, #0Ch
+   98: 7A86       	B0BTS1 0x86.2
+   99: 809B       	JMP 0x009B
+L83:
+                  	                  				if(temp>12)	LED_E=1u;	//D13//60℃<X
+   9A: 69D0       	B0BSET 0xD0.1
+L28:
+                  	                  				if(temp>13)	LED_F=1u;	//D14//65℃<X
+   9B: 1E33       	MOV A, 0x33
+   9C: 060D       	CMPRS A, #0Dh
+   9D: 7A86       	B0BTS1 0x86.2
+   9E: 80A0       	JMP 0x00A0
+L85:
+                  	                  				if(temp>13)	LED_F=1u;	//D14//65℃<X
+   9F: 68D0       	B0BSET 0xD0.0
+L30:
+                  	                  				if(temp>14)	LED_G=1u;	//D15//70℃<X
+   A0: 1E33       	MOV A, 0x33
+   A1: 060E       	CMPRS A, #0Eh
+   A2: 7A86       	B0BTS1 0x86.2
+   A3: 80A5       	JMP 0x00A5
+L87:
+                  	                  				if(temp>14)	LED_G=1u;	//D15//70℃<X
+   A4: 68D4       	B0BSET 0xD4.0
+L32:
+                  	                  				if(temp>15)	LED_H=1u;	//D16//75℃<X
+   A5: 1E33       	MOV A, 0x33
+   A6: 060F       	CMPRS A, #0Fh
+   A7: 7A86       	B0BTS1 0x86.2
+   A8: 80AA       	JMP 0x00AA
+L89:
+                  	                  				if(temp>15)	LED_H=1u;	//D16//75℃<X
+   A9: 6CD4       	B0BSET 0xD4.4
+L34:
+                  	                  			}//*/
+                  	                  			//--------------------------------------------------------------------
+                  	                  		}
+                  	                  	}
+   AA: 2E06       	B0MOV A, 0x06
+   AB: 2F04       	B0MOV 0x04, A
+   AC: 2E07       	B0MOV A, 0x07
+   AD: 2F03       	B0MOV 0x03, A
+   AE: 2E08       	B0MOV A, 0x08
+   AF: 2F84       	B0MOV Y, A
+   B0: 2E09       	B0MOV A, 0x09
+   B1: 2F83       	B0MOV Z, A
+   B2: 2E0A       	B0MOV A, 0x0A
+   B3: 2F82       	B0MOV R, A
+   B4: 0500       	POP
+   B5: 0F00       	RETI
+_Function_main_code:
+                  	                  	//******************************************************************
+                  	                  	//主函数************************************************************
+                  	                  	//******************************************************************
+                  	                  	void main(void)//;IRC=16M/4=4M
+                  	                  	{
+                  	                  		STKP=0x07u;
+   B6: 2D07       	MOV A, #07h
+   B7: 2FDF       	B0MOV STKP, A
+L123:
+                  	                  		System_init();
+   B8: C1E0       	CALL 0x01E0
+L124:
+                  	                  		TC0_init();
+   B9: C1FC       	CALL 0x01FC
+L125:
+                  	                  		DELAY_US(200u);
+   BA: 2DC8       	MOV A, #c8h
+   BB: 1F34       	MOV 0x34, A
+   BC: C24D       	CALL 0x024D
+L97:
+                  	                  		{
+                  	                  			WDTR=0x5Au;
+   BD: 2D5A       	MOV A, #5ah
+   BE: 2FCC       	B0MOV WDTR, A
+L129:
+                  	                  			//*******************************************************************
+                  	                  			//TC0定时 AD采样时间定3ms采样一次
+                  	                  			if(AD_JUDGE_BASE==3u)	//(3ms)执行一次 **test;3.12ms**FP03=~FP03;//test_cui
+   BF: 1E30       	MOV A, 0x30
+   C0: 0603       	CMPRS A, #03h
+   C1: 80D1       	JMP 0x00D1
+L130:
+                  	                  			{
+                  	                  				AD_JUDGE_BASE=0u;
+   C2: 2B30       	CLR 0x30
+L133:
+                  	                  	
+                  	                  				AD_RCE_TURNS=AD_RCE_TURNS+1;	//AD采集次数
+   C3: 162F       	INCMS 0x2F
+   C4: 0000       	NOP
+L134:
+                  	                  				AD_NTC_IN();
+   C5: C1A4       	CALL 0x01A4
+L135:
+                  	                  				AD_ARRAY_ONCE[AD_RCE_TURNS-1u]=AD_LONG_BUF.AD_RESULT;
+   C6: 1E2F       	MOV A, 0x2F
+   C7: 2401       	SUB A, #01h
+   C8: 2F0B       	B0MOV 0x0B, A
+   C9: 3400       	B0MOV 0x84, #00h
+   CA: 3324       	B0MOV 0x83, #24h
+   CB: 0383       	B0ADD Z, A
+   CC: 0383       	B0ADD Z, A
+   CD: 1E32       	MOV A, 0x32
+   CE: 2F82       	B0MOV R, A
+   CF: 1E31       	MOV A, 0x31
+   D0: C343       	CALL 0x0343
+L136:
+                  	                  			}//*******************************************************************
+                  	                  			//AD采样5次数据 则排列大小：小到大
+                  	                  			if(AD_RCE_TURNS==5u)	//采样5次 (15ms) **test;15.2ms**FP01=~FP01;//test_cui
+   D1: 1E2F       	MOV A, 0x2F
+   D2: 0605       	CMPRS A, #05h
+   D3: 80D7       	JMP 0x00D7
+L139:
+                  	                  			{						
+                  	                  				AD_RCE_TURNS=0u;							
+   D4: 2B2F       	CLR 0x2F
+L142:
+                  	                  	
+                  	                  				F_AD_SUCCESS=1u;
+   D5: 4805       	BSET 0x05.0
+L143:
+                  	                  				RESULT_BUBBLING();	//排序 小到大	
+   D6: C12C       	CALL 0x012C
+L144:
+                  	                  			}//*******************************************************************
+                  	                  			//每5个数据 则取中间值
+                  	                  			if(F_AD_SUCCESS)
+   D7: 5805       	BTS1 0x05.0
+   D8: 80E0       	JMP 0x00E0
+L147:
+                  	                  			{
+                  	                  				F_AD_SUCCESS=0u;
+   D9: 4005       	BCLR 0x05.0
+L150:
+                  	                  	
+                  	                  				AD_8_TIMES=AD_8_TIMES+1u;
+   DA: 162E       	INCMS 0x2E
+   DB: 0000       	NOP
+L151:
+                  	                  				AD_8T_SUM=AD_8T_SUM+AD_ARRAY_ONCE[2];
+   DC: 1E28       	MOV A, 0x28
+   DD: 1322       	ADD 0x22, A
+   DE: 1E29       	MOV A, 0x29
+   DF: 1123       	ADC 0x23, A
+L152:
+                  	                  			}//*******************************************************************
+                  	                  			//40个数据取8个有效数据 然后8个数据和
+                  	                  			if(AD_8_TIMES==8u)	//(120ms)**test;122ms**FP00=~FP00;//test_cui
+   E0: 1E2E       	MOV A, 0x2E
+   E1: 0608       	CMPRS A, #08h
+   E2: 8129       	JMP 0x0129
+L155:
+                  	                  			{	
+                  	                  				AD_8_TIMES=0u;
+   E3: 2B2E       	CLR 0x2E
+L158:
+                  	                  				//当前8个有效AD数据的SUM 与 上一次有效数据的 SUM 的差值
+                  	                  				if(AD_8T_SUM > AD_8T_SUM_OLD) 
+   E4: 3400       	B0MOV 0x84, #00h
+   E5: 3322       	B0MOV 0x83, #22h
+   E6: 3200       	B0MOV 0x82, #00h
+   E7: 2D20       	MOV A, #20h
+   E8: C2B0       	CALL 0x02B0
+   E9: C01D       	CALL 0x001D
+   EA: 7086       	B0BTS0 0x86.0
+   EB: 80F5       	JMP 0x00F5
+   EC: 7A86       	B0BTS1 0x86.2
+   ED: 80F5       	JMP 0x00F5
+L159:
+                  	                  				{
+                  	                  					ABL_SUM = AD_8T_SUM - AD_8T_SUM_OLD;
+   EE: 1E22       	MOV A, 0x22
+   EF: 2220       	SUB A, 0x20
+   F0: 1F1F       	MOV 0x1F, A
+   F1: 1E23       	MOV A, 0x23
+   F2: 2021       	SBC A, 0x21
+   F3: 2F0C       	B0MOV 0x0C, A
+L162:
+                  	                  				}
+   F4: 80FB       	JMP 0x00FB
+L110:
+                  	                  				else	
+                  	                  				{
+                  	                  					ABL_SUM = AD_8T_SUM - AD_8T_SUM_OLD;
+   F5: 1E22       	MOV A, 0x22
+   F6: 2220       	SUB A, 0x20
+   F7: 1F1F       	MOV 0x1F, A
+   F8: 1E23       	MOV A, 0x23
+   F9: 2021       	SBC A, 0x21
+   FA: 2F0C       	B0MOV 0x0C, A
+L167:
+                  	                  				}
+                  	                  				//两次值对比，差值大于窗口 则更新
+                  	                  				if(ABL_SUM > I_ABL_SUM) 
+   FB: 1E1F       	MOV A, 0x1F
+   FC: 0632       	CMPRS A, #32h
+   FD: 7A86       	B0BTS1 0x86.2
+   FE: 8103       	JMP 0x0103
+L170:
+                  	                  				{
+                  	                  					AD_8T_SUM_OLD = AD_8T_SUM;//数据变化跨度大则更新数据
+   FF: 1E22       	MOV A, 0x22
+  100: 1F20       	MOV 0x20, A
+  101: 1E23       	MOV A, 0x23
+  102: 1F21       	MOV 0x21, A
+L173:
+                  	                  				}
+                  	                  				AD_ONCE_VAL = AD_8T_SUM_OLD / 8u;
+  103: 2D00       	MOV A, #00h
+  104: 2F00       	B0MOV 0x00, A
+  105: 2D1D       	MOV A, #1dh
+  106: 2F01       	B0MOV 0x01, A
+  107: 3400       	B0MOV 0x84, #00h
+  108: 3320       	B0MOV 0x83, #20h
+  109: 2D03       	MOV A, #03h
+  10A: C28D       	CALL 0x028D
+  10B: C33A       	CALL 0x033A
+L176:
+                  	                  				//SEND_DAT_TO_PC(AD_ONCE_VAL);
+                  	                  				AD_8T_SUM=0u;
+  10C: 2B22       	CLR 0x22
+  10D: 2B23       	CLR 0x23
+L177:
+                  	                  				//*******************************************************************
+                  	                  				for(LED_CNT=0u;LED_CNT<16u;LED_CNT++)
+  10E: 2B1B       	CLR 0x1B
+  10F: 8125       	JMP 0x0125
+L114:
+                  	                  				{			
+                  	                  					if(AD_ONCE_VAL > TEMP_Table[LED_CNT]) FLAG_LED_LEVEL = LED_CNT + 1u;
+  110: 1E1B       	MOV A, 0x1B
+  111: 3400       	B0MOV 0x84, #00h
+  112: 332B       	B0MOV 0x83, #2Bh
+  113: C312       	CALL 0x0312
+  114: 1F15       	MOV 0x15, A
+  115: 1E1D       	MOV A, 0x1D
+  116: 1F11       	MOV 0x11, A
+  117: 1E1E       	MOV A, 0x1E
+  118: 1F12       	MOV 0x12, A
+  119: 2E82       	B0MOV A, R
+  11A: 1F16       	MOV 0x16, A
+  11B: C01D       	CALL 0x001D
+  11C: 7086       	B0BTS0 0x86.0
+  11D: 8123       	JMP 0x0123
+  11E: 7A86       	B0BTS1 0x86.2
+  11F: 8123       	JMP 0x0123
+L182:
+                  	                  					if(AD_ONCE_VAL > TEMP_Table[LED_CNT]) FLAG_LED_LEVEL = LED_CNT + 1u;
+  120: 2D01       	MOV A, #01h
+  121: 121B       	ADD A, 0x1B
+  122: 1F1C       	MOV 0x1C, A
+L118:
+                  	                  				for(LED_CNT=0u;LED_CNT<16u;LED_CNT++)
+  123: 161B       	INCMS 0x1B
+  124: 0000       	NOP
+L117:
+                  	                  				for(LED_CNT=0u;LED_CNT<16u;LED_CNT++)
+  125: 1E1B       	MOV A, 0x1B
+  126: 2410       	SUB A, #10h
+  127: 7A86       	B0BTS1 0x86.2
+  128: 8110       	JMP 0x0110
+L187:
+                  	                  		while(1)
+  129: 80BD       	JMP 0x00BD
+L194:
+                  	                  				} 
+                  	                  				//*******************************************************************
+                  	                  			}
+                  	                  		}
+                  	                  	}
+  12A: C010       	CALL 0x0010
+  12B: 812A       	JMP 0x012A
+_Function_RESULT_BUBBLING_code:
+                  	                  	//******************************************************************
+                  	                  	//冒泡排序函数**从小到大********************************************
+                  	                  	//******************************************************************
+                  	                  	void RESULT_BUBBLING(void)
+                  	                  	{	
+                  	                  		unsigned char i,j,m;
+                  	                  		unsigned long AD_ARRAY_ONCE_BUF;
+                  	                  		m=AD_RCE_TURNS;
+  12C: 1E2F       	MOV A, 0x2F
+  12D: 1F36       	MOV 0x36, A
+L210:
+                  	                  		for(i=1;i<AD_RCE_TURNS;i++)//冒泡排序
+  12E: 2D01       	MOV A, #01h
+  12F: 1F34       	MOV 0x34, A
+  130: 819F       	JMP 0x019F
+L197:
+                  	                  		{
+                  	                  			m=m-1u;
+  131: 2636       	DECMS 0x36
+  132: 0000       	NOP
+L215:
+                  	                  			for(j=0;j<m;j++)
+  133: 2B35       	CLR 0x35
+  134: 8199       	JMP 0x0199
+L201:
+                  	                  			{
+                  	                  				if(AD_ARRAY_ONCE[j]>AD_ARRAY_ONCE[j+1])
+  135: 2D24       	MOV A, #24h
+  136: 2F0B       	B0MOV 0x0B, A
+  137: 2D00       	MOV A, #00h
+  138: 2F0C       	B0MOV 0x0C, A
+  139: 1E35       	MOV A, 0x35
+  13A: 2F0D       	B0MOV 0x0D, A
+  13B: 2B0E       	CLR 0x0E
+  13C: 6286       	B0BCLR 0x86.2
+  13D: 0B0D       	RLCM 0x0D
+  13E: 0B0E       	RLCM 0x0E
+  13F: 2E0D       	B0MOV A, 0x0D
+  140: 1424       	ADD A, #24h
+  141: 2F83       	B0MOV Z, A
+  142: 2D00       	MOV A, #00h
+  143: 100E       	ADC A, 0x0E
+  144: 2F84       	B0MOV Y, A
+  145: 2D01       	MOV A, #01h
+  146: 1235       	ADD A, 0x35
+  147: 2F0F       	B0MOV 0x0F, A
+  148: 2B10       	CLR 0x10
+  149: 6286       	B0BCLR 0x86.2
+  14A: 0B0F       	RLCM 0x0F
+  14B: 0B10       	RLCM 0x10
+  14C: 2E0F       	B0MOV A, 0x0F
+  14D: 030B       	B0ADD 0x0B, A
+  14E: 2E10       	B0MOV A, 0x10
+  14F: 110C       	ADC 0x0C, A
+  150: 2E0C       	B0MOV A, 0x0C
+  151: 2F82       	B0MOV R, A
+  152: 2E0B       	B0MOV A, 0x0B
+  153: C2B0       	CALL 0x02B0
+  154: C01D       	CALL 0x001D
+  155: 7086       	B0BTS0 PFLAG.0
+  156: 8197       	JMP 0x0197
+  157: 7A86       	B0BTS1 PFLAG.2
+  158: 8197       	JMP 0x0197
+L220:
+                  	                  				{
+                  	                  					AD_ARRAY_ONCE_BUF=AD_ARRAY_ONCE[j];
+  159: 1E35       	MOV A, 0x35
+  15A: 3400       	B0MOV 0x84, #00h
+  15B: 3324       	B0MOV 0x83, #24h
+  15C: C2E0       	CALL 0x02E0
+  15D: 1F37       	MOV 0x37, A
+  15E: 2E82       	B0MOV A, R
+  15F: 1F38       	MOV 0x38, A
+L223:
+                  	                  					AD_ARRAY_ONCE[j]=AD_ARRAY_ONCE[j+1];
+  160: 2D24       	MOV A, #24h
+  161: 2F0B       	B0MOV 0x0B, A
+  162: 2D00       	MOV A, #00h
+  163: 2F0C       	B0MOV 0x0C, A
+  164: 1E35       	MOV A, 0x35
+  165: 2F0D       	B0MOV 0x0D, A
+  166: 2B0E       	CLR 0x0E
+  167: 6286       	B0BCLR 0x86.2
+  168: 0B0D       	RLCM 0x0D
+  169: 0B0E       	RLCM 0x0E
+  16A: 2E0D       	B0MOV A, 0x0D
+  16B: 1424       	ADD A, #24h
+  16C: 2F0D       	B0MOV 0x0D, A
+  16D: 2D00       	MOV A, #00h
+  16E: 100E       	ADC A, 0x0E
+  16F: 2F0E       	B0MOV 0x0E, A
+  170: 2D01       	MOV A, #01h
+  171: 1235       	ADD A, 0x35
+  172: 2F0F       	B0MOV 0x0F, A
+  173: 2B10       	CLR 0x10
+  174: 6286       	B0BCLR 0x86.2
+  175: 0B0F       	RLCM 0x0F
+  176: 0B10       	RLCM 0x10
+  177: 2E0F       	B0MOV A, 0x0F
+  178: 030B       	B0ADD 0x0B, A
+  179: 2E10       	B0MOV A, 0x10
+  17A: 110C       	ADC 0x0C, A
+  17B: 2E0C       	B0MOV A, 0x0C
+  17C: 2F84       	B0MOV Y, A
+  17D: 2E0B       	B0MOV A, 0x0B
+  17E: 2F83       	B0MOV Z, A
+  17F: C318       	CALL 0x0318
+  180: 2F01       	B0MOV 0x01, A
+  181: 2E82       	B0MOV A, R
+  182: 2F00       	B0MOV 0x00, A
+  183: 2E0E       	B0MOV A, 0x0E
+  184: 2F84       	B0MOV Y, A
+  185: 2E0D       	B0MOV A, 0x0D
+  186: 2F83       	B0MOV Z, A
+  187: 2E01       	B0MOV A, 0x01
+  188: 2FE7       	B0MOV @YZ, A
+  189: 1683       	INCMS 0x83
+  18A: 2E00       	B0MOV A, 0x00
+  18B: 2FE7       	B0MOV @YZ, A
+L224:
+                  	                  					AD_ARRAY_ONCE[j+1]=AD_ARRAY_ONCE_BUF;
+  18C: 2D01       	MOV A, #01h
+  18D: 1235       	ADD A, 0x35
+  18E: 2F0B       	B0MOV 0x0B, A
+  18F: 3400       	B0MOV 0x84, #00h
+  190: 3324       	B0MOV 0x83, #24h
+  191: 0383       	B0ADD Z, A
+  192: 0383       	B0ADD Z, A
+  193: 1E38       	MOV A, 0x38
+  194: 2F82       	B0MOV R, A
+  195: 1E37       	MOV A, 0x37
+  196: C343       	CALL 0x0343
+L225:
+                  	                  			for(j=0;j<m;j++)
+  197: 1635       	INCMS 0x35
+  198: 0000       	NOP
+L204:
+                  	                  			for(j=0;j<m;j++)
+  199: 1E35       	MOV A, 0x35
+  19A: 2236       	SUB A, 0x36
+  19B: 7A86       	B0BTS1 0x86.2
+  19C: 8135       	JMP 0x0135
+L231:
+                  	                  		for(i=1;i<AD_RCE_TURNS;i++)//冒泡排序
+  19D: 1634       	INCMS 0x34
+  19E: 0000       	NOP
+L200:
+                  	                  		for(i=1;i<AD_RCE_TURNS;i++)//冒泡排序
+  19F: 1E34       	MOV A, 0x34
+  1A0: 222F       	SUB A, 0x2F
+  1A1: 7A86       	B0BTS1 0x86.2
+  1A2: 8131       	JMP 0x0131
+L237:
+                  	                  				}
+                  	                  			}
+                  	                  		}
+                  	                  	}
+  1A3: 0E00       	RET
+_Function_AD_NTC_IN_code:
+                  	                  	//******************************************************************
+                  	                  	//AD初始化函数******************************************************
+                  	                  	//******************************************************************
+                  	                  	void AD_NTC_IN(void)
+                  	                  	{
+                  	                  		unsigned char temp_hi,temp_mid;
+                  	                  		AD_LONG_BUF.AD_RESULT=0u;//AD缓存清0
+  1A4: 2B31       	CLR 0x31
+  1A5: 2B32       	CLR 0x32
+L257:
+                  	                  		ADM=0u;
+  1A6: 2BB1       	CLR 0xB1
+L258:
+                  	                  		ADR=0x10u;	//XnXn 0000-nn:00=Fcpu/16;01=Fcpu/8;10=Fcpu;11=Fcpu/2
+  1A7: 2D10       	MOV A, #10h
+  1A8: 2FB3       	B0MOV ADR, A
+L259:
+                  	                  		P4M=0x17u;	//0001 0111-P43输入模式；1=out;0=in 
+  1A9: 2D17       	MOV A, #17h
+  1AA: 2FC4       	B0MOV P4M, A
+L260:
+                  	                  		P4UR=0u;	//0000 0000-1=pull	0=no pull
+  1AB: 2BE4       	CLR 0xE4
+L261:
+                  	                  	
+                  	                  		VREFH=0x03u;//nxxx xxmm-mm:00=2V;01=3V;10=4V;11=VDD-基准
+  1AC: 2D03       	MOV A, #03h
+  1AD: 2FAF       	B0MOV VREFH, A
+L262:
+                  	                  		P4CON=0x08u;//xxx0 1000-	0=GBIO;1=ADIN
+  1AE: 2D08       	MOV A, #08h
+  1AF: 2FAE       	B0MOV P4CON, A
+L263:
+                  	                  		FADENB=1u;	//EN ADENB
+  1B0: 6FB1       	B0BSET ADM.7
+L264:
+                  	                  		ADM=0x03u|ADM;
+  1B1: 2D03       	MOV A, #03h
+  1B2: 19B1       	OR 0xB1, A
+L265:
+                  	                  	
+                  	                  		FGCHS=1u;	//1=open AIN 通道;0=close
+  1B3: 6CB1       	B0BSET 0xB1.4
+L266:
+                  	                  		DELAY_US(50u);
+  1B4: 2D32       	MOV A, #32h
+  1B5: 1F34       	MOV 0x34, A
+  1B6: C24D       	CALL 0x024D
+L267:
+                  	                  	
+                  	                  		FADCIRQ=0u;	//;清ADC中断请求
+  1B7: 67C8       	B0BCLR 0xC8.7
+L268:
+                  	                  		FADCIEN=0u;	//;关闭中断使能
+  1B8: 67C9       	B0BCLR 0xC9.7
+L269:
+                  	                  		//******************************************************************
+                  	                  		FGIE=0u;
+  1B9: 67DF       	B0BCLR 0xDF.7
+L270:
+                  	                  		FEOC=0u;	//
+  1BA: 65B1       	B0BCLR 0xB1.5
+L271:
+                  	                  		FADS=1u;	//start AD 
+  1BB: 6EB1       	B0BSET 0xB1.6
+  1BC: 81BF       	JMP 0x01BF
+L243:
+                  	                  		{
+                  	                  			WDTR=0x5Au;	//等待AD转换结束
+  1BD: 2D5A       	MOV A, #5ah
+  1BE: 2FCC       	B0MOV WDTR, A
+L275:
+                  	                  		while(FEOC==RESET)
+  1BF: 7DB1       	B0BTS1 ADM.5
+  1C0: 81BD       	JMP 0x01BD
+L278:
+                  	                  		}
+                  	                  		FGIE=1u;
+  1C1: 6FDF       	B0BSET STKP.7
+L279:
+                  	                  	 	//******************************************************************
+                  	                  		temp_mid=ADB;	//AD高8位(ADB11~ADB4)
+  1C2: 2EB2       	B0MOV A, ADB
+  1C3: 1F36       	MOV 0x36, A
+L280:
+                  	                  		temp_hi=ADB;
+  1C4: 1F35       	MOV 0x35, A
+L281:
+                  	                  		temp_hi=temp_hi>>4u;	//AD(xxxx,ADB11~ADB8)
+  1C5: 2D00       	MOV A, #00h
+  1C6: 2F00       	B0MOV 0x00, A
+  1C7: 2D35       	MOV A, #35h
+  1C8: 2F01       	B0MOV 0x01, A
+  1C9: 3400       	B0MOV 0x84, #00h
+  1CA: 3335       	B0MOV 0x83, #35h
+  1CB: 2D04       	MOV A, #04h
+  1CC: C255       	CALL 0x0255
+  1CD: C32D       	CALL 0x032D
+L282:
+                  	                  	
+                  	                  		AD_LONG_BUF.AD_SHORT_BUF.AD_RESULT_LO=ADR & 0x0Fu; //取AD数据低4位(xxxx,ADB3~ADB0)
+  1CE: 2EB3       	B0MOV A, ADR
+  1CF: 2A0F       	AND A, #0Fh
+  1D0: 1F31       	MOV 0x31, A
+L283:
+                  	                  	
+                  	                  		temp_mid=temp_mid<<4u;	//AD(ADB7~ADB4,xxxx)
+  1D1: 6286       	B0BCLR 0x86.2
+  1D2: 0B36       	RLCM 0x36
+  1D3: 6286       	B0BCLR 0x86.2
+  1D4: 0B36       	RLCM 0x36
+  1D5: 6286       	B0BCLR 0x86.2
+  1D6: 0B36       	RLCM 0x36
+  1D7: 6286       	B0BCLR 0x86.2
+  1D8: 0B36       	RLCM 0x36
+L284:
+                  	                  		AD_LONG_BUF.AD_SHORT_BUF.AD_RESULT_LO=AD_LONG_BUF.AD_SHORT_BUF.AD_RESULT_LO |(temp_mid & 0xF0u);	//(ADB7~ADB0)
+  1D9: 1E36       	MOV A, 0x36
+  1DA: 2AF0       	AND A, #F0h
+  1DB: 1931       	OR 0x31, A
+L285:
+                  	                  	
+                  	                  		AD_LONG_BUF.AD_SHORT_BUF.AD_RESULT_HI=temp_hi & 0x0Fu;												//(ADB11~ADB8)	
+  1DC: 1E35       	MOV A, 0x35
+  1DD: 2A0F       	AND A, #0Fh
+  1DE: 1F32       	MOV 0x32, A
+L286:
+                  	                  	}
+  1DF: 0E00       	RET
+_Function_System_init_code:
+                  	                  	//******************************************************************
+                  	                  	//初始化函数********************************************************
+                  	                  	//******************************************************************
+                  	                  	void System_init(void)
+                  	                  	{
+                  	                  		//P0
+                  	                  		P0=0x00u;	//0000 0000
+  1E0: 2BD0       	CLR 0xD0
+L292:
+                  	                  		P0M=0x0fu;	//0000 1111  1:out 	;0:in
+  1E1: 2D0F       	MOV A, #0fh
+  1E2: 2FB8       	B0MOV P0M, A
+L293:
+                  	                  		P0UR=0x00u;	//0000 0000  1:en	;0:dis pull
+  1E3: 2BE0       	CLR 0xE0
+L294:
+                  	                  		P0=0x00u;	//0000 0000
+  1E4: 2BD0       	CLR 0xD0
+L295:
+                  	                  	
+                  	                  		//P4
+                  	                  		P4=0x00u;	//0000 0000
+  1E5: 2BD4       	CLR 0xD4
+L296:
+                  	                  		P4M=0x17u;	//0001 0111  1:out 	;0:in
+  1E6: 2D17       	MOV A, #17h
+  1E7: 2FC4       	B0MOV P4M, A
+L297:
+                  	                  		P4UR=0x00u;	//0000 0000  1:en	;0:dis pull
+  1E8: 2BE4       	CLR 0xE4
+L298:
+                  	                  		P4=0x00u;	//0000 0000
+  1E9: 2BD4       	CLR 0xD4
+L299:
+                  	                  	
+                  	                  		//P5
+                  	                  		P5=0x00u;	//0000 0000
+  1EA: 2BD5       	CLR 0xD5
+L300:
+                  	                  		P5M=0x18u;	//0001 1000  1:out 	;0:in
+  1EB: 2D18       	MOV A, #18h
+  1EC: 2FC5       	B0MOV P5M, A
+L301:
+                  	                  		P5UR=0x00u;	//0000 0000  1:en	;0:dis pull
+  1ED: 2BE5       	CLR 0xE5
+L302:
+                  	                  		P5=0x00u;	//0000 0000
+  1EE: 2BD5       	CLR 0xD5
+L303:
+                  	                  		//***************************************************************
+                  	                  		F_DIG1_DIG2=0u;		//两个公共端扫描标志位
+  1EF: 4105       	BCLR 0x05.1
+L304:
+                  	                  		AD_JUDGE_BASE=0u;	//AD采样时间计数器
+  1F0: 2B30       	CLR 0x30
+L305:
+                  	                  		AD_RCE_TURNS=0u;
+  1F1: 2B2F       	CLR 0x2F
+L306:
+                  	                  		F_AD_SUCCESS=0u;
+  1F2: 4005       	BCLR 0x05.0
+L307:
+                  	                  		AD_8_TIMES=0u;
+  1F3: 2B2E       	CLR 0x2E
+L308:
+                  	                  		AD_8T_SUM=0u;
+  1F4: 2B22       	CLR 0x22
+  1F5: 2B23       	CLR 0x23
+L309:
+                  	                  		AD_8T_SUM_OLD=0u;
+  1F6: 2B20       	CLR 0x20
+  1F7: 2B21       	CLR 0x21
+L310:
+                  	                  		AD_ONCE_VAL=0u;
+  1F8: 2B1D       	CLR 0x1D
+  1F9: 2B1E       	CLR 0x1E
+L311:
+                  	                  		FLAG_LED_LEVEL=0u;
+  1FA: 2B1C       	CLR 0x1C
+L312:
+                  	                  		//***************************************************************
+                  	                  	}
+  1FB: 0E00       	RET
+_Function_TC0_init_code:
+                  	                  	//******************************************************************
+                  	                  	//TC0函数初始化*****************************************************
+                  	                  	//******************************************************************
+                  	                  	void TC0_init(void)
+                  	                  	{
+                  	                  	//;--------------------------------------------------------    
+                  	                  	//;TC0 定时基准  时钟Fosc=16M/预分频64 溢出时间2048us
+                  	                  	//;--------------------------------------------------------
+                  	                  		INTEN=0x00u;//中断使能
+  1FC: 2BC9       	CLR 0xC9
+L318:
+                  	                  		T0M=0x0Cu;	//TC0时钟为Fosc
+  1FD: 2D0C       	MOV A, #0ch
+  1FE: 2FD8       	B0MOV T0M, A
+L319:
+                  	                  	  	TC0M=0x14u;	//;自动装载  TC0RATE=Fosc/64
+  1FF: 2D14       	MOV A, #14h
+  200: 2FDA       	B0MOV TC0M, A
+L320:
+                  	                  		
+                  	                  		TC0C=0x00u;	//
+  201: 2BDB       	CLR 0xDB
+L321:
+                  	                  		TC0R=0x00u;	//
+  202: 2BCD       	CLR 0xCD
+L322:
+                  	                  	
+                  	                  		FTC0IRQ=0u;
+  203: 65C8       	B0BCLR 0xC8.5
+L323:
+                  	                  		FTC0IEN=1u;
+  204: 6DC9       	B0BSET 0xC9.5
+L324:
+                  	                  		FTC0ENB=1u;
+  205: 6FDA       	B0BSET 0xDA.7
+L325:
+                  	                  		FGIE=1u;
+  206: 6FDF       	B0BSET 0xDF.7
+L326:
+                  	                  	}
+  207: 0E00       	RET
+_Function_SEND_DAT_TO_PC_code:
+                  	                  	//******************************************************************
+                  	                  	//测试函数**********************************************************
+                  	                  	//******************************************************************
+                  	                  	//定义	:先发高位~最后低位
+                  	                  	void SEND_DAT_TO_PC(unsigned long SEND_DAT)
+                  	                  	{
+                  	                  		unsigned char TXCNT,TXDATA;
+                  	                  		TXDATA = HIBYTE(SEND_DAT);
+  208: 1E36       	MOV A, 0x36
+  209: 1F38       	MOV 0x38, A
+L345:
+                  	                  		for(TXCNT=0u;TXCNT<8u;TXCNT++)
+  20A: 2B37       	CLR 0x37
+  20B: 8226       	JMP 0x0226
+L330:
+                  	                  		{
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  20C: 1E38       	MOV A, 0x38
+  20D: 2A80       	AND A, #80h
+  20E: 2AFF       	AND A, #FFh
+  20F: 7086       	B0BTS0 0x86.0
+  210: 821A       	JMP 0x021A
+L350:
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  211: 6CD4       	B0BSET 0xD4.4
+L353:
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  212: 2D0A       	MOV A, #0ah
+  213: 1F34       	MOV 0x34, A
+  214: C24D       	CALL 0x024D
+L354:
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  215: 64D4       	B0BCLR 0xD4.4
+L355:
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  216: 2D04       	MOV A, #04h
+  217: 1F34       	MOV 0x34, A
+  218: C24D       	CALL 0x024D
+L356:
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  219: 8222       	JMP 0x0222
+L334:
+                  	                  			else				{FP44=1u; DELAY_US(4u); FP44=0u; DELAY_US(10u);}
+  21A: 6CD4       	B0BSET 0xD4.4
+L361:
+                  	                  			else				{FP44=1u; DELAY_US(4u); FP44=0u; DELAY_US(10u);}
+  21B: 2D04       	MOV A, #04h
+  21C: 1F34       	MOV 0x34, A
+  21D: C24D       	CALL 0x024D
+L362:
+                  	                  			else				{FP44=1u; DELAY_US(4u); FP44=0u; DELAY_US(10u);}
+  21E: 64D4       	B0BCLR 0xD4.4
+L363:
+                  	                  			else				{FP44=1u; DELAY_US(4u); FP44=0u; DELAY_US(10u);}
+  21F: 2D0A       	MOV A, #0ah
+  220: 1F34       	MOV 0x34, A
+  221: C24D       	CALL 0x024D
+L364:
+                  	                  			TXDATA=TXDATA<<1u;	//左移1位
+  222: 6286       	B0BCLR 0x86.2
+  223: 0B38       	RLCM 0x38
+L367:
+                  	                  		for(TXCNT=0u;TXCNT<8u;TXCNT++)
+  224: 1637       	INCMS 0x37
+  225: 0000       	NOP
+L333:
+                  	                  		for(TXCNT=0u;TXCNT<8u;TXCNT++)
+  226: 1E37       	MOV A, 0x37
+  227: 2408       	SUB A, #08h
+  228: 7A86       	B0BTS1 0x86.2
+  229: 820C       	JMP 0x020C
+L371:
+                  	                  		}
+                  	                  		TXDATA = SEND_DAT;
+  22A: 1E35       	MOV A, 0x35
+  22B: 1F38       	MOV 0x38, A
+L374:
+                  	                  		for(TXCNT=0u;TXCNT<8u;TXCNT++)
+  22C: 2B37       	CLR 0x37
+  22D: 8248       	JMP 0x0248
+L336:
+                  	                  		{
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  22E: 1E38       	MOV A, 0x38
+  22F: 2A80       	AND A, #80h
+  230: 2AFF       	AND A, #FFh
+  231: 7086       	B0BTS0 0x86.0
+  232: 823C       	JMP 0x023C
+L379:
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  233: 6CD4       	B0BSET 0xD4.4
+L382:
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  234: 2D0A       	MOV A, #0ah
+  235: 1F34       	MOV 0x34, A
+  236: C24D       	CALL 0x024D
+L383:
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  237: 64D4       	B0BCLR 0xD4.4
+L384:
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  238: 2D04       	MOV A, #04h
+  239: 1F34       	MOV 0x34, A
+  23A: C24D       	CALL 0x024D
+L385:
+                  	                  			if(TXDATA & 0x80u)	{FP44=1u; DELAY_US(10u);FP44=0u; DELAY_US(4u); }//BIT1
+  23B: 8244       	JMP 0x0244
+L340:
+                  	                  			else				{FP44=1u; DELAY_US(4u); FP44=0u; DELAY_US(10u);}
+  23C: 6CD4       	B0BSET 0xD4.4
+L390:
+                  	                  			else				{FP44=1u; DELAY_US(4u); FP44=0u; DELAY_US(10u);}
+  23D: 2D04       	MOV A, #04h
+  23E: 1F34       	MOV 0x34, A
+  23F: C24D       	CALL 0x024D
+L391:
+                  	                  			else				{FP44=1u; DELAY_US(4u); FP44=0u; DELAY_US(10u);}
+  240: 64D4       	B0BCLR 0xD4.4
+L392:
+                  	                  			else				{FP44=1u; DELAY_US(4u); FP44=0u; DELAY_US(10u);}
+  241: 2D0A       	MOV A, #0ah
+  242: 1F34       	MOV 0x34, A
+  243: C24D       	CALL 0x024D
+L393:
+                  	                  			TXDATA=TXDATA<<1u;	//左移1位
+  244: 6286       	B0BCLR 0x86.2
+  245: 0B38       	RLCM 0x38
+L396:
+                  	                  		for(TXCNT=0u;TXCNT<8u;TXCNT++)
+  246: 1637       	INCMS 0x37
+  247: 0000       	NOP
+L339:
+                  	                  		for(TXCNT=0u;TXCNT<8u;TXCNT++)
+  248: 1E37       	MOV A, 0x37
+  249: 2408       	SUB A, #08h
+  24A: 7A86       	B0BTS1 0x86.2
+  24B: 822E       	JMP 0x022E
+L400:
+                  	                  		}
+                  	                  	}
+  24C: 0E00       	RET
+_Function_DELAY_US_code:
+                  	                  	//******************************************************************
+                  	                  	//延时函数：函数定义*******16MHz  4'**(4MHz)************************
+                  	                  	//******************************************************************
+                  	                  	void DELAY_US(unsigned char DELAY_CNT)    // ;(2*cnt+3.5)us
+                  	                  	{
+                  	                  	    while(DELAY_CNT--);
+  24D: 1E34       	MOV A, 0x34
+  24E: 2F0B       	B0MOV 0x0B, A
+  24F: 2401       	SUB A, #01h
+  250: 1F34       	MOV 0x34, A
+  251: 2E0B       	B0MOV A, 0x0B
+  252: 0600       	CMPRS A, #00h
+  253: 824D       	JMP 0x024D
+L412:
+                  	                  	}//End of  DELAY_US();
+  254: 0E00       	RET
+__Get1ByteParaToDest@RTL:
+  255: 2F02       	B0MOV 0x02, A
+  256: 2EE7       	B0MOV A, @YZ
+  257: 2F11       	B0MOV 0x11, A
+  258: 2E02       	B0MOV A, 0x02
+  259: 0E00       	RET
+__Get1ByteRomToLArg:
+  25A: 2F19       	B0MOV 0x19, A
+  25B: 2E82       	B0MOV A, R
+  25C: 2F1A       	B0MOV 0x1A, A
+  25D: 2B02       	CLR 0x02
+  25E: 0A84       	RLC 0x84
+  25F: 6784       	B0BCLR 0x84.7
+  260: 0D00       	MOVC
+  261: 7286       	B0BTS0 0x86.2
+  262: 2E82       	B0MOV A, R
+  263: 2F11       	B0MOV 0x11, A
+  264: 2E1A       	B0MOV A, 0x1A
+  265: 2F82       	B0MOV R, A
+  266: 2E19       	B0MOV A, 0x19
+  267: 0E00       	RET
+__Get1ByteRamToRArg:
+  268: 2F83       	B0MOV Z, A
+  269: 2E82       	B0MOV A, R
+  26A: 2F84       	B0MOV Y, A
+  26B: 2EE7       	B0MOV A, @YZ
+  26C: 2F15       	B0MOV 0x15, A
+  26D: 0E00       	RET
+__Get1ByteRomToRArg:
+  26E: 2F83       	B0MOV Z, A
+  26F: 2E82       	B0MOV A, R
+  270: 2F84       	B0MOV Y, A
+  271: C35B       	CALL 0x035B
+  272: 0E00       	RET
+__Get1BytePara@RTL:
+  273: C255       	CALL 0x0255
+  274: 2F83       	B0MOV Z, A
+  275: 2E82       	B0MOV A, R
+  276: 2F84       	B0MOV Y, A
+  277: 2EE7       	B0MOV A, @YZ
+  278: 2F15       	B0MOV 0x15, A
+  279: 0E00       	RET
+__Get1ByteRamRom:
+  27A: C255       	CALL 0x0255
+  27B: 2F83       	B0MOV Z, A
+  27C: 2E82       	B0MOV A, R
+  27D: 2F84       	B0MOV Y, A
+  27E: C35B       	CALL 0x035B
+  27F: 0E00       	RET
+__Get1ByteRomRam:
+  280: C25A       	CALL 0x025A
+  281: 2F83       	B0MOV Z, A
+  282: 2E82       	B0MOV A, R
+  283: 2F84       	B0MOV Y, A
+  284: 2EE7       	B0MOV A, @YZ
+  285: 2F15       	B0MOV 0x15, A
+  286: 0E00       	RET
+__Get1ByteRomRom:
+  287: C25A       	CALL 0x025A
+  288: 2F83       	B0MOV Z, A
+  289: 2E82       	B0MOV A, R
+  28A: 2F84       	B0MOV Y, A
+  28B: C35B       	CALL 0x035B
+  28C: 0E00       	RET
+__Get2ByteParaToDest@RTL:
+  28D: 2F02       	B0MOV 0x02, A
+  28E: 2EE7       	B0MOV A, @YZ
+  28F: 2F11       	B0MOV 0x11, A
+  290: 1683       	INCMS 0x83
+  291: 0000       	NOP
+  292: 2EE7       	B0MOV A, @YZ
+  293: 2F12       	B0MOV 0x12, A
+  294: 2E02       	B0MOV A, 0x02
+  295: 0E00       	RET
+__Get2ByteRomToLArg:
+  296: 2F19       	B0MOV 0x19, A
+  297: 2E82       	B0MOV A, R
+  298: 2F1A       	B0MOV 0x1A, A
+  299: 2B02       	CLR 0x02
+  29A: 0D00       	MOVC
+  29B: 2F11       	B0MOV 0x11, A
+  29C: 2E82       	B0MOV A, R
+  29D: 2F12       	B0MOV 0x12, A
+  29E: 2E1A       	B0MOV A, 0x1A
+  29F: 2F82       	B0MOV R, A
+  2A0: 2E19       	B0MOV A, 0x19
+  2A1: 0E00       	RET
+__Get2ByteRamToRArg:
+  2A2: 2F83       	B0MOV Z, A
+  2A3: 2E82       	B0MOV A, R
+  2A4: 2F84       	B0MOV Y, A
+  2A5: C39C       	CALL 0x039C
+  2A6: 0E00       	RET
+__Get2ByteRomToRArg:
+  2A7: 2F83       	B0MOV Z, A
+  2A8: 2E82       	B0MOV A, R
+  2A9: 2F84       	B0MOV Y, A
+  2AA: 2B02       	CLR 0x02
+  2AB: 0D00       	MOVC
+@@Mov2ByteToRArg:
+  2AC: 2F15       	B0MOV 0x15, A
+  2AD: 2E82       	B0MOV A, R
+  2AE: 2F16       	B0MOV 0x16, A
+  2AF: 0E00       	RET
+__Get2BytePara@RTL:
+  2B0: C28D       	CALL 0x028D
+  2B1: 2F83       	B0MOV Z, A
+  2B2: 2E82       	B0MOV A, R
+  2B3: 2F84       	B0MOV Y, A
+  2B4: C39C       	CALL 0x039C
+  2B5: 0E00       	RET
+__Get2ByteRamRom:
+  2B6: C28D       	CALL 0x028D
+  2B7: 2F83       	B0MOV Z, A
+  2B8: 2E82       	B0MOV A, R
+  2B9: 2F84       	B0MOV Y, A
+  2BA: 2B02       	CLR 0x02
+  2BB: 0D00       	MOVC
+  2BC: 2F15       	B0MOV 0x15, A
+  2BD: 2E82       	B0MOV A, R
+  2BE: 2F16       	B0MOV 0x16, A
+  2BF: 0E00       	RET
+__Get2ByteRomRam:
+  2C0: C296       	CALL 0x0296
+  2C1: 2F83       	B0MOV Z, A
+  2C2: 2E82       	B0MOV A, R
+  2C3: 2F84       	B0MOV Y, A
+  2C4: C39C       	CALL 0x039C
+  2C5: 0E00       	RET
+__Get2ByteRomRom:
+  2C6: C296       	CALL 0x0296
+  2C7: 2F83       	B0MOV Z, A
+  2C8: 2E82       	B0MOV A, R
+  2C9: 2F84       	B0MOV Y, A
+  2CA: 2B02       	CLR 0x02
+  2CB: 0D00       	MOVC
+  2CC: 2F15       	B0MOV 0x15, A
+  2CD: 2E82       	B0MOV A, R
+  2CE: 2F16       	B0MOV 0x16, A
+  2CF: 0E00       	RET
+__Get2ByteRamCst:
+  2D0: C28D       	CALL 0x028D
+  2D1: 2F15       	B0MOV 0x15, A
+  2D2: 2E82       	B0MOV A, R
+  2D3: 2F16       	B0MOV 0x16, A
+  2D4: 0E00       	RET
+__Store2ByteLArg2HL:
+  2D5: 2E01       	B0MOV A, 0x01
+  2D6: 2F83       	B0MOV Z, A
+  2D7: 2E00       	B0MOV A, 0x00
+  2D8: 2F84       	B0MOV Y, A
+  2D9: 2E11       	B0MOV A, 0x11
+  2DA: 2FE7       	B0MOV @YZ, A
+  2DB: 1683       	INCMS 0x83
+  2DC: 0000       	NOP
+  2DD: 2E12       	B0MOV A, 0x12
+  2DE: 2FE7       	B0MOV @YZ, A
+  2DF: 0E00       	RET
+__GetRamToReg@RTL:
+  2E0: 0383       	B0ADD Z, A
+  2E1: 0383       	B0ADD Z, A
+  2E2: 2D01       	MOV A, #01h
+  2E3: 0383       	B0ADD Z, A
+  2E4: 2EE7       	B0MOV A, @YZ
+  2E5: 2F82       	B0MOV R, A
+  2E6: 2DFF       	MOV A, #ffh
+__Get1ByteRamToReg:
+  2E7: 0383       	B0ADD Z, A
+  2E8: 2EE7       	B0MOV A, @YZ
+  2E9: 0E00       	RET
+__GetRomToReg@RTL:
+  2EA: 2F82       	B0MOV R, A
+  2EB: 2D00       	MOV A, #00h
+  2EC: 7782       	B0BTS0 R.7
+  2ED: 2DFF       	MOV A, #ffh
+  2EE: 2C82       	XCH A, 0x82
+  2EF: 82F1       	JMP 0x02F1
+__Get1ByteRomUToReg:
+  2F0: 3200       	B0MOV 0x82, #00h
+__Get1ByteRomToReg:
+  2F1: 2F02       	B0MOV 0x02, A
+  2F2: 7802       	B0BTS1 0x02.0
+  2F3: 82FC       	JMP 0x02FC
+  2F4: 2D80       	MOV A, #80h
+  2F5: 1C84       	XOR 0x84, A
+  2F6: 7784       	B0BTS0 0x84.7
+  2F7: 82FC       	JMP 0x02FC
+  2F8: 2D01       	MOV A, #01h
+  2F9: 0302       	B0ADD 0x02, A
+  2FA: 2D00       	MOV A, #00h
+  2FB: 1182       	ADC 0x82, A
+@@Shift:
+  2FC: 0A82       	RLC 0x82
+  2FD: 0982       	RRCM 0x82
+  2FE: 0802       	RRC 0x02
+  2FF: 1383       	ADD 0x83, A
+  300: 2E82       	B0MOV A, R
+  301: 1184       	ADC 0x84, A
+  302: 2B02       	CLR 0x02
+  303: 0A84       	RLC 0x84
+  304: 6784       	B0BCLR 0x84.7
+  305: 0D00       	MOVC
+  306: 7286       	B0BTS0 0x86.2
+  307: 2E82       	B0MOV A, R
+  308: 0E00       	RET
+__Get2ByteRomSToReg:
+  309: 1383       	ADD 0x83, A
+  30A: 2F82       	B0MOV R, A
+  30B: 2D00       	MOV A, #00h
+  30C: 7782       	B0BTS0 R.7
+  30D: 2DFF       	MOV A, #ffh
+  30E: 1184       	ADC 0x84, A
+  30F: 2B02       	CLR 0x02
+  310: 0D00       	MOVC
+  311: 0E00       	RET
+__Get2ByteRomUToReg:
+  312: 1383       	ADD 0x83, A
+  313: 2D00       	MOV A, #00h
+  314: 1184       	ADC 0x84, A
+  315: 2B02       	CLR 0x02
+  316: 0D00       	MOVC
+  317: 0E00       	RET
+__Mov2ByteRamToReg@RTL:
+  318: 2EE7       	B0MOV A, @YZ
+  319: 2F02       	B0MOV 0x02, A
+  31A: 1683       	INCMS 0x83
+  31B: 2EE7       	B0MOV A, @YZ
+  31C: 2F82       	B0MOV R, A
+  31D: 2E02       	B0MOV A, 0x02
+  31E: 0E00       	RET
+__Mov4ByteRamToReg@RTL:
+  31F: 2EE7       	B0MOV A, @YZ
+  320: 2F02       	B0MOV 0x02, A
+  321: 1683       	INCMS 0x83
+  322: 2EE7       	B0MOV A, @YZ
+  323: 2F82       	B0MOV R, A
+  324: 2E02       	B0MOV A, 0x02
+  325: 1683       	INCMS 0x83
+  326: 2EE7       	B0MOV A, @YZ
+  327: 2F01       	B0MOV 0x01, A
+  328: 1683       	INCMS 0x83
+  329: 2EE7       	B0MOV A, @YZ
+  32A: 2F00       	B0MOV 0x00, A
+  32B: 2E02       	B0MOV A, 0x02
+  32C: 0E00       	RET
+__SRUInt@RTL:
+  32D: 2401       	SUB A, #01h
+  32E: 7A86       	B0BTS1 PFLAG.2
+  32F: 8333       	JMP 0x0333
+  330: 6286       	B0BCLR PFLAG.2
+  331: 0911       	RRCM 0x11
+  332: 832D       	JMP 0x032D
+@@Ret:
+  333: 2E00       	B0MOV A, 0x00
+  334: 2F84       	B0MOV Y, A
+  335: 2E01       	B0MOV A, 0x01
+  336: 2F83       	B0MOV Z, A
+  337: 2E11       	B0MOV A, 0x11
+  338: 2FE7       	B0MOV @YZ, A
+  339: 0E00       	RET
+__SRULong@RTL:
+  33A: 2401       	SUB A, #01h
+  33B: 7A86       	B0BTS1 PFLAG.2
+  33C: 8341       	JMP 0x0341
+  33D: 6286       	B0BCLR PFLAG.2
+  33E: 0912       	RRCM 0x12
+  33F: 0911       	RRCM 0x11
+  340: 833A       	JMP 0x033A
+@@RET:
+  341: C2D5       	CALL 0x02D5
+  342: 0E00       	RET
+__SetRegToRam@RTL:
+  343: 2FE7       	B0MOV @YZ, A
+  344: 2D01       	MOV A, #01h
+  345: 0383       	B0ADD Z, A
+  346: 2E82       	B0MOV A, R
+  347: 2FE7       	B0MOV @YZ, A
+  348: 0E00       	RET
+__MovRomToLArg@RTL:
+  349: C36D       	CALL 0x036D
+  34A: 2F11       	B0MOV 0x11, A
+  34B: 0E00       	RET
+__Mov4ByteRomToLArg:
+  34C: 2B02       	CLR 0x02
+  34D: 0D00       	MOVC
+  34E: 2F11       	B0MOV 0x11, A
+  34F: 2E82       	B0MOV A, R
+  350: 2F12       	B0MOV 0x12, A
+  351: 2D01       	MOV A, #01h
+  352: 0383       	B0ADD Z, A
+  353: 2D00       	MOV A, #00h
+  354: 1184       	ADC 0x84, A
+  355: 1102       	ADC 0x02, A
+  356: 0D00       	MOVC
+  357: 2F13       	B0MOV 0x13, A
+  358: 2E82       	B0MOV A, R
+  359: 2F14       	B0MOV 0x14, A
+  35A: 0E00       	RET
+__MovRomToRArg@RTL:
+  35B: C36D       	CALL 0x036D
+  35C: 2F15       	B0MOV 0x15, A
+  35D: 0E00       	RET
+__Mov4ByteRomToRArg:
+  35E: 2B02       	CLR 0x02
+  35F: 0D00       	MOVC
+  360: 2F15       	B0MOV 0x15, A
+  361: 2E82       	B0MOV A, R
+  362: 2F16       	B0MOV 0x16, A
+  363: 2D01       	MOV A, #01h
+  364: 0383       	B0ADD Z, A
+  365: 2D00       	MOV A, #00h
+  366: 1184       	ADC 0x84, A
+  367: 1102       	ADC 0x02, A
+  368: 0D00       	MOVC
+  369: 2F17       	B0MOV 0x17, A
+  36A: 2E82       	B0MOV A, R
+  36B: 2F18       	B0MOV 0x18, A
+  36C: 0E00       	RET
+__MovRomToReg@RTL:
+  36D: 2B02       	CLR 0x02
+  36E: 0A84       	RLC 0x84
+  36F: 6784       	B0BCLR 0x84.7
+  370: 0D00       	MOVC
+  371: 7286       	B0BTS0 0x86.2
+  372: 2E82       	B0MOV A, R
+  373: 0E00       	RET
+__Mov4ByteRomToReg:
+  374: 2B02       	CLR 0x02
+  375: 0D00       	MOVC
+  376: 2C01       	XCH A, 0x01
+  377: 2E82       	B0MOV A, R
+  378: 2C00       	XCH A, 0x00
+  379: 2D01       	MOV A, #01h
+  37A: 0383       	B0ADD Z, A
+  37B: 2D00       	MOV A, #00h
+  37C: 1184       	ADC 0x84, A
+  37D: 1102       	ADC 0x02, A
+  37E: 0D00       	MOVC
+  37F: 2C01       	XCH A, 0x01
+  380: 2F02       	B0MOV 0x02, A
+  381: 2E82       	B0MOV A, R
+  382: 2C00       	XCH A, 0x00
+  383: 2F82       	B0MOV R, A
+  384: 2E02       	B0MOV A, 0x02
+  385: 0E00       	RET
+__Mov2ByteRamToLArg@RTL:
+  386: 2EE7       	B0MOV A, @YZ
+  387: 2F11       	B0MOV 0x11, A
+  388: 1683       	INCMS 0x83
+  389: 0000       	NOP
+  38A: 2EE7       	B0MOV A, @YZ
+  38B: 2F12       	B0MOV 0x12, A
+  38C: 0E00       	RET
+__Mov4ByteRamToLArg@RTL:
+  38D: 2EE7       	B0MOV A, @YZ
+  38E: 2F11       	B0MOV 0x11, A
+  38F: 1683       	INCMS 0x83
+  390: 0000       	NOP
+  391: 2EE7       	B0MOV A, @YZ
+  392: 2F12       	B0MOV 0x12, A
+  393: 1683       	INCMS 0x83
+  394: 0000       	NOP
+  395: 2EE7       	B0MOV A, @YZ
+  396: 2F13       	B0MOV 0x13, A
+  397: 1683       	INCMS 0x83
+  398: 0000       	NOP
+  399: 2EE7       	B0MOV A, @YZ
+  39A: 2F14       	B0MOV 0x14, A
+  39B: 0E00       	RET
+__Mov2ByteRamToRArg@RTL:
+  39C: 2EE7       	B0MOV A, @YZ
+  39D: 2F15       	B0MOV 0x15, A
+  39E: 1683       	INCMS 0x83
+  39F: 0000       	NOP
+  3A0: 2EE7       	B0MOV A, @YZ
+  3A1: 2F16       	B0MOV 0x16, A
+  3A2: 0E00       	RET
+__Mov4ByteRamToRArg@RTL:
+  3A3: C39C       	CALL 0x039C
+  3A4: 1683       	INCMS 0x83
+  3A5: 0000       	NOP
+  3A6: 2EE7       	B0MOV A, @YZ
+  3A7: 2F17       	B0MOV 0x17, A
+  3A8: 1683       	INCMS 0x83
+  3A9: 0000       	NOP
+  3AA: 2EE7       	B0MOV A, @YZ
+  3AB: 2F18       	B0MOV 0x18, A
+  3AC: 0E00       	RET

@@ -1,0 +1,301 @@
+  JMP   0x02D           ;'0x000000'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 102)
+;P6CR &= 0xEF;	//P64输出低电平
+  IOR   0x6             ;'0x000001'
+  AND   A, @0xEF        ;'0x000002'
+  IOW   0x6             ;'0x000003'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 103)
+;P64 = 0;
+  BC    0x06, 4         ;'0x000004'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 104)
+;}
+  RET                   ;'0x000005'
+  ADD   A, @0xFF        ;'0x000006'
+  ADD   A, @0xFF        ;'0x000007'
+  JMP   0x009           ;'0x000008'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 153)
+;MOV 0x3D,A ;保存 A
+  MOV   0x10, A         ;'0x000009'
+  SWAPA 0x04            ;'0x00000A'
+  MOV   0x25, A         ;'0x00000B'
+  SWAPA 0x03            ;'0x00000C'
+  MOV   0x26, A         ;'0x00000D'
+  MOV   0x3D, A         ;'0x00000E'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 154)
+;MOV A,0x03
+  MOV   A, 0x03         ;'0x00000F'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 155)
+;MOV 0x3E,A ;保存 R3
+  MOV   0x3E, A         ;'0x000010'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 156)
+;MOV A,0x04
+  MOV   A, 0x04         ;'0x000011'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 157)
+;MOV 0x3F,A ;保存 R4
+  MOV   0x3F, A         ;'0x000012'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 160)
+;if	(TCIF==1)
+  JBS   0x0F, 0         ;'0x000013'
+  JMP   0x020           ;'0x000014'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 163)
+;ISR&=0XFE;				//清TCC中断标志位
+  MOV   A, @0xFE        ;'0x000015'
+  AND   0x0F, A         ;'0x000016'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 164)
+;TCC+=206;					//TCC赋初值 0.2ms
+  MOV   A, @0xCE        ;'0x000017'
+  ADD   0x01, A         ;'0x000018'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 166)
+;if(++intCount >= 100)
+  INC   0x21            ;'0x000019'
+  MOV   A, @0x64        ;'0x00001A'
+  SUB   A, 0x21         ;'0x00001B'
+  JBS   0x03, 0         ;'0x00001C'
+  JMP   0x020           ;'0x00001D'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 168)
+;intCount = 0;		//10ms
+  CLR   0x21            ;'0x00001E'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 169)
+;IntFlag = 1;
+  BS    0x20, 0         ;'0x00001F'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 177)
+;MOV A,0x3F ;返回 R4
+  MOV   A, 0x3F         ;'0x000020'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 178)
+;MOV 0x04,A
+  MOV   0x04, A         ;'0x000021'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 179)
+;MOV A,0x3E ;返回 R3
+  MOV   A, 0x3E         ;'0x000022'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 180)
+;MOV 0x03,A
+  MOV   0x03, A         ;'0x000023'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 181)
+;SWAP 0x3D  ;返回 A
+  SWAP  0x3D            ;'0x000024'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 182)
+;SWAPA 0x3D
+  SWAPA 0x3D            ;'0x000025'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 184)
+;}
+  SWAPA 0x26            ;'0x000026'
+  MOV   0x03, A         ;'0x000027'
+  SWAPA 0x25            ;'0x000028'
+  MOV   0x04, A         ;'0x000029'
+  RETI                  ;'0x00002A'
+  ADD   A, @0xFF        ;'0x00002B'
+  ADD   A, @0xFF        ;'0x00002C'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 33)
+;WDTC();
+  MOV   A, @0x00        ;'0x00002D'
+  MOV   0x21, A         ;'0x00002E'
+  MOV   0x22, A         ;'0x00002F'
+  MOV   0x23, A         ;'0x000030'
+  WDTC                  ;'0x000031'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 34)
+;DISI();
+  DISI                  ;'0x000032'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 35)
+;WDTCR=0;				//禁止WDT
+  MOV   A, @0x00        ;'0x000033'
+  IOW   0xE             ;'0x000034'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 37)
+;IO_Init();	            //IO初始化
+  CALL  0x06A           ;'0x000035'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 39)
+;TCC=206;					//
+  MOV   A, @0xCE        ;'0x000036'
+  MOV   0x01, A         ;'0x000037'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 40)
+;ISR=0;
+  CLR   0x0F            ;'0x000038'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 41)
+;IMR=1;
+  MOV   A, @0x01        ;'0x000039'
+  IOW   0xF             ;'0x00003A'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 43)
+;ENI();
+  ENI                   ;'0x00003B'
+  JMP   0x068           ;'0x00003C'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 49)
+;WDTC(); //清狗
+  WDTC                  ;'0x00003D'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 51)
+;if(!IntFlag)			//10ms执行一次
+  JBC   0x20, 0         ;'0x00003E'
+  JMP   0x041           ;'0x00003F'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 52)
+;continue;
+  JMP   0x068           ;'0x000040'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 53)
+;IntFlag = 0;
+  BC    0x20, 0         ;'0x000041'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 54)
+;if(P63)
+  JBS   0x06, 3         ;'0x000042'
+  JMP   0x04E           ;'0x000043'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 57)
+;chrgFlag = 1;
+  MOV   A, @0x01        ;'0x000044'
+  MOV   0x22, A         ;'0x000045'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 58)
+;P61 = 0;
+  BC    0x06, 1         ;'0x000046'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 59)
+;sleepTime = 0;
+  CLR   0x23            ;'0x000047'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 60)
+;if(P62)
+  JBS   0x06, 2         ;'0x000048'
+  JMP   0x04C           ;'0x000049'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 62)
+;ledOn();
+  CALL  0x001           ;'0x00004A'
+  JMP   0x068           ;'0x00004B'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 66)
+;ledOff();
+  CALL  0x074           ;'0x00004C'
+  JMP   0x068           ;'0x00004D'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 71)
+;chrgFlag = 0;
+  CLR   0x22            ;'0x00004E'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 72)
+;if(P65 == 0)	//低电平有效
+  JBC   0x06, 5         ;'0x00004F'
+  JMP   0x060           ;'0x000050'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 74)
+;if(P60 == 0)
+  JBC   0x06, 0         ;'0x000051'
+  JMP   0x057           ;'0x000052'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 76)
+;P61 = 1;
+  BS    0x06, 1         ;'0x000053'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 77)
+;ledOn();
+  CALL  0x001           ;'0x000054'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 78)
+;sleepTime = 0;
+  CLR   0x23            ;'0x000055'
+  JMP   0x068           ;'0x000056'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 82)
+;P61 = 0;
+  BC    0x06, 1         ;'0x000057'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 83)
+;ledOff();
+  CALL  0x074           ;'0x000058'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 84)
+;if(++sleepTime > 200)
+  INC   0x23            ;'0x000059'
+  MOV   A, 0x23         ;'0x00005A'
+  SUB   A, @0xC8        ;'0x00005B'
+  JBC   0x03, 0         ;'0x00005C'
+  JMP   0x068           ;'0x00005D'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 85)
+;gotoSleep();
+  CALL  0x079           ;'0x00005E'
+  JMP   0x068           ;'0x00005F'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 90)
+;P61 = 0;
+  BC    0x06, 1         ;'0x000060'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 91)
+;ledOff();
+  CALL  0x074           ;'0x000061'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 92)
+;if(++sleepTime > 200)
+  INC   0x23            ;'0x000062'
+  MOV   A, 0x23         ;'0x000063'
+  SUB   A, @0xC8        ;'0x000064'
+  JBC   0x03, 0         ;'0x000065'
+  JMP   0x068           ;'0x000066'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 93)
+;gotoSleep();
+  CALL  0x079           ;'0x000067'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 47)
+;while(1)
+  JMP   0x03D           ;'0x000068'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 97)
+;}
+  RET                   ;'0x000069'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 118)
+;PORT6 = 0x00;
+  CLR   0x06            ;'0x00006A'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 119)
+;P6CR = 0x3D;			//PORT6设为输出(0 输出,1 输入)
+  MOV   A, @0x3D        ;'0x00006B'
+  IOW   0x6             ;'0x00006C'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 120)
+;PHCR = 0xDA;			//P61上拉 P63上拉 P65上拉
+  MOV   A, @0xDA        ;'0x00006D'
+  IOW   0xD             ;'0x00006E'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 121)
+;PRD = 0xFF;
+  MOV   A, @0xFF        ;'0x00006F'
+  MOV   0x09, A         ;'0x000070'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 124)
+;mov	a,@0x02			//TCC分频比设为1：8
+  MOV   A, @0x02        ;'0x000071'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 125)
+;contw
+  CONTW                 ;'0x000072'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 127)
+;}
+  RET                   ;'0x000073'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 109)
+;P6CR |= 0x10;
+  IOR   0x6             ;'0x000074'
+  OR    A, @0x10        ;'0x000075'
+  IOW   0x6             ;'0x000076'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 110)
+;P64 = 1;			//灭绿灯
+  BS    0x06, 4         ;'0x000077'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 112)
+;}
+  RET                   ;'0x000078'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 132)
+;sleepTime = 0;
+  CLR   0x23            ;'0x000079'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 133)
+;chrgFlag = 0;
+  CLR   0x22            ;'0x00007A'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 134)
+;WDTCR=0x00;//禁止WDT
+  MOV   A, @0x00        ;'0x00007B'
+  IOW   0xE             ;'0x00007C'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 135)
+;ICIECR = 0x09;
+  MOV   A, @0x09        ;'0x00007D'
+  MOV   0x0D, A         ;'0x00007E'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 136)
+;IMR = 0x02;
+  MOV   A, @0x02        ;'0x00007F'
+  IOW   0xF             ;'0x000080'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 137)
+;ISR&=0XF0;
+  MOV   A, @0xF0        ;'0x000081'
+  AND   0x0F, A         ;'0x000082'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 138)
+;DISI();
+  DISI                  ;'0x000083'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 139)
+;SLEP();
+  SLEP                  ;'0x000084'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 140)
+;ENI();
+  ENI                   ;'0x000085'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 141)
+;WDTCR=0x80;
+  MOV   A, @0x80        ;'0x000086'
+  IOW   0xE             ;'0x000087'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 142)
+;ICIECR = 0x00;
+  CLR   0x0D            ;'0x000088'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 143)
+;ISR=0;
+  CLR   0x0F            ;'0x000089'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 144)
+;IMR=1;
+  MOV   A, @0x01        ;'0x00008A'
+  IOW   0xF             ;'0x00008B'
+;C:\mcuproject\xj\S25_1001B_sop8\PWM.c (line 145)
+;}
+  RET                   ;'0x00008C'

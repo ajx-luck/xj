@@ -8,8 +8,8 @@
 typedef unsigned char u8t;
 typedef unsigned int u16t;
 
-#define	PB5ON() P65 = 1
-#define	PB5OFF() P65 = 0
+#define	PB5ON() P50 = 1
+#define	PB5OFF() P50 = 0
 #define L1ON() P51 = 1
 #define L1OFF() P51 = 0
 #define L2ON() P52 = 1
@@ -30,7 +30,8 @@ u8t intCount = 0;
 u8t duty = 0;
 u8t int2Count = 0;
 u8t	count1s = 0;
-u16t    count900s = 0;		//60*15
+u8t count1min = 0;		
+u8t count900s = 0;
 u8t workStep = 0;
 u8t keyCount = 0;
 u8t pwmCount = 0;
@@ -53,10 +54,10 @@ void main()
 
 	WDTC();
 	DISI();
-	WDTCR=0x80;				
+	WDTCR=0x80;	
+	workStep = 0;			
 	
 	IO_Init();	            //IO初始化
-
 	TCC=206;					//timer=1/8*2*(256-6)*16=1ms,TCC中断1ms定时		主频8M/2T
 	ISR=0;
 	IMR=1;
@@ -66,17 +67,18 @@ void main()
 	
 	for(;;)
 	 {   
-		if(pwmCount < duty)		//400us
+		P50 = 0;
+		if(workStep < 5)
 		{
-			P65 = 1;
+			P50 = 0;
+			NOP();
+			NOP();
+			NOP();
 		}
-		else
+		for(i=0;i<duty;i++)
 		{
-			P65 = 0;
-		}
-		if(++pwmCount >= 20)
-		{
-			pwmCount = 0;
+			P50 = 1;
+			NOP();
 		}
 		WDTC(); //清狗
 		if(!IntFlag)
@@ -84,6 +86,24 @@ void main()
 		IntFlag = 0;
 		keyCtr(); 
 		workCtr();
+		if(workStep)
+		{
+			if(++count1s>= 100)
+			{
+				count1s = 0;
+				if(++count1min >= 60)
+				{
+					count1min = 0;
+					count900s++;
+				}
+				
+			}
+			
+			if(count900s >= 15 && keyCount == 0)
+				gotoSleep();
+		}
+		
+
 	 }
 
 }
@@ -123,33 +143,31 @@ void workCtr()
 			gotoSleep();
 		break;
 		case 1:
-		duty = 14;
+		duty = 9;
 		L1ON();
 		break;
 		case 2:
-		duty = 15;
+		duty = 13;
 		L2ON();
 		break;
 		case 3:
-		duty = 16;
+		duty = 17;
 		L3ON();
 		break;
 		case 4:
-		duty = 17;
+		duty = 20;
 		L4ON();
 		break;
 		case 5:
-		duty = 18;
+		duty = 24;
 		L5ON();
 		break;
 		case 6:
-		duty = 19;
+		duty = 45;
 		L6ON();
 		break;
 	}
 		
-	if(count900s >= 900 && keyCount == 0)
-		gotoSleep();
 }
 
 
@@ -189,15 +207,19 @@ char keyRead(u8t keyStatus)
 void gotoSleep()
 {
 	P65 = 0;
+	P50 = 0;
+	LAOFF();
+	LBOFF();
 	count900s = 0;
 	workStep = 0;
-	WDTCR=0x80;//禁止WDT
+	WDTCR=0x00;//禁止WDT
 	ICIECR = 0x80;
 	IMR = 0x02;
 	ISR&=0XF0;
 	DISI();
 	SLEP();
 	ENI();
+    WDTCR=0x80;
 	ICIECR = 0x00;
 	ISR=0;
 	IMR=1;
@@ -241,17 +263,11 @@ void _intcall interrupt(void) @ int
 			intCount = 0;		//10ms
 			IntFlag = 1;
 
-				if(workStep)
-				{
-					if(++count1s>= 100)
-					{
-						count1s = 0;
-						count900s++;
-					}
-				}
+				
 			
 		}
-		//P65口输出500HZ波形	
+		//P65口输出500HZ波形
+		//PORT6 ^= 0x20;	
 	}
    
    //恢复A,R3,R4寄存器值,存在高位空间0x3D,0x3E,0x3F

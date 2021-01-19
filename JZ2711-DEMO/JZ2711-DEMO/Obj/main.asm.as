@@ -1,0 +1,1559 @@
+CHIP SN8P2711B
+EXTERN DATA X
+EXTERN DATA H
+EXTERN DATA L
+EXTERN DATA T
+EXTERN DATA I
+.CODE
+.stabs "lcc4_compiled.",0x3C,0,0,0
+.stabs "C:\mcuproject\xj\JZ2711-DEMO\JZ2711-DEMO/",0x64,0,3,Ltext0
+.stabs ".\Src\main.c",0x64,0,3,Ltext0
+Ltext0:
+.stabs "int:t1=r1;-128;127;",128,0,0,0
+.stabs "char:t2=r2;-128;127;",128,0,0,0
+.stabs "double:t3=r1;4;0;",128,0,0,0
+.stabs "float:t4=r1;4;0;",128,0,0,0
+.stabs "long double:t5=r1;4;0;",128,0,0,0
+.stabs "long int:t6=r1;-32768;32767;",128,0,0,0
+.stabs "long long int:t7=r1;-2147483648;2147483647;",128,0,0,0
+.stabs "signed char:t8=r1;-128;127;",128,0,0,0
+.stabs "unsigned char:t9=r1;0;255;",128,0,0,0
+.stabs "unsigned long:t10=r1;0;65535;",128,0,0,0
+.stabs "unsigned long long:t11=r1;0;4294967295;",128,0,0,0
+.stabs "unsigned int:t12=r1;0;255;",128,0,0,0
+.stabs "void:t13=13",128,0,0,0
+.stabs "bit:t14",128,0,0,0
+.stabs ":t300=L16:0",128,0,0,0
+.stabs ":t301=L16:1",128,0,0,0
+.stabs ":t302=L16:2",128,0,0,0
+.stabs ":t303=L16:3",128,0,0,0
+.stabs ":t304=L16:4",128,0,0,0
+.stabs ":t305=L16:5",128,0,0,0
+.stabs ":t306=L16:6",128,0,0,0
+.stabs ":t307=L16:7",128,0,0,0
+.stabs ":t308=ar1;0;9;1",128,0,0,0
+PUBLIC _TEMP_Table
+PUBLIC _inrserv_isr
+PUBLIC _main
+PUBLIC _RESULT_BUBBLING
+PUBLIC _AD_NTC_IN
+PUBLIC _System_init
+PUBLIC _TC0_init
+PUBLIC _SEND_DAT_TO_PC
+PUBLIC _SEND_DAT_TO_PC_arg@0
+PUBLIC _DELAY_US
+PUBLIC _DELAY_US_arg@0
+PUBLIC _LED_CNT
+_LED_CNT@segment SEGMENT DATA INBANK
+	_LED_CNT DS 1
+PUBLIC _FLAG_LED_LEVEL
+_FLAG_LED_LEVEL@segment SEGMENT DATA INBANK
+	_FLAG_LED_LEVEL DS 1
+PUBLIC _AD_ONCE_VAL
+_AD_ONCE_VAL@segment SEGMENT DATA INBANK
+	_AD_ONCE_VAL DS 2
+PUBLIC _ABL_SUM
+_ABL_SUM@segment SEGMENT DATA INBANK
+	_ABL_SUM DS 1
+PUBLIC _AD_8T_SUM_OLD
+_AD_8T_SUM_OLD@segment SEGMENT DATA INBANK
+	_AD_8T_SUM_OLD DS 2
+PUBLIC _AD_8T_SUM
+_AD_8T_SUM@segment SEGMENT DATA INBANK
+	_AD_8T_SUM DS 2
+PUBLIC _AD_ARRAY_ONCE
+_AD_ARRAY_ONCE@segment SEGMENT DATA INBANK
+	_AD_ARRAY_ONCE DS 10
+PUBLIC _AD_8_TIMES
+_AD_8_TIMES@segment SEGMENT DATA INBANK
+	_AD_8_TIMES DS 1
+PUBLIC _AD_RCE_TURNS
+_AD_RCE_TURNS@segment SEGMENT DATA INBANK
+	_AD_RCE_TURNS DS 1
+PUBLIC _AD_JUDGE_BASE
+_AD_JUDGE_BASE@segment SEGMENT DATA INBANK
+	_AD_JUDGE_BASE DS 1
+PUBLIC _F_AD_SUCCESS
+PUBLIC _F_DIG1_DIG2
+PUBLIC _F_LED
+PUBLIC _AD_LONG_BUF
+_AD_LONG_BUF@segment SEGMENT DATA INBANK
+	_AD_LONG_BUF DS 2
+_main_c_GlobalBitDataPool0 BITSEGMENT DATA BANK 0 INBANK
+	_F_AD_SUCCESS DSBIT 1
+	_F_DIG1_DIG2 DSBIT 1
+	_F_LED DSBIT 1
+_TEMP_Table@segment SEGMENT CODE INBANK
+_TEMP_Table:
+	DB 0xBE,0x3, 0x83,0x4, 0x58,0x5, 0x37,0x6, 0x1C,0x7, 0x0,0x8, 0xDD,0x8, 0xAF,0x9, 0x72,0xA, 0x25,0xB, 0xC6,0xB, 0x55,0xC, 0xD3,0xC, 0x41,0xD, 0xA1,0xD, 0xF4,0xD
+_InterruptBackupData SEGMENT DATA BANK 0 INBANK COMMON
+	_bufT ds 1
+	_bufI ds 1
+	_bufY ds 1
+	_bufZ ds 1
+	_bufR ds 1
+_Function_inrserv_isr_data SEGMENT DATA INBANK
+	_inrserv_isr_data@0	DS	1
+_Function_main_data SEGMENT DATA INBANK
+_Function_RESULT_BUBBLING_data SEGMENT DATA INBANK
+	_RESULT_BUBBLING_data@0	DS	1
+	_RESULT_BUBBLING_data@1	DS	1
+	_RESULT_BUBBLING_data@2	DS	1
+	_RESULT_BUBBLING_data@3	DS	1
+	_RESULT_BUBBLING_data@4	DS	1
+_Function_AD_NTC_IN_data SEGMENT DATA INBANK
+	_AD_NTC_IN_data@0	DS	1
+	_AD_NTC_IN_data@1	DS	1
+_Function_System_init_data SEGMENT DATA INBANK
+_Function_TC0_init_data SEGMENT DATA INBANK
+_Function_SEND_DAT_TO_PC_data SEGMENT DATA INBANK
+	_SEND_DAT_TO_PC_arg@0 DS 2
+	_SEND_DAT_TO_PC_data@0	DS	1
+	_SEND_DAT_TO_PC_data@1	DS	1
+_Function_DELAY_US_data SEGMENT DATA INBANK
+	_DELAY_US_arg@0 DS 1
+_VirtualReg SEGMENT DATA BANK 0 INBANK COMMON
+	W0 DS 1
+	W1 DS 1
+	W2 DS 1
+	W3 DS 1
+	W4 DS 1
+	W5 DS 1
+.stabs "R:G12",32,0,0,0x82
+.stabs "Z:G12",32,0,0,0x83
+.stabs "Y:G12",32,0,0,0x84
+.stabs "PFLAG:G12",32,0,0,0x86
+.stabs "FZ:G300",32,0,0,0x86
+.stabs "FDC:G301",32,0,0,0x86
+.stabs "FC:G302",32,0,0,0x86
+.stabs "FLVD24:G304",32,0,0,0x86
+.stabs "FLVD36:G305",32,0,0,0x86
+.stabs "FNPD:G306",32,0,0,0x86
+.stabs "FNT0:G307",32,0,0,0x86
+.stabs "P4CON:G12",32,0,0,0xAE
+.stabs "VREFH:G12",32,0,0,0xAF
+.stabs "FVHS0:G300",32,0,0,0xAF
+.stabs "FVHS1:G301",32,0,0,0xAF
+.stabs "FEVHENB:G307",32,0,0,0xAF
+.stabs "ADM:G12",32,0,0,0xB1
+.stabs "FADENB:G307",32,0,0,0xB1
+.stabs "FADS:G306",32,0,0,0xB1
+.stabs "FEOC:G305",32,0,0,0xB1
+.stabs "FGCHS:G304",32,0,0,0xB1
+.stabs "FCHS2:G302",32,0,0,0xB1
+.stabs "FCHS1:G301",32,0,0,0xB1
+.stabs "FCHS0:G300",32,0,0,0xB1
+.stabs "ADB:G12",32,0,0,0xB2
+.stabs "ADR:G12",32,0,0,0xB3
+.stabs "FADCKS1:G306",32,0,0,0xB3
+.stabs "FADCKS0:G304",32,0,0,0xB3
+.stabs "FADB3:G303",32,0,0,0xB3
+.stabs "FADB2:G302",32,0,0,0xB3
+.stabs "FADB1:G301",32,0,0,0xB3
+.stabs "FADB0:G300",32,0,0,0xB3
+.stabs "ADT:G12",32,0,0,0xB4
+.stabs "FADTS1:G307",32,0,0,0xB4
+.stabs "FADTS0:G306",32,0,0,0xB4
+.stabs "FADT4:G304",32,0,0,0xB4
+.stabs "FADT3:G303",32,0,0,0xB4
+.stabs "FADT2:G302",32,0,0,0xB4
+.stabs "FADT1:G301",32,0,0,0xB4
+.stabs "FADT0:G300",32,0,0,0xB4
+.stabs "P0M:G12",32,0,0,0xB8
+.stabs "FP00M:G300",32,0,0,0xB8
+.stabs "FP01M:G301",32,0,0,0xB8
+.stabs "FP02M:G302",32,0,0,0xB8
+.stabs "FP03M:G303",32,0,0,0xB8
+.stabs "PEDGE:G12",32,0,0,0xBF
+.stabs "FP00G1:G304",32,0,0,0xBF
+.stabs "FP00G0:G303",32,0,0,0xBF
+.stabs "P4M:G12",32,0,0,0xC4
+.stabs "FP40M:G300",32,0,0,0xC4
+.stabs "FP41M:G301",32,0,0,0xC4
+.stabs "FP42M:G302",32,0,0,0xC4
+.stabs "FP43M:G303",32,0,0,0xC4
+.stabs "FP44M:G304",32,0,0,0xC4
+.stabs "P5M:G12",32,0,0,0xC5
+.stabs "FP53M:G303",32,0,0,0xC5
+.stabs "FP54M:G304",32,0,0,0xC5
+.stabs "INTRQ:G12",32,0,0,0xC8
+.stabs "FP00IRQ:G300",32,0,0,0xC8
+.stabs "FP01IRQ:G301",32,0,0,0xC8
+.stabs "FTC0IRQ:G305",32,0,0,0xC8
+.stabs "FTC1IRQ:G306",32,0,0,0xC8
+.stabs "FADCIRQ:G307",32,0,0,0xC8
+.stabs "INTEN:G12",32,0,0,0xC9
+.stabs "FP00IEN:G300",32,0,0,0xC9
+.stabs "FP01IEN:G301",32,0,0,0xC9
+.stabs "FTC0IEN:G305",32,0,0,0xC9
+.stabs "FTC1IEN:G306",32,0,0,0xC9
+.stabs "FADCIEN:G307",32,0,0,0xC9
+.stabs "OSCM:G12",32,0,0,0xCA
+.stabs "FCPUM1:G304",32,0,0,0xCA
+.stabs "FCPUM0:G303",32,0,0,0xCA
+.stabs "FCLKMD:G302",32,0,0,0xCA
+.stabs "FSTPHX:G301",32,0,0,0xCA
+.stabs "WDTR:G12",32,0,0,0xCC
+.stabs "PCL:G12",32,0,0,0xCE
+.stabs "PCH:G12",32,0,0,0xCF
+.stabs "P0:G12",32,0,0,0xD0
+.stabs "FP00:G300",32,0,0,0xD0
+.stabs "FP01:G301",32,0,0,0xD0
+.stabs "FP02:G302",32,0,0,0xD0
+.stabs "FP03:G303",32,0,0,0xD0
+.stabs "FP04:G304",32,0,0,0xD0
+.stabs "P4:G12",32,0,0,0xD4
+.stabs "FP40:G300",32,0,0,0xD4
+.stabs "FP41:G301",32,0,0,0xD4
+.stabs "FP42:G302",32,0,0,0xD4
+.stabs "FP43:G303",32,0,0,0xD4
+.stabs "FP44:G304",32,0,0,0xD4
+.stabs "P5:G12",32,0,0,0xD5
+.stabs "FP53:G303",32,0,0,0xD5
+.stabs "FP54:G304",32,0,0,0xD5
+.stabs "T0M:G12",32,0,0,0xD8
+.stabs "FTC0GN:G301",32,0,0,0xD8
+.stabs "FTC0X8:G302",32,0,0,0xD8
+.stabs "FTC1X8:G303",32,0,0,0xD8
+.stabs "TC0M:G12",32,0,0,0xDA
+.stabs "FTC0ENB:G307",32,0,0,0xDA
+.stabs "FTC0RATE2:G306",32,0,0,0xDA
+.stabs "FTC0RATE1:G305",32,0,0,0xDA
+.stabs "FTC0RATE0:G304",32,0,0,0xDA
+.stabs "FTC0CKS:G303",32,0,0,0xDA
+.stabs "FALOAD0:G302",32,0,0,0xDA
+.stabs "FTC0OUT:G301",32,0,0,0xDA
+.stabs "FPWM0OUT:G300",32,0,0,0xDA
+.stabs "TC0C:G12",32,0,0,0xDB
+.stabs "TC0R:G12",32,0,0,0xCD
+.stabs "TC1M:G12",32,0,0,0xDC
+.stabs "FTC1ENB:G307",32,0,0,0xDC
+.stabs "FTC1RATE2:G306",32,0,0,0xDC
+.stabs "FTC1RATE1:G305",32,0,0,0xDC
+.stabs "FTC1RATE0:G304",32,0,0,0xDC
+.stabs "FTC1CKS:G303",32,0,0,0xDC
+.stabs "FALOAD1:G302",32,0,0,0xDC
+.stabs "FTC1OUT:G301",32,0,0,0xDC
+.stabs "FPWM1OUT:G300",32,0,0,0xDC
+.stabs "TC1C:G12",32,0,0,0xDD
+.stabs "TC1R:G12",32,0,0,0xDE
+.stabs "STKP:G12",32,0,0,0xDF
+.stabs "FGIE:G307",32,0,0,0xDF
+.stabs "FSTKPB2:G302",32,0,0,0xDF
+.stabs "FSTKPB1:G301",32,0,0,0xDF
+.stabs "FSTKPB0:G300",32,0,0,0xDF
+.stabs "P0UR:G12",32,0,0,0xE0
+.stabs "P4UR:G12",32,0,0,0xE4
+.stabs "P5UR:G12",32,0,0,0xE5
+.stabs "_YZ:G12",32,0,0,0xE7
+.stabs "STK3L:G12",32,0,0,0xF8
+.stabs "STK3H:G12",32,0,0,0xF9
+.stabs "STK2L:G12",32,0,0,0xFA
+.stabs "STK2H:G12",32,0,0,0xFB
+.stabs "STK1L:G12",32,0,0,0xFC
+.stabs "STK1H:G12",32,0,0,0xFD
+.stabs "STK0L:G12",32,0,0,0xFE
+.stabs "STK0H:G12",32,0,0,0xFF
+.stabs ":t15=ar1;0;15;10",128,0,0,0
+.stabs "TEMP_Table:G15",32,0,1,_TEMP_Table
+.stabs "inrserv:F13",36,0,0,_inrserv_isr
+_interrupt@_inrserv_isr SEGMENT CODE AT 0x8 INBANK
+_vector_for_inrserv_isr:
+	JMP _inrserv_isr
+_Function_inrserv_isr_code SEGMENT CODE INBANK USING _Function_inrserv_isr_data
+_inrserv_isr:
+	PUSH
+	B0MOV A, 132
+	B0MOV _bufY, A
+	B0MOV A, 131
+	B0MOV _bufZ, A
+	B0MOV A, 130
+	B0MOV _bufR, A
+	B0MOV A, T
+	B0MOV _bufT, A
+	B0MOV A, I
+	B0MOV _bufI, A
+.stabs "temp:9",128,0,0,_inrserv_isr_data@0
+.stabn 0xC0,0,0,L36-_inrserv_isr
+L36:
+.stabn 0x44,0,45,L37-_inrserv_isr
+L37:
+ .stabn 0x44,0,47,L38-_inrserv_isr
+L38:
+	B0BTS1 0xC8.5
+	JMP L2
+.stabn 0xC0,0,1,L39-_inrserv_isr
+L39:
+.stabn 0x44,0,48,L40-_inrserv_isr
+L40:
+ .stabn 0x44,0,49,L41-_inrserv_isr
+L41:
+	B0BCLR 0xC8.5
+.stabn 0x44,0,51,L42-_inrserv_isr
+L42:
+	INCMS _AD_JUDGE_BASE
+	NOP
+.stabn 0x44,0,52,L43-_inrserv_isr
+L43:
+	MOV A, _FLAG_LED_LEVEL
+	MOV _inrserv_isr_data@0, A
+.stabn 0x44,0,54,L44-_inrserv_isr
+L44:
+	MOV A, #0x00
+	BTS0 _F_DIG1_DIG2
+	MOV A, #0x01
+	BSET _F_DIG1_DIG2
+	CMPRS A, #0x00
+	BCLR _F_DIG1_DIG2
+.stabn 0x44,0,56,L45-_inrserv_isr
+L45:
+	CLR (0xD0 &  0xFF)
+.stabn 0x44,0,57,L46-_inrserv_isr
+L46:
+	MOV A, #0x06
+	B0MOV 0xD4, A
+.stabn 0x44,0,58,L47-_inrserv_isr
+L47:
+	CLR (0xD5 &  0xFF)
+.stabn 0x44,0,61,L48-_inrserv_isr
+L48:
+	BTS1 _F_DIG1_DIG2
+	JMP L4
+.stabn 0xC0,0,2,L49-_inrserv_isr
+L49:
+.stabn 0x44,0,62,L50-_inrserv_isr
+L50:
+ .stabn 0x44,0,64,L51-_inrserv_isr
+L51:
+	B0BCLR 0xD4.2
+.stabn 0x44,0,65,L52-_inrserv_isr
+L52:
+	B0BSET 0xD4.1
+.stabn 0x44,0,68,L53-_inrserv_isr
+L53:
+	B0BSET 0xD0.3
+.stabn 0x44,0,69,L54-_inrserv_isr
+L54:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x01
+	B0BTS1	134.2
+	JMP	L6
+.stabn 0x44,0,69,L55-_inrserv_isr
+L55:
+	B0BSET 0xD0.2
+L6:
+.stabn 0x44,0,70,L56-_inrserv_isr
+L56:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x02
+	B0BTS1	134.2
+	JMP	L8
+.stabn 0x44,0,70,L57-_inrserv_isr
+L57:
+	B0BSET 0xD5.3
+L8:
+.stabn 0x44,0,71,L58-_inrserv_isr
+L58:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x03
+	B0BTS1	134.2
+	JMP	L10
+.stabn 0x44,0,71,L59-_inrserv_isr
+L59:
+	B0BSET 0xD5.4
+L10:
+.stabn 0x44,0,72,L60-_inrserv_isr
+L60:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x04
+	B0BTS1	134.2
+	JMP	L12
+.stabn 0x44,0,72,L61-_inrserv_isr
+L61:
+	B0BSET 0xD0.1
+L12:
+.stabn 0x44,0,73,L62-_inrserv_isr
+L62:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x05
+	B0BTS1	134.2
+	JMP	L14
+.stabn 0x44,0,73,L63-_inrserv_isr
+L63:
+	B0BSET 0xD0.0
+L14:
+.stabn 0x44,0,74,L64-_inrserv_isr
+L64:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x06
+	B0BTS1	134.2
+	JMP	L16
+.stabn 0x44,0,74,L65-_inrserv_isr
+L65:
+	B0BSET 0xD4.0
+L16:
+.stabn 0x44,0,75,L66-_inrserv_isr
+L66:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x07
+	B0BTS1	134.2
+	JMP	L5
+.stabn 0x44,0,75,L67-_inrserv_isr
+L67:
+	B0BSET 0xD4.4
+.stabn 0xE0,0,2,L68-_inrserv_isr
+L68:
+.stabn 0x44,0,76,L69-_inrserv_isr
+L69:
+	JMP L5
+L4:
+.stabn 0xC0,0,2,L70-_inrserv_isr
+L70:
+.stabn 0x44,0,79,L71-_inrserv_isr
+L71:
+ .stabn 0x44,0,81,L72-_inrserv_isr
+L72:
+	B0BSET 0xD4.2
+.stabn 0x44,0,82,L73-_inrserv_isr
+L73:
+	B0BCLR 0xD4.1
+.stabn 0x44,0,84,L74-_inrserv_isr
+L74:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x08
+	B0BTS1	134.2
+	JMP	L20
+.stabn 0x44,0,84,L75-_inrserv_isr
+L75:
+	B0BSET 0xD0.3
+L20:
+.stabn 0x44,0,85,L76-_inrserv_isr
+L76:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x09
+	B0BTS1	134.2
+	JMP	L22
+.stabn 0x44,0,85,L77-_inrserv_isr
+L77:
+	B0BSET 0xD0.2
+L22:
+.stabn 0x44,0,86,L78-_inrserv_isr
+L78:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x0a
+	B0BTS1	134.2
+	JMP	L24
+.stabn 0x44,0,86,L79-_inrserv_isr
+L79:
+	B0BSET 0xD5.3
+L24:
+.stabn 0x44,0,87,L80-_inrserv_isr
+L80:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x0b
+	B0BTS1	134.2
+	JMP	L26
+.stabn 0x44,0,87,L81-_inrserv_isr
+L81:
+	B0BSET 0xD5.4
+L26:
+.stabn 0x44,0,88,L82-_inrserv_isr
+L82:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x0c
+	B0BTS1	134.2
+	JMP	L28
+.stabn 0x44,0,88,L83-_inrserv_isr
+L83:
+	B0BSET 0xD0.1
+L28:
+.stabn 0x44,0,89,L84-_inrserv_isr
+L84:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x0d
+	B0BTS1	134.2
+	JMP	L30
+.stabn 0x44,0,89,L85-_inrserv_isr
+L85:
+	B0BSET 0xD0.0
+L30:
+.stabn 0x44,0,90,L86-_inrserv_isr
+L86:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x0e
+	B0BTS1	134.2
+	JMP	L32
+.stabn 0x44,0,90,L87-_inrserv_isr
+L87:
+	B0BSET 0xD4.0
+L32:
+.stabn 0x44,0,91,L88-_inrserv_isr
+L88:
+	MOV A, _inrserv_isr_data@0
+	CMPRS A, #0x0f
+	B0BTS1	134.2
+	JMP	L34
+.stabn 0x44,0,91,L89-_inrserv_isr
+L89:
+	B0BSET 0xD4.4
+L34:
+.stabn 0xE0,0,2,L90-_inrserv_isr
+L90:
+.stabn 0x44,0,92,L91-_inrserv_isr
+L91:
+L5:
+.stabn 0xE0,0,1,L92-_inrserv_isr
+L92:
+.stabn 0x44,0,94,L93-_inrserv_isr
+L93:
+L2:
+.stabn 0xE0,0,0,L94-_inrserv_isr
+L94:
+.stabn 0x44,0,95,L95-_inrserv_isr
+L95:
+L1:
+	B0MOV A, _bufT
+	B0MOV T, A
+	B0MOV A, _bufI
+	B0MOV I, A
+	B0MOV A, _bufY
+	B0MOV 132, A
+	B0MOV A, _bufZ
+	B0MOV 131, A
+	B0MOV A, _bufR
+	B0MOV 130, A
+	POP
+	RETI
+.stabs "main:F13",36,0,0,_main
+_Function_main_code SEGMENT CODE INBANK USING _Function_main_data
+_main:
+.stabn 0xC0,0,0,L120-_main
+L120:
+.stabn 0x44,0,100,L121-_main
+L121:
+ .stabn 0x44,0,101,L122-_main
+L122:
+	MOV A, #0x07
+	B0MOV 0xDF, A
+.stabn 0x44,0,102,L123-_main
+L123:
+	CALL _System_init
+.stabn 0x44,0,103,L124-_main
+L124:
+	CALL _TC0_init
+.stabn 0x44,0,104,L125-_main
+L125:
+	MOV A, #0xc8
+	MOV _DELAY_US_arg@0, A
+	CALL _DELAY_US
+L97:
+.stabn 0xC0,0,1,L126-_main
+L126:
+.stabn 0x44,0,106,L127-_main
+L127:
+ .stabn 0x44,0,107,L128-_main
+L128:
+	MOV A, #0x5a
+	B0MOV 0xCC, A
+.stabn 0x44,0,110,L129-_main
+L129:
+	MOV A, _AD_JUDGE_BASE
+	CMPRS A, #0x03
+	JMP L100
+.stabn 0xC0,0,2,L130-_main
+L130:
+.stabn 0x44,0,111,L131-_main
+L131:
+ .stabn 0x44,0,112,L132-_main
+L132:
+	CLR _AD_JUDGE_BASE
+.stabn 0x44,0,114,L133-_main
+L133:
+	INCMS _AD_RCE_TURNS
+	NOP
+.stabn 0x44,0,115,L134-_main
+L134:
+	CALL _AD_NTC_IN
+.stabn 0x44,0,116,L135-_main
+L135:
+	MOV A, _AD_RCE_TURNS
+	SUB A, #0x01
+	B0MOV W0, A
+	B0MOV 132, #(_AD_ARRAY_ONCE)$M
+	B0MOV 131, #(_AD_ARRAY_ONCE)$L
+	B0ADD 131, A
+	B0ADD 131, A
+	MOV A, _AD_LONG_BUF+0+1
+	B0MOV 130, A
+	MOV A, _AD_LONG_BUF+0
+	CALL __SetRegTo2ByteRam
+.stabn 0xE0,0,2,L136-_main
+L136:
+.stabn 0x44,0,117,L137-_main
+L137:
+L100:
+.stabn 0x44,0,119,L138-_main
+L138:
+	MOV A, _AD_RCE_TURNS
+	CMPRS A, #0x05
+	JMP L103
+.stabn 0xC0,0,2,L139-_main
+L139:
+.stabn 0x44,0,120,L140-_main
+L140:
+ .stabn 0x44,0,121,L141-_main
+L141:
+	CLR _AD_RCE_TURNS
+.stabn 0x44,0,123,L142-_main
+L142:
+	BSET _F_AD_SUCCESS
+.stabn 0x44,0,124,L143-_main
+L143:
+	CALL _RESULT_BUBBLING
+.stabn 0xE0,0,2,L144-_main
+L144:
+.stabn 0x44,0,125,L145-_main
+L145:
+L103:
+.stabn 0x44,0,127,L146-_main
+L146:
+	BTS1 _F_AD_SUCCESS
+	JMP L105
+.stabn 0xC0,0,2,L147-_main
+L147:
+.stabn 0x44,0,128,L148-_main
+L148:
+ .stabn 0x44,0,129,L149-_main
+L149:
+	BCLR _F_AD_SUCCESS
+.stabn 0x44,0,131,L150-_main
+L150:
+	INCMS _AD_8_TIMES
+	NOP
+.stabn 0x44,0,132,L151-_main
+L151:
+	MOV A, _AD_ARRAY_ONCE+4
+	ADD _AD_8T_SUM, A
+	MOV A, _AD_ARRAY_ONCE+4+1
+	ADC _AD_8T_SUM+1, A
+.stabn 0xE0,0,2,L152-_main
+L152:
+.stabn 0x44,0,133,L153-_main
+L153:
+L105:
+.stabn 0x44,0,135,L154-_main
+L154:
+	MOV A, _AD_8_TIMES
+	CMPRS A, #0x08
+	JMP L108
+.stabn 0xC0,0,2,L155-_main
+L155:
+.stabn 0x44,0,136,L156-_main
+L156:
+ .stabn 0x44,0,137,L157-_main
+L157:
+	CLR _AD_8_TIMES
+.stabn 0x44,0,139,L158-_main
+L158:
+	B0MOV 132, #(_AD_8T_SUM)$M
+	B0MOV 131, #(_AD_8T_SUM)$L
+	B0MOV 130, #(_AD_8T_SUM_OLD)$M
+	MOV A, #(_AD_8T_SUM_OLD)$L
+	CALL __Get2ByteRamRam
+	CALL __CmpULong
+	B0BTS0	134.0
+	JMP	L110
+	B0BTS1	134.2
+	JMP	L110
+.stabn 0xC0,0,3,L159-_main
+L159:
+.stabn 0x44,0,140,L160-_main
+L160:
+ .stabn 0x44,0,141,L161-_main
+L161:
+	MOV A, _AD_8T_SUM
+	SUB A, _AD_8T_SUM_OLD
+	MOV _ABL_SUM, A
+	MOV A, _AD_8T_SUM+1
+	SBC A, _AD_8T_SUM_OLD+1
+	B0MOV W1, A
+.stabn 0xE0,0,3,L162-_main
+L162:
+.stabn 0x44,0,142,L163-_main
+L163:
+	JMP L111
+L110:
+.stabn 0xC0,0,3,L164-_main
+L164:
+.stabn 0x44,0,144,L165-_main
+L165:
+ .stabn 0x44,0,145,L166-_main
+L166:
+	MOV A, _AD_8T_SUM
+	SUB A, _AD_8T_SUM_OLD
+	MOV _ABL_SUM, A
+	MOV A, _AD_8T_SUM+1
+	SBC A, _AD_8T_SUM_OLD+1
+	B0MOV W1, A
+.stabn 0xE0,0,3,L167-_main
+L167:
+.stabn 0x44,0,146,L168-_main
+L168:
+L111:
+.stabn 0x44,0,148,L169-_main
+L169:
+	MOV A, _ABL_SUM
+	CMPRS A, #0x32
+	B0BTS1	134.2
+	JMP	L112
+.stabn 0xC0,0,3,L170-_main
+L170:
+.stabn 0x44,0,149,L171-_main
+L171:
+ .stabn 0x44,0,150,L172-_main
+L172:
+	MOV A, _AD_8T_SUM
+	MOV _AD_8T_SUM_OLD, A
+	MOV A, _AD_8T_SUM+1
+	MOV _AD_8T_SUM_OLD+1, A
+.stabn 0xE0,0,3,L173-_main
+L173:
+.stabn 0x44,0,151,L174-_main
+L174:
+L112:
+.stabn 0x44,0,152,L175-_main
+L175:
+	MOV A, #(_AD_ONCE_VAL)$M
+	B0MOV H, A
+	MOV A, #(_AD_ONCE_VAL)$L
+	B0MOV L, A
+	B0MOV 132, #(_AD_8T_SUM_OLD)$M
+	B0MOV 131, #(_AD_8T_SUM_OLD)$L
+	MOV A, #0x03
+	CALL __Get2ByteRamToLArg
+	CALL __SRULong2Ram
+.stabn 0x44,0,154,L176-_main
+L176:
+	CLR _AD_8T_SUM
+	CLR _AD_8T_SUM+1
+.stabn 0xC0,0,3,L177-_main
+L177:
+.stabn 0x44,0,156,L178-_main
+L178:
+	CLR _LED_CNT
+	JMP L117
+L114:
+.stabn 0xC0,0,4,L179-_main
+L179:
+.stabn 0x44,0,157,L180-_main
+L180:
+ .stabn 0x44,0,158,L181-_main
+L181:
+	MOV A, _LED_CNT
+	B0MOV 132, #(_TEMP_Table)$M
+	B0MOV 131, #(_TEMP_Table)$L
+	CALL __Get2ByteRomUToReg
+	MOV __SrcRArg0, A
+	MOV A, _AD_ONCE_VAL
+	MOV __SrcLArg0, A
+	MOV A, _AD_ONCE_VAL+1
+	MOV __SrcLArg1, A
+	B0MOV A, 130
+	MOV __SrcRArg1, A
+	CALL __CmpULong
+	B0BTS0	134.0
+	JMP	L118
+	B0BTS1	134.2
+	JMP	L118
+.stabn 0x44,0,158,L182-_main
+L182:
+	MOV A, #0x01
+	ADD A, _LED_CNT
+	MOV _FLAG_LED_LEVEL, A
+L118:
+.stabn 0xE0,0,4,L183-_main
+L183:
+.stabn 0x44,0,159,L184-_main
+L184:
+L115:
+.stabn 0x44,0,156,L185-_main
+L185:
+	INCMS _LED_CNT
+	NOP
+L117:
+.stabn 0x44,0,156,L186-_main
+L186:
+	MOV A, _LED_CNT
+	SUB A, #0x10
+	B0BTS1	134.2
+	JMP	L114
+.stabn 0xE0,0,3,L187-_main
+L187:
+.stabn 0x44,0,161,L188-_main
+L188:
+ .stabn 0xE0,0,2,L189-_main
+L189:
+.stabn 0x44,0,161,L190-_main
+L190:
+L108:
+.stabn 0xE0,0,1,L191-_main
+L191:
+.stabn 0x44,0,162,L192-_main
+L192:
+L98:
+.stabn 0x44,0,105,L193-_main
+L193:
+	JMP L97
+.stabn 0xE0,0,0,L194-_main
+L194:
+.stabn 0x44,0,163,L195-_main
+L195:
+L96:
+_main_end:
+	CALL __ClearWatchDogTimer
+	JMP _main_end
+CALLTREE _main invoke _System_init,_TC0_init,_DELAY_US,_AD_NTC_IN,__SetRegTo2ByteRam,_RESULT_BUBBLING,__Get2ByteRamRam,__CmpULong,__Get2ByteRamToLArg,__SRULong2Ram,__Get2ByteRomUToReg
+.stabs "RESULT_BUBBLING:F13",36,0,0,_RESULT_BUBBLING
+_Function_RESULT_BUBBLING_code SEGMENT CODE INBANK USING _Function_RESULT_BUBBLING_data
+_RESULT_BUBBLING:
+.stabs "i:9",128,0,0,_RESULT_BUBBLING_data@0
+.stabs "j:9",128,0,0,_RESULT_BUBBLING_data@1
+.stabs "m:9",128,0,0,_RESULT_BUBBLING_data@2
+.stabs "AD_ARRAY_ONCE_BUF:10",128,0,0,_RESULT_BUBBLING_data@3
+.stabn 0xC0,0,0,L207-_RESULT_BUBBLING
+L207:
+.stabn 0x44,0,168,L208-_RESULT_BUBBLING
+L208:
+ .stabn 0x44,0,171,L209-_RESULT_BUBBLING
+L209:
+	MOV A, _AD_RCE_TURNS
+	MOV _RESULT_BUBBLING_data@2, A
+.stabn 0xC0,0,1,L210-_RESULT_BUBBLING
+L210:
+.stabn 0x44,0,172,L211-_RESULT_BUBBLING
+L211:
+	MOV A, #0x01
+	MOV _RESULT_BUBBLING_data@0, A
+	JMP L200
+L197:
+.stabn 0xC0,0,2,L212-_RESULT_BUBBLING
+L212:
+.stabn 0x44,0,173,L213-_RESULT_BUBBLING
+L213:
+ .stabn 0x44,0,174,L214-_RESULT_BUBBLING
+L214:
+	DECMS _RESULT_BUBBLING_data@2
+	NOP
+.stabn 0xC0,0,3,L215-_RESULT_BUBBLING
+L215:
+.stabn 0x44,0,175,L216-_RESULT_BUBBLING
+L216:
+	CLR _RESULT_BUBBLING_data@1
+	JMP L204
+L201:
+.stabn 0xC0,0,4,L217-_RESULT_BUBBLING
+L217:
+.stabn 0x44,0,176,L218-_RESULT_BUBBLING
+L218:
+ .stabn 0x44,0,177,L219-_RESULT_BUBBLING
+L219:
+	MOV A, #(_AD_ARRAY_ONCE)$L
+	B0MOV W0, A
+	MOV A, #(_AD_ARRAY_ONCE)$M
+	B0MOV W1, A
+	MOV A, _RESULT_BUBBLING_data@1
+	B0MOV W2, A
+	CLR W3
+	B0BCLR 134.2
+	RLCM W2
+	RLCM W3
+	B0MOV A, W2
+	ADD A, #(_AD_ARRAY_ONCE)$L
+	B0MOV 131, A
+	MOV A, #(_AD_ARRAY_ONCE)$M
+	ADC A, W3
+	B0MOV 132, A
+	MOV A, #0x01
+	ADD A, _RESULT_BUBBLING_data@1
+	B0MOV W4, A
+	CLR W5
+	B0BCLR 134.2
+	RLCM W4
+	RLCM W5
+	B0MOV A, W4
+	B0ADD W0, A
+	B0MOV A, W5
+	ADC W1, A
+	B0MOV A, W1
+	B0MOV 130, A
+	B0MOV A, W0
+	CALL __Get2ByteRamRam
+	CALL __CmpULong
+	B0BTS0	134.0
+	JMP	L205
+	B0BTS1	134.2
+	JMP	L205
+.stabn 0xC0,0,5,L220-_RESULT_BUBBLING
+L220:
+.stabn 0x44,0,178,L221-_RESULT_BUBBLING
+L221:
+ .stabn 0x44,0,179,L222-_RESULT_BUBBLING
+L222:
+	MOV A, _RESULT_BUBBLING_data@1
+	B0MOV 132, #(_AD_ARRAY_ONCE)$M
+	B0MOV 131, #(_AD_ARRAY_ONCE)$L
+	CALL __Get2ByteRamToReg
+	MOV _RESULT_BUBBLING_data@3, A
+	B0MOV A, 130
+	MOV _RESULT_BUBBLING_data@3+1, A
+.stabn 0x44,0,180,L223-_RESULT_BUBBLING
+L223:
+	MOV A, #(_AD_ARRAY_ONCE)$L
+	B0MOV W0, A
+	MOV A, #(_AD_ARRAY_ONCE)$M
+	B0MOV W1, A
+	MOV A, _RESULT_BUBBLING_data@1
+	B0MOV W2, A
+	CLR W3
+	B0BCLR 134.2
+	RLCM W2
+	RLCM W3
+	B0MOV A, W2
+	ADD A, #(_AD_ARRAY_ONCE)$L
+	B0MOV W2, A
+	MOV A, #(_AD_ARRAY_ONCE)$M
+	ADC A, W3
+	B0MOV W3, A
+	MOV A, #0x01
+	ADD A, _RESULT_BUBBLING_data@1
+	B0MOV W4, A
+	CLR W5
+	B0BCLR 134.2
+	RLCM W4
+	RLCM W5
+	B0MOV A, W4
+	B0ADD W0, A
+	B0MOV A, W5
+	ADC W1, A
+	B0MOV A, W1
+	B0MOV 132, A
+	B0MOV A, W0
+	B0MOV 131, A
+	CALL __Mov2ByteRamToReg
+	B0MOV L, A
+	B0MOV A, 130
+	B0MOV H, A
+	B0MOV A, W3
+	B0MOV 132, A
+	B0MOV A, W2
+	B0MOV 131, A
+	B0MOV A, L
+	B0MOV 231, A
+	INCMS 131
+	B0MOV A, H
+	B0MOV 231, A
+.stabn 0x44,0,181,L224-_RESULT_BUBBLING
+L224:
+	MOV A, #0x01
+	ADD A, _RESULT_BUBBLING_data@1
+	B0MOV W0, A
+	B0MOV 132, #(_AD_ARRAY_ONCE)$M
+	B0MOV 131, #(_AD_ARRAY_ONCE)$L
+	B0ADD 131, A
+	B0ADD 131, A
+	MOV A, _RESULT_BUBBLING_data@3+1
+	B0MOV 130, A
+	MOV A, _RESULT_BUBBLING_data@3
+	CALL __SetRegTo2ByteRam
+.stabn 0xE0,0,5,L225-_RESULT_BUBBLING
+L225:
+.stabn 0x44,0,182,L226-_RESULT_BUBBLING
+L226:
+L205:
+.stabn 0xE0,0,4,L227-_RESULT_BUBBLING
+L227:
+.stabn 0x44,0,183,L228-_RESULT_BUBBLING
+L228:
+L202:
+.stabn 0x44,0,175,L229-_RESULT_BUBBLING
+L229:
+	INCMS _RESULT_BUBBLING_data@1
+	NOP
+L204:
+.stabn 0x44,0,175,L230-_RESULT_BUBBLING
+L230:
+	MOV A, _RESULT_BUBBLING_data@1
+	SUB A, _RESULT_BUBBLING_data@2
+	B0BTS1	134.2
+	JMP	L201
+.stabn 0xE0,0,3,L231-_RESULT_BUBBLING
+L231:
+.stabn 0x44,0,184,L232-_RESULT_BUBBLING
+L232:
+ .stabn 0xE0,0,2,L233-_RESULT_BUBBLING
+L233:
+.stabn 0x44,0,184,L234-_RESULT_BUBBLING
+L234:
+L198:
+.stabn 0x44,0,172,L235-_RESULT_BUBBLING
+L235:
+	INCMS _RESULT_BUBBLING_data@0
+	NOP
+L200:
+.stabn 0x44,0,172,L236-_RESULT_BUBBLING
+L236:
+	MOV A, _RESULT_BUBBLING_data@0
+	SUB A, _AD_RCE_TURNS
+	B0BTS1	134.2
+	JMP	L197
+.stabn 0xE0,0,1,L237-_RESULT_BUBBLING
+L237:
+.stabn 0x44,0,185,L238-_RESULT_BUBBLING
+L238:
+ .stabn 0xE0,0,0,L239-_RESULT_BUBBLING
+L239:
+.stabn 0x44,0,185,L240-_RESULT_BUBBLING
+L240:
+L196:
+	RET
+CALLTREE _RESULT_BUBBLING invoke __Get2ByteRamRam,__CmpULong,__Get2ByteRamToReg,__Mov2ByteRamToReg,__SetRegTo2ByteRam
+.stabs "AD_NTC_IN:F13",36,0,0,_AD_NTC_IN
+_Function_AD_NTC_IN_code SEGMENT CODE INBANK USING _Function_AD_NTC_IN_data
+_AD_NTC_IN:
+.stabs "temp_hi:9",128,0,0,_AD_NTC_IN_data@0
+.stabs "temp_mid:9",128,0,0,_AD_NTC_IN_data@1
+.stabn 0xC0,0,0,L254-_AD_NTC_IN
+L254:
+.stabn 0x44,0,190,L255-_AD_NTC_IN
+L255:
+ .stabn 0x44,0,192,L256-_AD_NTC_IN
+L256:
+	CLR _AD_LONG_BUF+0
+	CLR _AD_LONG_BUF+0+1
+.stabn 0x44,0,193,L257-_AD_NTC_IN
+L257:
+	CLR (0xB1 &  0xFF)
+.stabn 0x44,0,194,L258-_AD_NTC_IN
+L258:
+	MOV A, #0x10
+	B0MOV 0xB3, A
+.stabn 0x44,0,195,L259-_AD_NTC_IN
+L259:
+	MOV A, #0x17
+	B0MOV 0xC4, A
+.stabn 0x44,0,196,L260-_AD_NTC_IN
+L260:
+	CLR (0xE4 &  0xFF)
+.stabn 0x44,0,198,L261-_AD_NTC_IN
+L261:
+	MOV A, #0x03
+	B0MOV 0xAF, A
+.stabn 0x44,0,199,L262-_AD_NTC_IN
+L262:
+	MOV A, #0x08
+	B0MOV 0xAE, A
+.stabn 0x44,0,200,L263-_AD_NTC_IN
+L263:
+	B0BSET 0xB1.7
+.stabn 0x44,0,201,L264-_AD_NTC_IN
+L264:
+	MOV A, #0x03
+	OR (0xB1 &  0xFF), A
+.stabn 0x44,0,203,L265-_AD_NTC_IN
+L265:
+	B0BSET 0xB1.4
+.stabn 0x44,0,204,L266-_AD_NTC_IN
+L266:
+	MOV A, #0x32
+	MOV _DELAY_US_arg@0, A
+	CALL _DELAY_US
+.stabn 0x44,0,206,L267-_AD_NTC_IN
+L267:
+	B0BCLR 0xC8.7
+.stabn 0x44,0,207,L268-_AD_NTC_IN
+L268:
+	B0BCLR 0xC9.7
+.stabn 0x44,0,209,L269-_AD_NTC_IN
+L269:
+	B0BCLR 0xDF.7
+.stabn 0x44,0,210,L270-_AD_NTC_IN
+L270:
+	B0BCLR 0xB1.5
+.stabn 0x44,0,211,L271-_AD_NTC_IN
+L271:
+	B0BSET 0xB1.6
+	JMP L244
+L243:
+.stabn 0xC0,0,1,L272-_AD_NTC_IN
+L272:
+.stabn 0x44,0,213,L273-_AD_NTC_IN
+L273:
+ .stabn 0x44,0,214,L274-_AD_NTC_IN
+L274:
+	MOV A, #0x5a
+	B0MOV 0xCC, A
+.stabn 0xE0,0,1,L275-_AD_NTC_IN
+L275:
+.stabn 0x44,0,215,L276-_AD_NTC_IN
+L276:
+L244:
+.stabn 0x44,0,212,L277-_AD_NTC_IN
+L277:
+	B0BTS1 0xB1.5
+	JMP L243
+.stabn 0x44,0,216,L278-_AD_NTC_IN
+L278:
+	B0BSET 0xDF.7
+.stabn 0x44,0,218,L279-_AD_NTC_IN
+L279:
+	B0MOV A, 0xB2
+	MOV _AD_NTC_IN_data@1, A
+.stabn 0x44,0,219,L280-_AD_NTC_IN
+L280:
+	MOV _AD_NTC_IN_data@0, A
+.stabn 0x44,0,220,L281-_AD_NTC_IN
+L281:
+	MOV A, #(_AD_NTC_IN_data@0)$M
+	B0MOV H, A
+	MOV A, #(_AD_NTC_IN_data@0)$L
+	B0MOV L, A
+	B0MOV 132, #(_AD_NTC_IN_data@0)$M
+	B0MOV 131, #(_AD_NTC_IN_data@0)$L
+	MOV A, #0x04
+	CALL __Get1ByteRamToLArg
+	CALL __SRUInt2Ram
+.stabn 0x44,0,222,L282-_AD_NTC_IN
+L282:
+	B0MOV A, 0xB3
+	AND A, #0x0f
+	MOV _AD_LONG_BUF+0+0, A
+.stabn 0x44,0,224,L283-_AD_NTC_IN
+L283:
+	B0BCLR 134.2
+	RLCM _AD_NTC_IN_data@1
+	B0BCLR 134.2
+	RLCM _AD_NTC_IN_data@1
+	B0BCLR 134.2
+	RLCM _AD_NTC_IN_data@1
+	B0BCLR 134.2
+	RLCM _AD_NTC_IN_data@1
+.stabn 0x44,0,225,L284-_AD_NTC_IN
+L284:
+	MOV A, _AD_NTC_IN_data@1
+	AND A, #0xf0
+	OR _AD_LONG_BUF+0+0, A
+.stabn 0x44,0,227,L285-_AD_NTC_IN
+L285:
+	MOV A, _AD_NTC_IN_data@0
+	AND A, #0x0f
+	MOV _AD_LONG_BUF+0+1, A
+.stabn 0xE0,0,0,L286-_AD_NTC_IN
+L286:
+.stabn 0x44,0,228,L287-_AD_NTC_IN
+L287:
+L241:
+	RET
+CALLTREE _AD_NTC_IN invoke _DELAY_US,__Get1ByteRamToLArg,__SRUInt2Ram
+.stabs "System_init:F13",36,0,0,_System_init
+_Function_System_init_code SEGMENT CODE INBANK USING _Function_System_init_data
+_System_init:
+.stabn 0xC0,0,0,L289-_System_init
+L289:
+.stabn 0x44,0,233,L290-_System_init
+L290:
+ .stabn 0x44,0,235,L291-_System_init
+L291:
+	CLR (0xD0 &  0xFF)
+.stabn 0x44,0,236,L292-_System_init
+L292:
+	MOV A, #0x0f
+	B0MOV 0xB8, A
+.stabn 0x44,0,237,L293-_System_init
+L293:
+	CLR (0xE0 &  0xFF)
+.stabn 0x44,0,238,L294-_System_init
+L294:
+	CLR (0xD0 &  0xFF)
+.stabn 0x44,0,241,L295-_System_init
+L295:
+	CLR (0xD4 &  0xFF)
+.stabn 0x44,0,242,L296-_System_init
+L296:
+	MOV A, #0x17
+	B0MOV 0xC4, A
+.stabn 0x44,0,243,L297-_System_init
+L297:
+	CLR (0xE4 &  0xFF)
+.stabn 0x44,0,244,L298-_System_init
+L298:
+	CLR (0xD4 &  0xFF)
+.stabn 0x44,0,247,L299-_System_init
+L299:
+	CLR (0xD5 &  0xFF)
+.stabn 0x44,0,248,L300-_System_init
+L300:
+	MOV A, #0x18
+	B0MOV 0xC5, A
+.stabn 0x44,0,249,L301-_System_init
+L301:
+	CLR (0xE5 &  0xFF)
+.stabn 0x44,0,250,L302-_System_init
+L302:
+	CLR (0xD5 &  0xFF)
+.stabn 0x44,0,252,L303-_System_init
+L303:
+	BCLR _F_DIG1_DIG2
+.stabn 0x44,0,253,L304-_System_init
+L304:
+	CLR _AD_JUDGE_BASE
+.stabn 0x44,0,254,L305-_System_init
+L305:
+	CLR _AD_RCE_TURNS
+.stabn 0x44,0,255,L306-_System_init
+L306:
+	BCLR _F_AD_SUCCESS
+.stabn 0x44,0,256,L307-_System_init
+L307:
+	CLR _AD_8_TIMES
+.stabn 0x44,0,257,L308-_System_init
+L308:
+	CLR _AD_8T_SUM
+	CLR _AD_8T_SUM+1
+.stabn 0x44,0,258,L309-_System_init
+L309:
+	CLR _AD_8T_SUM_OLD
+	CLR _AD_8T_SUM_OLD+1
+.stabn 0x44,0,259,L310-_System_init
+L310:
+	CLR _AD_ONCE_VAL
+	CLR _AD_ONCE_VAL+1
+.stabn 0x44,0,260,L311-_System_init
+L311:
+	CLR _FLAG_LED_LEVEL
+.stabn 0xE0,0,0,L312-_System_init
+L312:
+.stabn 0x44,0,262,L313-_System_init
+L313:
+L288:
+	RET
+.stabs "TC0_init:F13",36,0,0,_TC0_init
+_Function_TC0_init_code SEGMENT CODE INBANK USING _Function_TC0_init_data
+_TC0_init:
+.stabn 0xC0,0,0,L315-_TC0_init
+L315:
+.stabn 0x44,0,267,L316-_TC0_init
+L316:
+ .stabn 0x44,0,271,L317-_TC0_init
+L317:
+	CLR (0xC9 &  0xFF)
+.stabn 0x44,0,272,L318-_TC0_init
+L318:
+	MOV A, #0x0c
+	B0MOV 0xD8, A
+.stabn 0x44,0,273,L319-_TC0_init
+L319:
+	MOV A, #0x14
+	B0MOV 0xDA, A
+.stabn 0x44,0,275,L320-_TC0_init
+L320:
+	CLR (0xDB &  0xFF)
+.stabn 0x44,0,276,L321-_TC0_init
+L321:
+	CLR (0xCD &  0xFF)
+.stabn 0x44,0,278,L322-_TC0_init
+L322:
+	B0BCLR 0xC8.5
+.stabn 0x44,0,279,L323-_TC0_init
+L323:
+	B0BSET 0xC9.5
+.stabn 0x44,0,280,L324-_TC0_init
+L324:
+	B0BSET 0xDA.7
+.stabn 0x44,0,281,L325-_TC0_init
+L325:
+	B0BSET 0xDF.7
+.stabn 0xE0,0,0,L326-_TC0_init
+L326:
+.stabn 0x44,0,282,L327-_TC0_init
+L327:
+L314:
+	RET
+.stabs "SEND_DAT_TO_PC:F13",36,0,0,_SEND_DAT_TO_PC
+_Function_SEND_DAT_TO_PC_code SEGMENT CODE INBANK USING _Function_SEND_DAT_TO_PC_data
+_SEND_DAT_TO_PC:
+.stabs "SEND_DAT:p10",160,0,0,_SEND_DAT_TO_PC_arg@0
+.stabs "TXCNT:9",128,0,0,_SEND_DAT_TO_PC_data@0
+.stabs "TXDATA:9",128,0,0,_SEND_DAT_TO_PC_data@1
+.stabn 0xC0,0,0,L342-_SEND_DAT_TO_PC
+L342:
+.stabn 0x44,0,288,L343-_SEND_DAT_TO_PC
+L343:
+ .stabn 0x44,0,290,L344-_SEND_DAT_TO_PC
+L344:
+	MOV A, _SEND_DAT_TO_PC_arg@0+1
+	MOV _SEND_DAT_TO_PC_data@1, A
+.stabn 0xC0,0,1,L345-_SEND_DAT_TO_PC
+L345:
+.stabn 0x44,0,291,L346-_SEND_DAT_TO_PC
+L346:
+	CLR _SEND_DAT_TO_PC_data@0
+	JMP L333
+L330:
+.stabn 0xC0,0,2,L347-_SEND_DAT_TO_PC
+L347:
+.stabn 0x44,0,292,L348-_SEND_DAT_TO_PC
+L348:
+ .stabn 0x44,0,293,L349-_SEND_DAT_TO_PC
+L349:
+	MOV A, _SEND_DAT_TO_PC_data@1
+	AND A, #0x80
+	AND A, #0xFF
+	B0BTS0	134.0
+	JMP	L334
+.stabn 0xC0,0,3,L350-_SEND_DAT_TO_PC
+L350:
+.stabn 0x44,0,293,L351-_SEND_DAT_TO_PC
+L351:
+ .stabn 0x44,0,293,L352-_SEND_DAT_TO_PC
+L352:
+	B0BSET 0xD4.4
+.stabn 0x44,0,293,L353-_SEND_DAT_TO_PC
+L353:
+	MOV A, #0x0a
+	MOV _DELAY_US_arg@0, A
+	CALL _DELAY_US
+.stabn 0x44,0,293,L354-_SEND_DAT_TO_PC
+L354:
+	B0BCLR 0xD4.4
+.stabn 0x44,0,293,L355-_SEND_DAT_TO_PC
+L355:
+	MOV A, #0x04
+	MOV _DELAY_US_arg@0, A
+	CALL _DELAY_US
+.stabn 0xE0,0,3,L356-_SEND_DAT_TO_PC
+L356:
+.stabn 0x44,0,293,L357-_SEND_DAT_TO_PC
+L357:
+	JMP L335
+L334:
+.stabn 0xC0,0,3,L358-_SEND_DAT_TO_PC
+L358:
+.stabn 0x44,0,294,L359-_SEND_DAT_TO_PC
+L359:
+ .stabn 0x44,0,294,L360-_SEND_DAT_TO_PC
+L360:
+	B0BSET 0xD4.4
+.stabn 0x44,0,294,L361-_SEND_DAT_TO_PC
+L361:
+	MOV A, #0x04
+	MOV _DELAY_US_arg@0, A
+	CALL _DELAY_US
+.stabn 0x44,0,294,L362-_SEND_DAT_TO_PC
+L362:
+	B0BCLR 0xD4.4
+.stabn 0x44,0,294,L363-_SEND_DAT_TO_PC
+L363:
+	MOV A, #0x0a
+	MOV _DELAY_US_arg@0, A
+	CALL _DELAY_US
+.stabn 0xE0,0,3,L364-_SEND_DAT_TO_PC
+L364:
+.stabn 0x44,0,294,L365-_SEND_DAT_TO_PC
+L365:
+L335:
+.stabn 0x44,0,295,L366-_SEND_DAT_TO_PC
+L366:
+	B0BCLR 134.2
+	RLCM _SEND_DAT_TO_PC_data@1
+.stabn 0xE0,0,2,L367-_SEND_DAT_TO_PC
+L367:
+.stabn 0x44,0,296,L368-_SEND_DAT_TO_PC
+L368:
+L331:
+.stabn 0x44,0,291,L369-_SEND_DAT_TO_PC
+L369:
+	INCMS _SEND_DAT_TO_PC_data@0
+	NOP
+L333:
+.stabn 0x44,0,291,L370-_SEND_DAT_TO_PC
+L370:
+	MOV A, _SEND_DAT_TO_PC_data@0
+	SUB A, #0x08
+	B0BTS1	134.2
+	JMP	L330
+.stabn 0xE0,0,1,L371-_SEND_DAT_TO_PC
+L371:
+.stabn 0x44,0,297,L372-_SEND_DAT_TO_PC
+L372:
+ .stabn 0x44,0,297,L373-_SEND_DAT_TO_PC
+L373:
+	MOV A, _SEND_DAT_TO_PC_arg@0
+	MOV _SEND_DAT_TO_PC_data@1, A
+.stabn 0xC0,0,1,L374-_SEND_DAT_TO_PC
+L374:
+.stabn 0x44,0,298,L375-_SEND_DAT_TO_PC
+L375:
+	CLR _SEND_DAT_TO_PC_data@0
+	JMP L339
+L336:
+.stabn 0xC0,0,2,L376-_SEND_DAT_TO_PC
+L376:
+.stabn 0x44,0,299,L377-_SEND_DAT_TO_PC
+L377:
+ .stabn 0x44,0,300,L378-_SEND_DAT_TO_PC
+L378:
+	MOV A, _SEND_DAT_TO_PC_data@1
+	AND A, #0x80
+	AND A, #0xFF
+	B0BTS0	134.0
+	JMP	L340
+.stabn 0xC0,0,3,L379-_SEND_DAT_TO_PC
+L379:
+.stabn 0x44,0,300,L380-_SEND_DAT_TO_PC
+L380:
+ .stabn 0x44,0,300,L381-_SEND_DAT_TO_PC
+L381:
+	B0BSET 0xD4.4
+.stabn 0x44,0,300,L382-_SEND_DAT_TO_PC
+L382:
+	MOV A, #0x0a
+	MOV _DELAY_US_arg@0, A
+	CALL _DELAY_US
+.stabn 0x44,0,300,L383-_SEND_DAT_TO_PC
+L383:
+	B0BCLR 0xD4.4
+.stabn 0x44,0,300,L384-_SEND_DAT_TO_PC
+L384:
+	MOV A, #0x04
+	MOV _DELAY_US_arg@0, A
+	CALL _DELAY_US
+.stabn 0xE0,0,3,L385-_SEND_DAT_TO_PC
+L385:
+.stabn 0x44,0,300,L386-_SEND_DAT_TO_PC
+L386:
+	JMP L341
+L340:
+.stabn 0xC0,0,3,L387-_SEND_DAT_TO_PC
+L387:
+.stabn 0x44,0,301,L388-_SEND_DAT_TO_PC
+L388:
+ .stabn 0x44,0,301,L389-_SEND_DAT_TO_PC
+L389:
+	B0BSET 0xD4.4
+.stabn 0x44,0,301,L390-_SEND_DAT_TO_PC
+L390:
+	MOV A, #0x04
+	MOV _DELAY_US_arg@0, A
+	CALL _DELAY_US
+.stabn 0x44,0,301,L391-_SEND_DAT_TO_PC
+L391:
+	B0BCLR 0xD4.4
+.stabn 0x44,0,301,L392-_SEND_DAT_TO_PC
+L392:
+	MOV A, #0x0a
+	MOV _DELAY_US_arg@0, A
+	CALL _DELAY_US
+.stabn 0xE0,0,3,L393-_SEND_DAT_TO_PC
+L393:
+.stabn 0x44,0,301,L394-_SEND_DAT_TO_PC
+L394:
+L341:
+.stabn 0x44,0,302,L395-_SEND_DAT_TO_PC
+L395:
+	B0BCLR 134.2
+	RLCM _SEND_DAT_TO_PC_data@1
+.stabn 0xE0,0,2,L396-_SEND_DAT_TO_PC
+L396:
+.stabn 0x44,0,303,L397-_SEND_DAT_TO_PC
+L397:
+L337:
+.stabn 0x44,0,298,L398-_SEND_DAT_TO_PC
+L398:
+	INCMS _SEND_DAT_TO_PC_data@0
+	NOP
+L339:
+.stabn 0x44,0,298,L399-_SEND_DAT_TO_PC
+L399:
+	MOV A, _SEND_DAT_TO_PC_data@0
+	SUB A, #0x08
+	B0BTS1	134.2
+	JMP	L336
+.stabn 0xE0,0,1,L400-_SEND_DAT_TO_PC
+L400:
+.stabn 0x44,0,304,L401-_SEND_DAT_TO_PC
+L401:
+ .stabn 0xE0,0,0,L402-_SEND_DAT_TO_PC
+L402:
+.stabn 0x44,0,304,L403-_SEND_DAT_TO_PC
+L403:
+L328:
+	RET
+CALLTREE _SEND_DAT_TO_PC invoke _DELAY_US
+.stabs "DELAY_US:F13",36,0,0,_DELAY_US
+_Function_DELAY_US_code SEGMENT CODE INBANK USING _Function_DELAY_US_data
+_DELAY_US:
+.stabs "DELAY_CNT:p9",160,0,0,_DELAY_US_arg@0
+.stabn 0xC0,0,0,L408-_DELAY_US
+L408:
+.stabn 0x44,0,309,L409-_DELAY_US
+L409:
+L405:
+.stabn 0x44,0,310,L410-_DELAY_US
+L410:
+L406:
+.stabn 0x44,0,310,L411-_DELAY_US
+L411:
+	MOV A, _DELAY_US_arg@0
+	B0MOV W0, A
+	SUB A, #0x01
+	MOV _DELAY_US_arg@0, A
+	B0MOV A, W0
+	CMPRS A, #0x00
+	JMP L405
+.stabn 0xE0,0,0,L412-_DELAY_US
+L412:
+.stabn 0x44,0,311,L413-_DELAY_US
+L413:
+L404:
+	RET
+.stabs "_AD_Struct_RESULT_:T16=s2AD_RESULT_LO:9,0,8;AD_RESULT_HI:9,8,8;;",128,0,0,0
+.stabs "_AD_Union_RESULT_:T17=u2AD_SHORT_BUF:16,0,16;AD_RESULT:10,0,16;;",128,0,0,0
+.stabs "bitRegister:T18=s1bit0:12,0,1;bit1:12,1,1;bit2:12,2,1;\\",128,0,0,0
+.stabs "bit3:12,3,1;bit4:12,4,1;bit5:12,5,1;bit6:12,6,1;bit7:12,7,1;;",128,0,0,0
+.stabs "_intrinsicbitfield:T19=s1bit0:12,0,1;bit1:12,1,1;bit2:12,2,1;\\",128,0,0,0
+.stabs "bit3:12,3,1;bit4:12,4,1;bit5:12,5,1;bit6:12,6,1;bit7:12,7,1;;",128,0,0,0
+.stabs "DWORD:t3",128,0,0,0
+.stabs "WORD:t10",128,0,0,0
+.stabs "BYTE:t9",128,0,0,0
+.stabs "", 100, 0, 0,Letext
+Letext:
+.stabs "LED_CNT:G9",32,0,0,_LED_CNT
+.stabs "FLAG_LED_LEVEL:G9",32,0,0,_FLAG_LED_LEVEL
+.stabs "AD_ONCE_VAL:G10",32,0,0,_AD_ONCE_VAL
+.stabs "ABL_SUM:G9",32,0,0,_ABL_SUM
+.stabs "AD_8T_SUM_OLD:G10",32,0,0,_AD_8T_SUM_OLD
+.stabs "AD_8T_SUM:G10",32,0,0,_AD_8T_SUM
+.stabs ":t20=ar1;0;4;10",128,0,0,0
+.stabs "AD_ARRAY_ONCE:G20",32,0,0,_AD_ARRAY_ONCE
+.stabs "AD_8_TIMES:G9",32,0,0,_AD_8_TIMES
+.stabs "AD_RCE_TURNS:G9",32,0,0,_AD_RCE_TURNS
+.stabs "AD_JUDGE_BASE:G9",32,0,0,_AD_JUDGE_BASE
+.stabs "F_AD_SUCCESS:G300",32,0,0,_F_AD_SUCCESS
+.stabs "F_DIG1_DIG2:G301",32,0,0,_F_DIG1_DIG2
+.stabs "F_LED:G302",32,0,0,_F_LED
+.stabs "AD_LONG_BUF:G17",32,0,0,_AD_LONG_BUF
+extern data __SrcRArg1
+extern data __SrcRArg0
+extern data __SrcLArg1
+extern data __SrcLArg0
+EXTERN CODE __SRUInt2Ram
+EXTERN CODE __Get1ByteRamToLArg
+EXTERN CODE __Mov2ByteRamToReg
+EXTERN CODE __Get2ByteRamToReg
+EXTERN CODE __Get2ByteRomUToReg
+EXTERN CODE __SRULong2Ram
+EXTERN CODE __Get2ByteRamToLArg
+EXTERN CODE __CmpULong
+EXTERN CODE __Get2ByteRamRam
+EXTERN CODE __SetRegTo2ByteRam
+EXTERN CODE __ClearWatchDogTimer

@@ -1,0 +1,718 @@
+  JMP   0x02D           ;'0x000000'
+  ADD   A, @0xFF        ;'0x000001'
+  ADD   A, @0xFF        ;'0x000002'
+  ADD   A, @0xFF        ;'0x000003'
+  ADD   A, @0xFF        ;'0x000004'
+  ADD   A, @0xFF        ;'0x000005'
+  ADD   A, @0xFF        ;'0x000006'
+  ADD   A, @0xFF        ;'0x000007'
+  JMP   0x009           ;'0x000008'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 331)
+;MOV 0x3D,A ;保存 A
+  MOV   0x10, A         ;'0x000009'
+  SWAPA 0x04            ;'0x00000A'
+  MOV   0x30, A         ;'0x00000B'
+  SWAPA 0x03            ;'0x00000C'
+  MOV   0x31, A         ;'0x00000D'
+  MOV   0x3D, A         ;'0x00000E'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 332)
+;MOV A,0x03
+  MOV   A, 0x03         ;'0x00000F'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 333)
+;MOV 0x3E,A ;保存 R3
+  MOV   0x3E, A         ;'0x000010'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 334)
+;MOV A,0x04
+  MOV   A, 0x04         ;'0x000011'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 335)
+;MOV 0x3F,A ;保存 R4
+  MOV   0x3F, A         ;'0x000012'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 338)
+;if	(TCIF==1)
+  JBS   0x0F, 0         ;'0x000013'
+  JMP   0x020           ;'0x000014'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 341)
+;ISR&=0XFE;				//清TCC中断标志位
+  MOV   A, @0xFE        ;'0x000015'
+  AND   0x0F, A         ;'0x000016'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 342)
+;TCC+=206;					//TCC赋初值 0.2ms
+  MOV   A, @0xCE        ;'0x000017'
+  ADD   0x01, A         ;'0x000018'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 344)
+;if(++intCount >= 100)
+  INC   0x21            ;'0x000019'
+  MOV   A, @0x64        ;'0x00001A'
+  SUB   A, 0x21         ;'0x00001B'
+  JBS   0x03, 0         ;'0x00001C'
+  JMP   0x020           ;'0x00001D'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 346)
+;intCount = 0;		//10ms
+  CLR   0x21            ;'0x00001E'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 347)
+;IntFlag = 1;
+  BS    0x20, 0         ;'0x00001F'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 355)
+;MOV A,0x3F ;返回 R4
+  MOV   A, 0x3F         ;'0x000020'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 356)
+;MOV 0x04,A
+  MOV   0x04, A         ;'0x000021'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 357)
+;MOV A,0x3E ;返回 R3
+  MOV   A, 0x3E         ;'0x000022'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 358)
+;MOV 0x03,A
+  MOV   0x03, A         ;'0x000023'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 359)
+;SWAP 0x3D  ;返回 A
+  SWAP  0x3D            ;'0x000024'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 360)
+;SWAPA 0x3D
+  SWAPA 0x3D            ;'0x000025'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 362)
+;}
+  SWAPA 0x31            ;'0x000026'
+  MOV   0x03, A         ;'0x000027'
+  SWAPA 0x30            ;'0x000028'
+  MOV   0x04, A         ;'0x000029'
+  RETI                  ;'0x00002A'
+  ADD   A, @0xFF        ;'0x00002B'
+  ADD   A, @0xFF        ;'0x00002C'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 47)
+;WDTC();
+  MOV   A, @0x00        ;'0x00002D'
+  MOV   0x21, A         ;'0x00002E'
+  MOV   0x22, A         ;'0x00002F'
+  MOV   0x23, A         ;'0x000030'
+  MOV   0x24, A         ;'0x000031'
+  MOV   0x25, A         ;'0x000032'
+  MOV   0x26, A         ;'0x000033'
+  MOV   0x27, A         ;'0x000034'
+  MOV   0x28, A         ;'0x000035'
+  MOV   0x29, A         ;'0x000036'
+  MOV   0x2A, A         ;'0x000037'
+  MOV   0x2B, A         ;'0x000038'
+  WDTC                  ;'0x000039'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 48)
+;DISI();
+  DISI                  ;'0x00003A'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 49)
+;WDTCR=0;				//禁止WDT
+  MOV   A, @0x00        ;'0x00003B'
+  IOW   0xE             ;'0x00003C'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 51)
+;IO_Init();	            //IO初始化
+  CALL  0x05F           ;'0x00003D'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 53)
+;TCC=206;					//
+  MOV   A, @0xCE        ;'0x00003E'
+  MOV   0x01, A         ;'0x00003F'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 54)
+;ISR=0;
+  CLR   0x0F            ;'0x000040'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 55)
+;IMR=1;
+  MOV   A, @0x01        ;'0x000041'
+  IOW   0xF             ;'0x000042'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 57)
+;ENI();
+  ENI                   ;'0x000043'
+  JMP   0x05D           ;'0x000044'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 63)
+;WDTC(); //清狗
+  WDTC                  ;'0x000045'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 64)
+;if(chrgFlag)
+  MOV   0x26, 0x26      ;'0x000046'
+  JBC   0x03, 2         ;'0x000047'
+  JMP   0x04A           ;'0x000048'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 65)
+;ledBreath();
+  CALL  0x067           ;'0x000049'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 66)
+;if(motorFlag)
+  MOV   0x27, 0x27      ;'0x00004A'
+  JBC   0x03, 2         ;'0x00004B'
+  JMP   0x04E           ;'0x00004C'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 68)
+;motorWork2();
+  CALL  0x075           ;'0x00004D'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 70)
+;if(!IntFlag)			//10ms执行一次
+  JBC   0x20, 0         ;'0x00004E'
+  JMP   0x051           ;'0x00004F'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 71)
+;continue;
+  JMP   0x05D           ;'0x000050'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 72)
+;IntFlag = 0;
+  BC    0x20, 0         ;'0x000051'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 73)
+;keyCtr();
+  CALL  0x083           ;'0x000052'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 74)
+;if(P62) 	//充电判断
+  JBS   0x06, 2         ;'0x000053'
+  JMP   0x057           ;'0x000054'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 75)
+;chrgCtr();
+  CALL  0x0D0           ;'0x000055'
+  JMP   0x059           ;'0x000056'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 78)
+;chrgFlag = 0;	//充电呼吸灯标志
+  CLR   0x26            ;'0x000057'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 79)
+;workCtr();
+  CALL  0x0D9           ;'0x000058'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 81)
+;if(chrgFlag)
+  MOV   0x26, 0x26      ;'0x000059'
+  JBC   0x03, 2         ;'0x00005A'
+  JMP   0x05D           ;'0x00005B'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 82)
+;breathCtr();
+  CALL  0x133           ;'0x00005C'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 61)
+;while(1)
+  JMP   0x045           ;'0x00005D'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 85)
+;}
+  RET                   ;'0x00005E'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 237)
+;PORT6 = 0x00;
+  CLR   0x06            ;'0x00005F'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 238)
+;P6CR = 0x34;			//PORT6设为输出(0 输出,1 输入)
+  MOV   A, @0x34        ;'0x000060'
+  IOW   0x6             ;'0x000061'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 239)
+;PHCR = 0xEF;			//P64上拉
+  MOV   A, @0xEF        ;'0x000062'
+  IOW   0xD             ;'0x000063'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 241)
+;mov	a,@0x02			//TCC分频比设为1：8
+  MOV   A, @0x02        ;'0x000064'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 242)
+;contw
+  CONTW                 ;'0x000065'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 244)
+;}
+  RET                   ;'0x000066'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 91)
+;if(ledCount >= duty)
+  MOV   A, 0x29         ;'0x000067'
+  SUB   A, 0x25         ;'0x000068'
+  JBS   0x03, 0         ;'0x000069'
+  JMP   0x06D           ;'0x00006A'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 93)
+;P63 = 1;
+  BS    0x06, 3         ;'0x00006B'
+  JMP   0x06E           ;'0x00006C'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 97)
+;P63 = 0;
+  BC    0x06, 3         ;'0x00006D'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 99)
+;if(++ledCount > 100)
+  INC   0x25            ;'0x00006E'
+  MOV   A, 0x25         ;'0x00006F'
+  SUB   A, @0x64        ;'0x000070'
+  JBC   0x03, 0         ;'0x000071'
+  JMP   0x074           ;'0x000072'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 100)
+;ledCount = 0;
+  CLR   0x25            ;'0x000073'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 101)
+;}
+  RET                   ;'0x000074'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 150)
+;if(motorCount > 30)
+  MOV   A, 0x28         ;'0x000075'
+  SUB   A, @0x1E        ;'0x000076'
+  JBC   0x03, 0         ;'0x000077'
+  JMP   0x07B           ;'0x000078'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 152)
+;P60 = 0;
+  BC    0x06, 0         ;'0x000079'
+  JMP   0x07C           ;'0x00007A'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 156)
+;P60 = 1;
+  BS    0x06, 0         ;'0x00007B'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 159)
+;if(++motorCount > 100)
+  INC   0x28            ;'0x00007C'
+  MOV   A, 0x28         ;'0x00007D'
+  SUB   A, @0x64        ;'0x00007E'
+  JBC   0x03, 0         ;'0x00007F'
+  JMP   0x082           ;'0x000080'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 160)
+;motorCount = 0;
+  CLR   0x28            ;'0x000081'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 161)
+;}
+  RET                   ;'0x000082'
+  MOV   A, 0x12         ;'0x000083'
+  MOV   0x2E, A         ;'0x000084'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 248)
+;char kclick = keyRead(0x10 & (~PORT6));
+  MOV   A, 0x06         ;'0x000085'
+  MOV   0x12, A         ;'0x000086'
+  COM   0x12            ;'0x000087'
+  MOV   A, @0x10        ;'0x000088'
+  AND   A, 0x12         ;'0x000089'
+  MOV   0x2F, A         ;'0x00008A'
+  CALL  0x0AB           ;'0x00008B'
+  MOV   A, 0x11         ;'0x00008C'
+  MOV   0x2D, A         ;'0x00008D'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 250)
+;if(kclick == 1)
+  MOV   A, 0x2D         ;'0x00008E'
+  XOR   A, @0x01        ;'0x00008F'
+  JBS   0x03, 2         ;'0x000090'
+  JMP   0x09D           ;'0x000091'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 254)
+;if(workStep > 0)
+  MOV   0x22, 0x22      ;'0x000092'
+  JBC   0x03, 2         ;'0x000093'
+  JMP   0x0A8           ;'0x000094'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 256)
+;if(++workStep > 4)
+  INC   0x22            ;'0x000095'
+  MOV   A, 0x22         ;'0x000096'
+  SUB   A, @0x04        ;'0x000097'
+  JBC   0x03, 0         ;'0x000098'
+  JMP   0x0A8           ;'0x000099'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 257)
+;workStep = 1;
+  MOV   A, @0x01        ;'0x00009A'
+  MOV   0x22, A         ;'0x00009B'
+  JMP   0x0A8           ;'0x00009C'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 261)
+;else if(kclick == 2)
+  MOV   A, 0x2D         ;'0x00009D'
+  XOR   A, @0x02        ;'0x00009E'
+  JBS   0x03, 2         ;'0x00009F'
+  JMP   0x0A8           ;'0x0000A0'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 263)
+;if(workStep == 0)
+  MOV   0x22, 0x22      ;'0x0000A1'
+  JBS   0x03, 2         ;'0x0000A2'
+  JMP   0x0A7           ;'0x0000A3'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 264)
+;workStep = 1;
+  MOV   A, @0x01        ;'0x0000A4'
+  MOV   0x22, A         ;'0x0000A5'
+  JMP   0x0A8           ;'0x0000A6'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 266)
+;workStep = 0;
+  CLR   0x22            ;'0x0000A7'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 272)
+;}
+  MOV   A, 0x2E         ;'0x0000A8'
+  MOV   0x12, A         ;'0x0000A9'
+  RET                   ;'0x0000AA'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 276)
+;if(keyStatus)
+  MOV   0x2F, 0x2F      ;'0x0000AB'
+  JBC   0x03, 2         ;'0x0000AC'
+  JMP   0x0BB           ;'0x0000AD'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 278)
+;keyCount++;
+  INC   0x23            ;'0x0000AE'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 279)
+;if(keyCount >= 200)
+  MOV   A, @0xC8        ;'0x0000AF'
+  SUB   A, 0x23         ;'0x0000B0'
+  JBS   0x03, 0         ;'0x0000B1'
+  JMP   0x0CD           ;'0x0000B2'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 281)
+;keyCount = 200;
+  MOV   A, @0xC8        ;'0x0000B3'
+  MOV   0x23, A         ;'0x0000B4'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 282)
+;if(!longPressFlag)
+  JBC   0x20, 1         ;'0x0000B5'
+  JMP   0x0CD           ;'0x0000B6'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 284)
+;longPressFlag = 1;
+  BS    0x20, 1         ;'0x0000B7'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 285)
+;return 2;
+  MOV   A, @0x02        ;'0x0000B8'
+  MOV   0x11, A         ;'0x0000B9'
+  JMP   0x0CF           ;'0x0000BA'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 291)
+;if(keyCount >= 200)
+  MOV   A, @0xC8        ;'0x0000BB'
+  SUB   A, 0x23         ;'0x0000BC'
+  JBS   0x03, 0         ;'0x0000BD'
+  JMP   0x0C4           ;'0x0000BE'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 293)
+;keyCount = 0;
+  CLR   0x23            ;'0x0000BF'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 294)
+;longPressFlag = 0;
+  BC    0x20, 1         ;'0x0000C0'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 295)
+;return	0;
+  MOV   A, @0x00        ;'0x0000C1'
+  MOV   0x11, A         ;'0x0000C2'
+  JMP   0x0CF           ;'0x0000C3'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 297)
+;else if(keyCount >= 8)
+  MOV   A, @0x08        ;'0x0000C4'
+  SUB   A, 0x23         ;'0x0000C5'
+  JBS   0x03, 0         ;'0x0000C6'
+  JMP   0x0CC           ;'0x0000C7'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 299)
+;keyCount = 0;
+  CLR   0x23            ;'0x0000C8'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 300)
+;return	1;
+  MOV   A, @0x01        ;'0x0000C9'
+  MOV   0x11, A         ;'0x0000CA'
+  JMP   0x0CF           ;'0x0000CB'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 302)
+;keyCount = 0;
+  CLR   0x23            ;'0x0000CC'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 304)
+;return 0;
+  MOV   A, @0x00        ;'0x0000CD'
+  MOV   0x11, A         ;'0x0000CE'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 305)
+;}
+  RET                   ;'0x0000CF'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 134)
+;workStep = 0;
+  CLR   0x22            ;'0x0000D0'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 135)
+;if(P65)
+  JBS   0x06, 5         ;'0x0000D1'
+  JMP   0x0D6           ;'0x0000D2'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 137)
+;chrgFlag = 0;
+  CLR   0x26            ;'0x0000D3'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 138)
+;P63 = 1;
+  BS    0x06, 3         ;'0x0000D4'
+  JMP   0x0D8           ;'0x0000D5'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 142)
+;chrgFlag = 1;
+  MOV   A, @0x01        ;'0x0000D6'
+  MOV   0x26, A         ;'0x0000D7'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 145)
+;}
+  RET                   ;'0x0000D8'
+  MOV   A, 0x12         ;'0x0000D9'
+  MOV   0x2D, A         ;'0x0000DA'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 182)
+;switch(workStep)
+  MOV   A, 0x22         ;'0x0000DB'
+  MOV   0x12, A         ;'0x0000DC'
+  MOV   0x12, 0x12      ;'0x0000DD'
+  JBC   0x03, 2         ;'0x0000DE'
+  JMP   0x0F1           ;'0x0000DF'
+  MOV   A, 0x12         ;'0x0000E0'
+  XOR   A, @0x01        ;'0x0000E1'
+  JBC   0x03, 2         ;'0x0000E2'
+  JMP   0x0FC           ;'0x0000E3'
+  MOV   A, 0x12         ;'0x0000E4'
+  XOR   A, @0x02        ;'0x0000E5'
+  JBC   0x03, 2         ;'0x0000E6'
+  JMP   0x101           ;'0x0000E7'
+  MOV   A, 0x12         ;'0x0000E8'
+  XOR   A, @0x03        ;'0x0000E9'
+  JBC   0x03, 2         ;'0x0000EA'
+  JMP   0x106           ;'0x0000EB'
+  MOV   A, 0x12         ;'0x0000EC'
+  XOR   A, @0x04        ;'0x0000ED'
+  JBC   0x03, 2         ;'0x0000EE'
+  JMP   0x10A           ;'0x0000EF'
+  JMP   0x10D           ;'0x0000F0'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 185)
+;motorFlag = 0;
+  CLR   0x27            ;'0x0000F1'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 186)
+;P63 = 1;
+  BS    0x06, 3         ;'0x0000F2'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 187)
+;PWMCON = 0B00001111;	//1:256分频
+  MOV   A, @0x0F        ;'0x0000F3'
+  MOV   0x08, A         ;'0x0000F4'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 188)
+;P60 = 0;
+  BC    0x06, 0         ;'0x0000F5'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 189)
+;P61 = 0;
+  BC    0x06, 1         ;'0x0000F6'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 190)
+;if(keyCount == 0)
+  MOV   0x23, 0x23      ;'0x0000F7'
+  JBS   0x03, 2         ;'0x0000F8'
+  JMP   0x10D           ;'0x0000F9'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 191)
+;gotoSleep();
+  CALL  0x110           ;'0x0000FA'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 192)
+;break;
+  JMP   0x10D           ;'0x0000FB'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 194)
+;motorFlag = 1;
+  MOV   A, @0x01        ;'0x0000FC'
+  MOV   0x27, A         ;'0x0000FD'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 195)
+;P61 = 0;
+  BC    0x06, 1         ;'0x0000FE'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 196)
+;P63 = 0;
+  BC    0x06, 3         ;'0x0000FF'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 197)
+;break;
+  JMP   0x10D           ;'0x000100'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 199)
+;motorFlag = 0;
+  CLR   0x27            ;'0x000101'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 200)
+;motorWork();
+  CALL  0x125           ;'0x000102'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 201)
+;P61 = 0;
+  BC    0x06, 1         ;'0x000103'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 202)
+;P63 = 0;
+  BC    0x06, 3         ;'0x000104'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 203)
+;break;
+  JMP   0x10D           ;'0x000105'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 205)
+;P60 = 0;
+  BC    0x06, 0         ;'0x000106'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 206)
+;P61 = 1;
+  BS    0x06, 1         ;'0x000107'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 207)
+;P63 = 0;
+  BC    0x06, 3         ;'0x000108'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 208)
+;break;
+  JMP   0x10D           ;'0x000109'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 210)
+;P60 = 1;
+  BS    0x06, 0         ;'0x00010A'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 211)
+;P61 = 1;
+  BS    0x06, 1         ;'0x00010B'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 212)
+;P63 = 0;
+  BC    0x06, 3         ;'0x00010C'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 216)
+;}
+  MOV   A, 0x2D         ;'0x00010D'
+  MOV   0x12, A         ;'0x00010E'
+  RET                   ;'0x00010F'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 309)
+;motorFlag = 0;
+  CLR   0x27            ;'0x000110'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 310)
+;chrgFlag = 0;
+  CLR   0x26            ;'0x000111'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 311)
+;workStep = 0;
+  CLR   0x22            ;'0x000112'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 312)
+;WDTCR=0x00;//禁止WDT
+  MOV   A, @0x00        ;'0x000113'
+  IOW   0xE             ;'0x000114'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 313)
+;ICIECR = 0x14;
+  MOV   A, @0x14        ;'0x000115'
+  MOV   0x0D, A         ;'0x000116'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 314)
+;IMR = 0x02;
+  MOV   A, @0x02        ;'0x000117'
+  IOW   0xF             ;'0x000118'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 315)
+;ISR&=0XF0;
+  MOV   A, @0xF0        ;'0x000119'
+  AND   0x0F, A         ;'0x00011A'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 316)
+;DISI();
+  DISI                  ;'0x00011B'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 317)
+;SLEP();
+  SLEP                  ;'0x00011C'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 318)
+;ENI();
+  ENI                   ;'0x00011D'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 319)
+;WDTCR=0x80;
+  MOV   A, @0x80        ;'0x00011E'
+  IOW   0xE             ;'0x00011F'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 320)
+;ICIECR = 0x00;
+  CLR   0x0D            ;'0x000120'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 321)
+;ISR=0;
+  CLR   0x0F            ;'0x000121'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 322)
+;IMR=1;
+  MOV   A, @0x01        ;'0x000122'
+  IOW   0xF             ;'0x000123'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 323)
+;}
+  RET                   ;'0x000124'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 166)
+;if(motorCount > 12)
+  MOV   A, 0x28         ;'0x000125'
+  SUB   A, @0x0C        ;'0x000126'
+  JBC   0x03, 0         ;'0x000127'
+  JMP   0x12B           ;'0x000128'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 168)
+;P60 = 0;
+  BC    0x06, 0         ;'0x000129'
+  JMP   0x12C           ;'0x00012A'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 172)
+;P60 = 1;
+  BS    0x06, 0         ;'0x00012B'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 175)
+;if(++motorCount > 22)
+  INC   0x28            ;'0x00012C'
+  MOV   A, 0x28         ;'0x00012D'
+  SUB   A, @0x16        ;'0x00012E'
+  JBC   0x03, 0         ;'0x00012F'
+  JMP   0x132           ;'0x000130'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 176)
+;motorCount = 0;
+  CLR   0x28            ;'0x000131'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 177)
+;}
+  RET                   ;'0x000132'
+  MOV   A, 0x12         ;'0x000133'
+  MOV   0x2D, A         ;'0x000134'
+  MOV   A, 0x13         ;'0x000135'
+  MOV   0x2E, A         ;'0x000136'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 107)
+;if(breathCount < 10)
+  MOV   A, @0x00        ;'0x000137'
+  SUB   A, 0x2B         ;'0x000138'
+  JBS   0x03, 2         ;'0x000139'
+  JMP   0x13D           ;'0x00013A'
+  MOV   A, @0x0A        ;'0x00013B'
+  SUB   A, 0x2A         ;'0x00013C'
+  JBC   0x03, 0         ;'0x00013D'
+  JMP   0x141           ;'0x00013E'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 109)
+;duty = 0;
+  CLR   0x29            ;'0x00013F'
+  JMP   0x17C           ;'0x000140'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 111)
+;else if(breathCount < 200)
+  MOV   A, @0x00        ;'0x000141'
+  SUB   A, 0x2B         ;'0x000142'
+  JBS   0x03, 2         ;'0x000143'
+  JMP   0x147           ;'0x000144'
+  MOV   A, @0xC8        ;'0x000145'
+  SUB   A, 0x2A         ;'0x000146'
+  JBC   0x03, 0         ;'0x000147'
+  JMP   0x15A           ;'0x000148'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 113)
+;if(breathCount % 2 == 0 && duty < 100)
+  MOV   A, 0x2A         ;'0x000149'
+  MOV   0x12, A         ;'0x00014A'
+  MOV   A, 0x2B         ;'0x00014B'
+  MOV   0x13, A         ;'0x00014C'
+  MOV   A, @0x01        ;'0x00014D'
+  AND   0x12, A         ;'0x00014E'
+  MOV   A, @0x00        ;'0x00014F'
+  AND   A, 0x13         ;'0x000150'
+  OR    A, 0x12         ;'0x000151'
+  JBS   0x03, 2         ;'0x000152'
+  JMP   0x17C           ;'0x000153'
+  MOV   A, @0x64        ;'0x000154'
+  SUB   A, 0x29         ;'0x000155'
+  JBC   0x03, 0         ;'0x000156'
+  JMP   0x17C           ;'0x000157'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 114)
+;duty++;
+  INC   0x29            ;'0x000158'
+  JMP   0x17C           ;'0x000159'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 116)
+;else if(breathCount < 210)
+  MOV   A, @0x00        ;'0x00015A'
+  SUB   A, 0x2B         ;'0x00015B'
+  JBS   0x03, 2         ;'0x00015C'
+  JMP   0x160           ;'0x00015D'
+  MOV   A, @0xD2        ;'0x00015E'
+  SUB   A, 0x2A         ;'0x00015F'
+  JBC   0x03, 0         ;'0x000160'
+  JMP   0x165           ;'0x000161'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 118)
+;duty = 101;
+  MOV   A, @0x65        ;'0x000162'
+  MOV   0x29, A         ;'0x000163'
+  JMP   0x17C           ;'0x000164'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 120)
+;else if(breathCount < 410)
+  MOV   A, @0x01        ;'0x000165'
+  SUB   A, 0x2B         ;'0x000166'
+  JBS   0x03, 2         ;'0x000167'
+  JMP   0x16B           ;'0x000168'
+  MOV   A, @0x9A        ;'0x000169'
+  SUB   A, 0x2A         ;'0x00016A'
+  JBC   0x03, 0         ;'0x00016B'
+  JMP   0x17C           ;'0x00016C'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 122)
+;if(breathCount % 2 == 0 && duty > 0)
+  MOV   A, 0x2A         ;'0x00016D'
+  MOV   0x12, A         ;'0x00016E'
+  MOV   A, 0x2B         ;'0x00016F'
+  MOV   0x13, A         ;'0x000170'
+  MOV   A, @0x01        ;'0x000171'
+  AND   0x12, A         ;'0x000172'
+  MOV   A, @0x00        ;'0x000173'
+  AND   A, 0x13         ;'0x000174'
+  OR    A, 0x12         ;'0x000175'
+  JBS   0x03, 2         ;'0x000176'
+  JMP   0x17C           ;'0x000177'
+  MOV   0x29, 0x29      ;'0x000178'
+  JBC   0x03, 2         ;'0x000179'
+  JMP   0x17C           ;'0x00017A'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 123)
+;duty--;
+  DEC   0x29            ;'0x00017B'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 125)
+;if(++breathCount > 410)
+  MOV   A, 0x2A         ;'0x00017C'
+  MOV   0x12, A         ;'0x00017D'
+  MOV   A, 0x2B         ;'0x00017E'
+  MOV   0x13, A         ;'0x00017F'
+  MOV   A, @0x01        ;'0x000180'
+  ADD   A, 0x12         ;'0x000181'
+  MOV   0x12, A         ;'0x000182'
+  JBC   0x03, 0         ;'0x000183'
+  INC   0x13            ;'0x000184'
+  MOV   A, @0x00        ;'0x000185'
+  ADD   0x13, A         ;'0x000186'
+  MOV   A, 0x12         ;'0x000187'
+  MOV   0x2A, A         ;'0x000188'
+  MOV   A, 0x13         ;'0x000189'
+  MOV   0x2B, A         ;'0x00018A'
+  MOV   A, 0x13         ;'0x00018B'
+  SUB   A, @0x01        ;'0x00018C'
+  JBS   0x03, 2         ;'0x00018D'
+  JMP   0x191           ;'0x00018E'
+  MOV   A, 0x12         ;'0x00018F'
+  SUB   A, @0x9A        ;'0x000190'
+  JBC   0x03, 0         ;'0x000191'
+  JMP   0x195           ;'0x000192'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 127)
+;breathCount = 0;
+  CLR   0x2B            ;'0x000193'
+  CLR   0x2A            ;'0x000194'
+;C:\mcuproject\xj\s18_1001B_sop8\PWM.c (line 129)
+;}
+  MOV   A, 0x2D         ;'0x000195'
+  MOV   0x12, A         ;'0x000196'
+  MOV   A, 0x2E         ;'0x000197'
+  MOV   0x13, A         ;'0x000198'
+  RET                   ;'0x000199'
